@@ -1,0 +1,1181 @@
+<?xml version="1.0"?>
+<formdef id="1" url="http://local-formulaires.example.net/backoffice/forms/1/">
+  <name>Changement d'abonn&#233;</name>
+  <url_name>changement-d-abonne</url_name>
+  <internal_identifier>changement-d-abonne</internal_identifier>
+  <lateral_template>&lt;p&gt;Changement d&amp;#39;abonn&amp;eacute; &amp;middot; Compteur d&amp;#39;eau&lt;/p&gt;
+</lateral_template>
+  <submission_lateral_template>&lt;p&gt;Changement d&amp;#39;abonn&amp;eacute; &amp;middot; Compteur d&amp;#39;eau&lt;/p&gt;
+</submission_lateral_template>
+  <discussion>false</discussion>
+  <detailed_emails>true</detailed_emails>
+  <disabled>false</disabled>
+  <only_allow_one>false</only_allow_one>
+  <enable_tracking_codes>false</enable_tracking_codes>
+  <confirmation>true</confirmation>
+  <always_advertise>false</always_advertise>
+  <include_download_all_button>false</include_download_all_button>
+  <has_captcha>false</has_captcha>
+  <skip_from_360_view>false</skip_from_360_view>
+  <workflow workflow_id="_default">Par d&#233;faut</workflow>
+  <max_field_id>95</max_field_id>
+  <fields>
+    <field>
+      <label type="str">Dans quel cas compl&#233;ter ce formulaire ?</label>
+      <type type="str">page</type>
+      <id type="str">3</id>
+    </field><field>
+      <label type="str">Dans quel cas compl&#233;ter ce formulaire ?</label>
+      <type type="str">title</type>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><id type="str">77</id>
+    </field><field>
+      <label type="str">&lt;ul&gt;
+	&lt;li&gt;Je quitte l&amp;rsquo;immeuble que j&amp;rsquo;occupais en tant que locataire&lt;/li&gt;
+	&lt;li&gt;Je suis nouveau locataire&lt;/li&gt;
+	&lt;li&gt;Je vends ou j&amp;rsquo;ach&amp;egrave;te un immeuble&lt;/li&gt;
+	&lt;li&gt;Je suis propri&amp;eacute;taire et je loue ma maison &amp;agrave; un nouveau locataire&lt;/li&gt;
+	&lt;li&gt;Je suis propri&amp;eacute;taire et mon locataire s&amp;rsquo;en va&lt;/li&gt;
+	&lt;li&gt;En cas de s&amp;eacute;paration/divorce&lt;/li&gt;
+	&lt;li&gt;En cas de d&amp;eacute;c&amp;egrave;s de l&amp;rsquo;occupant&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;En cas de vente d&amp;rsquo;un immeuble raccord&amp;eacute;, le vendeur et l&amp;rsquo;acqu&amp;eacute;reur sont tenus de le signaler&lt;br&gt;
+dans les huit jours calendrier suivant la date de l&amp;rsquo;acte notari&amp;eacute; de vente.&lt;/p&gt;
+
+&lt;p&gt;Lors d&amp;rsquo;un d&amp;eacute;m&amp;eacute;nagement ou emm&amp;eacute;nagement, le propri&amp;eacute;taire et le locataire sortant/entrant&lt;br&gt;
+sont tenus de nous signaler au plus tard quinze jours calendrier.&lt;/p&gt;
+
+&lt;p&gt;A d&amp;eacute;faut de satisfaire &amp;agrave; ces conditions, l&amp;rsquo;ancien et le nouveau titulaire de droits r&amp;eacute;els seront&lt;br&gt;
+solidairement et indivisiblement tenus au paiement des sommes dues depuis le dernier&lt;br&gt;
+relev&amp;eacute; d&amp;rsquo;index ayant donn&amp;eacute; lieu &amp;agrave; facturation jusqu&amp;rsquo;&amp;agrave; accomplissement de cette obligation.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Passez &amp;agrave; l&amp;#39;&amp;eacute;tape suivante pour commencer &amp;agrave; compl&amp;eacute;ter le formulaire&lt;/strong&gt;.&lt;/p&gt;
+</label>
+      <type type="str">comment</type>
+      <display_locations />
+      <id type="str">2</id>
+    </field><field>
+      <label type="str">Lieu de consommation</label>
+      <type type="str">page</type>
+      <id type="str">4</id>
+    </field><field>
+      <label type="str">Lieu de consommation</label>
+      <type type="str">title</type>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><id type="str">75</id>
+    </field><field>
+      <label type="str">Adresse</label>
+      <type type="str">subtitle</type>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><id type="str">71</id>
+    </field><field>
+      <label type="str">Rue</label>
+      <type type="str">string</type>
+      <required type="bool">True</required>
+      <varname type="str">lieu_consom_rue</varname>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><extra_css_class type="str">grid-1-3</extra_css_class>
+      <prefill>
+        <locked>False</locked>
+        <type>none</type>
+      </prefill><anonymise type="bool">True</anonymise>
+      <id type="str">5</id>
+    </field><field>
+      <label type="str">Num&#233;ro</label>
+      <type type="str">string</type>
+      <required type="bool">True</required>
+      <varname type="str">lieu_consom_numero</varname>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><extra_css_class type="str">grid-1-6 newline</extra_css_class>
+      <prefill>
+        <locked>False</locked>
+        <type>none</type>
+      </prefill><anonymise type="bool">True</anonymise>
+      <id type="str">6</id>
+    </field><field>
+      <label type="str">Boite</label>
+      <type type="str">string</type>
+      <required type="bool">False</required>
+      <varname type="str">lieu_consom_boite</varname>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><extra_css_class type="str">grid-1-6 newline</extra_css_class>
+      <prefill>
+        <locked>False</locked>
+        <type>none</type>
+      </prefill><anonymise type="bool">True</anonymise>
+      <id type="str">7</id>
+    </field><field>
+      <label type="str">Code postal</label>
+      <type type="str">string</type>
+      <required type="bool">True</required>
+      <varname type="str">lieu_consom_code_postal</varname>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><extra_css_class type="str">grid-1-4 newline</extra_css_class>
+      <prefill>
+        <locked>False</locked>
+        <type>none</type>
+      </prefill><anonymise type="bool">True</anonymise>
+      <id type="str">8</id>
+    </field><field>
+      <label type="str">Localit&#233;</label>
+      <type type="str">string</type>
+      <required type="bool">True</required>
+      <varname type="str">lieu_consom_localite</varname>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><extra_css_class type="str">grid-1-3 newline</extra_css_class>
+      <prefill>
+        <locked>False</locked>
+        <type>none</type>
+      </prefill><anonymise type="bool">True</anonymise>
+      <id type="str">9</id>
+    </field><field>
+      <label type="str">Relev&#233;</label>
+      <type type="str">subtitle</type>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><id type="str">76</id>
+    </field><field>
+      <label type="str">Relev&#233; d'index en date du</label>
+      <type type="str">date</type>
+      <required type="bool">True</required>
+      <hint type="str">S&#233;lectionnez une date.</hint>
+      <varname type="str">lieu_consom_date_releve_index</varname>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><prefill>
+        <locked>False</locked>
+        <type>none</type>
+      </prefill><minimum_is_future type="bool">False</minimum_is_future>
+      <date_in_the_past type="bool">False</date_in_the_past>
+      <date_can_be_today type="bool">False</date_can_be_today>
+      <id type="str">10</id>
+    </field><field>
+      <label type="str">Index</label>
+      <type type="str">string</type>
+      <required type="bool">True</required>
+      <hint type="str">Votre index de consommation relev&#233;.</hint>
+      <varname type="str">lieu_consom_releve_index</varname>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><prefill>
+        <locked>False</locked>
+        <type>none</type>
+      </prefill><anonymise type="bool">True</anonymise>
+      <id type="str">11</id>
+    </field><field>
+      <label type="str">Compteur</label>
+      <type type="str">string</type>
+      <required type="bool">True</required>
+      <hint type="str">Num&#233;ro de compteur.</hint>
+      <varname type="str">lieu_consom_numero_compteur</varname>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><prefill>
+        <locked>False</locked>
+        <type>none</type>
+      </prefill><anonymise type="bool">True</anonymise>
+      <id type="str">12</id>
+    </field><field>
+      <label type="str">Usager sortant</label>
+      <type type="str">page</type>
+      <id type="str">13</id>
+    </field><field>
+      <label type="str">Usager sortant</label>
+      <type type="str">title</type>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><id type="str">78</id>
+    </field><field>
+      <label type="str">Lieu occup&#233; &#224; titre de</label>
+      <type type="str">item</type>
+      <required type="bool">True</required>
+      <hint type="str">Veuillez effectuer un choix.</hint>
+      <varname type="str">occupe_par_proprietaire</varname>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><prefill>
+        <locked>False</locked>
+        <type>none</type>
+      </prefill><items>
+        <item>Propri&#233;taire</item>
+        <item>Locataire</item>
+      </items><display_mode type="str">radio</display_mode>
+      <in_filters type="bool">False</in_filters>
+      <anonymise type="bool">False</anonymise>
+      <display_disabled_items type="bool">False</display_disabled_items>
+      <id type="str">27</id>
+    </field><field>
+      <label type="str">Il s'agit d'une soci&#233;t&#233;</label>
+      <type type="str">bool</type>
+      <required type="bool">False</required>
+      <hint type="str">Cochez cette case s'il s'agit d'une soci&#233;t&#233;. Dans le cas contraire, laissez vide.</hint>
+      <varname type="str">usager_sortant_societe_oui_non</varname>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+        <display_location>statistics</display_location>
+      </display_locations><prefill>
+        <locked>False</locked>
+        <type>none</type>
+      </prefill><id type="str">18</id>
+    </field><field>
+      <label type="str">Civilit&#233;</label>
+      <type type="str">item</type>
+      <required type="bool">True</required>
+      <varname type="str">usager_sortant_civilite</varname>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><prefill>
+        <locked>False</locked>
+        <type>none</type>
+      </prefill><items>
+        <item>Mme</item>
+        <item>M</item>
+      </items><display_mode type="str">radio</display_mode>
+      <in_filters type="bool">False</in_filters>
+      <anonymise type="bool">False</anonymise>
+      <display_disabled_items type="bool">False</display_disabled_items>
+      <id type="str">14</id>
+    </field><field>
+      <label type="str">Nom</label>
+      <type type="str">string</type>
+      <required type="bool">True</required>
+      <varname type="str">usager_sortant_nom</varname>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><extra_css_class type="str">grid-1-3 newline</extra_css_class>
+      <prefill>
+        <locked>False</locked>
+        <type>none</type>
+      </prefill><anonymise type="bool">True</anonymise>
+      <id type="str">15</id>
+    </field><field>
+      <label type="str">Pr&#233;nom</label>
+      <type type="str">string</type>
+      <required type="bool">True</required>
+      <varname type="str">usager_sortant_prenom</varname>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><extra_css_class type="str">grid-1-3 newline</extra_css_class>
+      <prefill>
+        <locked>False</locked>
+        <type>none</type>
+      </prefill><anonymise type="bool">True</anonymise>
+      <id type="str">16</id>
+    </field><field>
+      <label type="str">N&#176; de registre national</label>
+      <type type="str">string</type>
+      <required type="bool">True</required>
+      <varname type="str">usager_sortant_registre_national</varname>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><extra_css_class type="str">grid-1-4 newline</extra_css_class>
+      <prefill>
+        <locked>False</locked>
+        <type>none</type>
+      </prefill><validation>
+        <type>nrn-be</type>
+      </validation><anonymise type="bool">True</anonymise>
+      <id type="str">17</id>
+    </field><field>
+      <label type="str">Email</label>
+      <type type="str">string</type>
+      <required type="bool">True</required>
+      <varname type="str">usager_sortant_mail</varname>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><extra_css_class type="str">grid-2-3 newline</extra_css_class>
+      <prefill>
+        <locked>False</locked>
+        <type>none</type>
+      </prefill><anonymise type="bool">True</anonymise>
+      <id type="str">38</id>
+    </field><field>
+      <label type="str">T&#233;l&#233;phone</label>
+      <type type="str">string</type>
+      <required type="bool">False</required>
+      <varname type="str">usager_sortant_telephone</varname>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><prefill>
+        <locked>False</locked>
+        <type>none</type>
+      </prefill><anonymise type="bool">True</anonymise>
+      <id type="str">39</id>
+    </field><field>
+      <label type="str">GSM</label>
+      <type type="str">string</type>
+      <required type="bool">False</required>
+      <varname type="str">usager_sortant_gsm</varname>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><prefill>
+        <locked>False</locked>
+        <type>none</type>
+      </prefill><anonymise type="bool">True</anonymise>
+      <id type="str">40</id>
+    </field><field>
+      <label type="str">Usager sortant : adresse de facturation</label>
+      <type type="str">page</type>
+      <id type="str">79</id>
+    </field><field>
+      <label type="str">Usager sortant</label>
+      <type type="str">title</type>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><id type="str">85</id>
+    </field><field>
+      <label type="str">Adresse de facturation</label>
+      <type type="str">subtitle</type>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><id type="str">19</id>
+    </field><field>
+      <label type="str">&lt;p&gt;Adresse pour envoi de la facture de cl&amp;ocirc;ture.&lt;/p&gt;
+</label>
+      <type type="str">comment</type>
+      <display_locations />
+      <id type="str">81</id>
+    </field><field>
+      <label type="str">Rue</label>
+      <type type="str">string</type>
+      <required type="bool">True</required>
+      <varname type="str">facturation_cloture_rue</varname>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><extra_css_class type="str">grid-1-3</extra_css_class>
+      <prefill>
+        <locked>False</locked>
+        <type>none</type>
+      </prefill><anonymise type="bool">True</anonymise>
+      <id type="str">20</id>
+    </field><field>
+      <label type="str">Num&#233;ro</label>
+      <type type="str">string</type>
+      <required type="bool">True</required>
+      <varname type="str">facturation_cloture_numero</varname>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><extra_css_class type="str">grid-1-6 newline</extra_css_class>
+      <prefill>
+        <locked>False</locked>
+        <type>none</type>
+      </prefill><anonymise type="bool">True</anonymise>
+      <id type="str">21</id>
+    </field><field>
+      <label type="str">Boite</label>
+      <type type="str">string</type>
+      <required type="bool">True</required>
+      <varname type="str">facturation_cloture_boite</varname>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><extra_css_class type="str">grid-1-6 newline</extra_css_class>
+      <prefill>
+        <locked>False</locked>
+        <type>none</type>
+      </prefill><anonymise type="bool">True</anonymise>
+      <id type="str">22</id>
+    </field><field>
+      <label type="str">&#201;tage</label>
+      <type type="str">string</type>
+      <required type="bool">False</required>
+      <hint type="str">Chiffre uniquement. Exemple:  2.</hint>
+      <varname type="str">facturation_cloture_etage</varname>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><extra_css_class type="str">grid-1-6 newline</extra_css_class>
+      <prefill>
+        <locked>False</locked>
+        <type>none</type>
+      </prefill><anonymise type="bool">True</anonymise>
+      <id type="str">23</id>
+    </field><field>
+      <label type="str">Code postal</label>
+      <type type="str">string</type>
+      <required type="bool">True</required>
+      <varname type="str">facturation_cloture_code_postal</varname>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><extra_css_class type="str">grid-1-6 newline</extra_css_class>
+      <prefill>
+        <locked>False</locked>
+        <type>none</type>
+      </prefill><anonymise type="bool">True</anonymise>
+      <id type="str">24</id>
+    </field><field>
+      <label type="str">Localit&#233;</label>
+      <type type="str">string</type>
+      <required type="bool">True</required>
+      <varname type="str">facturation_cloture_localite</varname>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><extra_css_class type="str">grid-1-3 newline</extra_css_class>
+      <prefill>
+        <locked>False</locked>
+        <type>none</type>
+      </prefill><anonymise type="bool">True</anonymise>
+      <id type="str">25</id>
+    </field><field>
+      <label type="str">Pays</label>
+      <type type="str">item</type>
+      <required type="bool">True</required>
+      <hint type="str">S&#233;lectionnez un pays</hint>
+      <varname type="str">facturation_cloture_pays</varname>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><extra_css_class type="str">grid-1-4 newline</extra_css_class>
+      <prefill>
+        <locked>False</locked>
+        <type>none</type>
+      </prefill><display_mode type="str">autocomplete</display_mode>
+      <data_source>
+        <type>pays</type>
+      </data_source><in_filters type="bool">False</in_filters>
+      <anonymise type="bool">False</anonymise>
+      <display_disabled_items type="bool">False</display_disabled_items>
+      <id type="str">82</id>
+    </field><field>
+      <label type="str">Usager sortant : soci&#233;t&#233;</label>
+      <type type="str">page</type>
+      <condition>
+        <type>django</type>
+        <value>form_var_usager_sortant_societe_oui_non == True</value>
+      </condition><id type="str">80</id>
+    </field><field>
+      <label type="str">Usager sortant</label>
+      <type type="str">title</type>
+      <condition>
+        <type>django</type>
+        <value>form_var_usager_sortant_societe_oui_non == True</value>
+      </condition><display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><id type="str">86</id>
+    </field><field>
+      <label type="str">Soci&#233;t&#233;</label>
+      <type type="str">subtitle</type>
+      <condition>
+        <type>django</type>
+        <value>form_var_usager_sortant_societe_oui_non == True</value>
+      </condition><display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><id type="str">34</id>
+    </field><field>
+      <label type="str">Nom d'entreprise</label>
+      <type type="str">string</type>
+      <condition>
+        <type>django</type>
+        <value>form_var_usager_sortant_societe_oui_non == True</value>
+      </condition><required type="bool">True</required>
+      <varname type="str">usager_sortant_societe_nom</varname>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><extra_css_class type="str">grid-2-3 newline</extra_css_class>
+      <prefill>
+        <locked>False</locked>
+        <type>none</type>
+      </prefill><anonymise type="bool">True</anonymise>
+      <id type="str">35</id>
+    </field><field>
+      <label type="str">Forme juridique</label>
+      <type type="str">string</type>
+      <condition>
+        <type>django</type>
+        <value>form_var_usager_sortant_societe_oui_non == True</value>
+      </condition><required type="bool">True</required>
+      <varname type="str">usager_sortant_societe_forme_juridique</varname>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><extra_css_class type="str">grid-1-3 newline</extra_css_class>
+      <prefill>
+        <locked>False</locked>
+        <type>none</type>
+      </prefill><anonymise type="bool">True</anonymise>
+      <id type="str">36</id>
+    </field><field>
+      <label type="str">N&#176; de TVA</label>
+      <type type="str">string</type>
+      <condition>
+        <type>django</type>
+        <value>form_var_usager_sortant_societe_oui_non == True</value>
+      </condition><required type="bool">True</required>
+      <varname type="str">usager_sortant_societe_numero_tva</varname>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><extra_css_class type="str">grid-1-6 newline</extra_css_class>
+      <prefill>
+        <locked>False</locked>
+        <type>none</type>
+      </prefill><anonymise type="bool">True</anonymise>
+      <id type="str">37</id>
+    </field><field>
+      <label type="str">Usager entrant</label>
+      <type type="str">page</type>
+      <id type="str">28</id>
+    </field><field>
+      <label type="str">Usager entrant</label>
+      <type type="str">title</type>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><id type="str">87</id>
+    </field><field>
+      <label type="str">Il s'agit d'une soci&#233;t&#233;</label>
+      <type type="str">bool</type>
+      <required type="bool">False</required>
+      <hint type="str">Cochez cette case s'il s'agit d'une soci&#233;t&#233;. Dans le cas contraire, laissez vide.</hint>
+      <varname type="str">usager_entrant_societe_oui_non</varname>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+        <display_location>statistics</display_location>
+      </display_locations><prefill>
+        <locked>False</locked>
+        <type>none</type>
+      </prefill><id type="str">33</id>
+    </field><field>
+      <label type="str">Lieu occup&#233; &#224; titre de</label>
+      <type type="str">item</type>
+      <required type="bool">True</required>
+      <hint type="str">Veuillez effectuer un choix.</hint>
+      <varname type="str">usager_entrant_occupe_par_proprietaire</varname>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><prefill>
+        <locked>False</locked>
+        <type>none</type>
+      </prefill><items>
+        <item>Propri&#233;taire</item>
+        <item>Locataire</item>
+      </items><display_mode type="str">radio</display_mode>
+      <in_filters type="bool">False</in_filters>
+      <anonymise type="bool">False</anonymise>
+      <display_disabled_items type="bool">False</display_disabled_items>
+      <id type="str">53</id>
+    </field><field>
+      <label type="str">Type de bien</label>
+      <type type="str">item</type>
+      <required type="bool">True</required>
+      <hint type="str">Veuillez effectuer un choix.</hint>
+      <varname type="str">usager_entrant_type_bien</varname>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+        <display_location>statistics</display_location>
+      </display_locations><extra_css_class type="str">newline</extra_css_class>
+      <prefill>
+        <locked>False</locked>
+        <type>none</type>
+      </prefill><items>
+        <item>Maison</item>
+        <item>Appartement</item>
+        <item>Autre</item>
+      </items><display_mode type="str">radio</display_mode>
+      <in_filters type="bool">False</in_filters>
+      <anonymise type="bool">False</anonymise>
+      <display_disabled_items type="bool">False</display_disabled_items>
+      <id type="str">55</id>
+    </field><field>
+      <label type="str">L'immeuble est inoccup&#233;</label>
+      <type type="str">item</type>
+      <required type="bool">True</required>
+      <hint type="str">Veuillez effectuer un choix.</hint>
+      <varname type="str">usager_entrant_immeuble_inoccupe_oui_non</varname>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+        <display_location>statistics</display_location>
+      </display_locations><extra_css_class type="str">newline</extra_css_class>
+      <prefill>
+        <locked>False</locked>
+        <type>none</type>
+      </prefill><items>
+        <item>Oui</item>
+        <item>Non</item>
+      </items><display_mode type="str">radio</display_mode>
+      <in_filters type="bool">False</in_filters>
+      <anonymise type="bool">False</anonymise>
+      <display_disabled_items type="bool">False</display_disabled_items>
+      <id type="str">54</id>
+    </field><field>
+      <label type="str">Type de consommation</label>
+      <type type="str">item</type>
+      <required type="bool">True</required>
+      <hint type="str">Veuillez effectuer un choix.</hint>
+      <varname type="str">usager_entrant_type_consommation</varname>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><extra_css_class type="str">newline</extra_css_class>
+      <prefill>
+        <locked>False</locked>
+        <type>none</type>
+      </prefill><items>
+        <item>Priv&#233;</item>
+        <item>Professionnelle</item>
+        <item>Mixte</item>
+      </items><display_mode type="str">radio</display_mode>
+      <in_filters type="bool">False</in_filters>
+      <anonymise type="bool">False</anonymise>
+      <display_disabled_items type="bool">False</display_disabled_items>
+      <id type="str">57</id>
+    </field><field>
+      <label type="str">Civilit&#233;</label>
+      <type type="str">item</type>
+      <required type="bool">True</required>
+      <hint type="str">Veuillez effectuer un choix.</hint>
+      <varname type="str">usager_entrant_civilite</varname>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><prefill>
+        <locked>False</locked>
+        <type>none</type>
+      </prefill><items>
+        <item>Mme</item>
+        <item>M</item>
+      </items><display_mode type="str">radio</display_mode>
+      <in_filters type="bool">False</in_filters>
+      <anonymise type="bool">False</anonymise>
+      <display_disabled_items type="bool">False</display_disabled_items>
+      <id type="str">29</id>
+    </field><field>
+      <label type="str">Nom</label>
+      <type type="str">string</type>
+      <required type="bool">True</required>
+      <varname type="str">usager_entrant_nom</varname>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><extra_css_class type="str">grid-1-3 newline</extra_css_class>
+      <prefill>
+        <locked>False</locked>
+        <type>none</type>
+      </prefill><anonymise type="bool">True</anonymise>
+      <id type="str">30</id>
+    </field><field>
+      <label type="str">Pr&#233;nom</label>
+      <type type="str">string</type>
+      <required type="bool">True</required>
+      <varname type="str">usager_entrant_prenom</varname>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><extra_css_class type="str">grid-1-3 newline</extra_css_class>
+      <prefill>
+        <locked>False</locked>
+        <type>none</type>
+      </prefill><anonymise type="bool">True</anonymise>
+      <id type="str">31</id>
+    </field><field>
+      <label type="str">Num&#233;ro de registre national</label>
+      <type type="str">string</type>
+      <required type="bool">True</required>
+      <varname type="str">usager_entrant_registre_national</varname>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><extra_css_class type="str">grid-1-4 newline</extra_css_class>
+      <prefill>
+        <locked>False</locked>
+        <type>none</type>
+      </prefill><anonymise type="bool">True</anonymise>
+      <id type="str">32</id>
+    </field><field>
+      <label type="str">Adresse de correspondance (si diff&#233;rente du lieu de consommation)</label>
+      <type type="str">subtitle</type>
+      <display_locations>
+        <display_location>summary</display_location>
+      </display_locations><id type="str">45</id>
+    </field><field>
+      <label type="str">Rue</label>
+      <type type="str">string</type>
+      <required type="bool">False</required>
+      <varname type="str">usager_entrant_adresse_differente_rue</varname>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><extra_css_class type="str">grid-1-3 newline</extra_css_class>
+      <prefill>
+        <locked>False</locked>
+        <type>none</type>
+      </prefill><anonymise type="bool">True</anonymise>
+      <id type="str">46</id>
+    </field><field>
+      <label type="str">Num&#233;ro</label>
+      <type type="str">string</type>
+      <required type="bool">False</required>
+      <varname type="str">usager_entrant_adresse_differente_numero</varname>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><extra_css_class type="str">grid-1-6 newline</extra_css_class>
+      <prefill>
+        <locked>False</locked>
+        <type>none</type>
+      </prefill><anonymise type="bool">True</anonymise>
+      <id type="str">47</id>
+    </field><field>
+      <label type="str">Boite</label>
+      <type type="str">string</type>
+      <required type="bool">False</required>
+      <varname type="str">usager_entrant_adresse_differente_boite</varname>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><extra_css_class type="str">grid-1-6 newline</extra_css_class>
+      <prefill>
+        <locked>False</locked>
+        <type>none</type>
+      </prefill><anonymise type="bool">True</anonymise>
+      <id type="str">48</id>
+    </field><field>
+      <label type="str">&#201;tage</label>
+      <type type="str">string</type>
+      <required type="bool">False</required>
+      <hint type="str">Chiffre uniquement. Exemple: 2.</hint>
+      <varname type="str">usager_entrant_adresse_differente_etage</varname>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><extra_css_class type="str">grid-1-6 newline</extra_css_class>
+      <prefill>
+        <locked>False</locked>
+        <type>none</type>
+      </prefill><anonymise type="bool">True</anonymise>
+      <id type="str">49</id>
+    </field><field>
+      <label type="str">Code postal</label>
+      <type type="str">string</type>
+      <required type="bool">False</required>
+      <varname type="str">usager_entrant_adresse_differente_code_postal</varname>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><extra_css_class type="str">grid-1-6 newline</extra_css_class>
+      <prefill>
+        <locked>False</locked>
+        <type>none</type>
+      </prefill><anonymise type="bool">True</anonymise>
+      <id type="str">50</id>
+    </field><field>
+      <label type="str">Localit&#233;</label>
+      <type type="str">string</type>
+      <required type="bool">False</required>
+      <varname type="str">usager_entrant_adresse_differente_localite</varname>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><extra_css_class type="str">grid-1-3 newline</extra_css_class>
+      <prefill>
+        <locked>False</locked>
+        <type>none</type>
+      </prefill><anonymise type="bool">True</anonymise>
+      <id type="str">51</id>
+    </field><field>
+      <label type="str">Pays</label>
+      <type type="str">item</type>
+      <required type="bool">False</required>
+      <hint type="str">S&#233;lectionnez un pays</hint>
+      <varname type="str">usager_entrant_adresse_differente_pays</varname>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><extra_css_class type="str">grid-1-3 newline</extra_css_class>
+      <prefill>
+        <locked>False</locked>
+        <type>none</type>
+      </prefill><display_mode type="str">autocomplete</display_mode>
+      <data_source>
+        <type>pays</type>
+      </data_source><in_filters type="bool">False</in_filters>
+      <anonymise type="bool">False</anonymise>
+      <display_disabled_items type="bool">False</display_disabled_items>
+      <id type="str">83</id>
+    </field><field>
+      <label type="str">Si autre</label>
+      <type type="str">string</type>
+      <required type="bool">False</required>
+      <hint type="str">S'il ne figure pas dans les choix propos&#233;, veuillez sp&#233;cifier le type de bien.</hint>
+      <varname type="str">usager_entrant_type_bien_autre</varname>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><extra_css_class type="str">newline</extra_css_class>
+      <prefill>
+        <locked>False</locked>
+        <type>none</type>
+      </prefill><anonymise type="bool">True</anonymise>
+      <id type="str">56</id>
+    </field><field>
+      <label type="str">Usager entrant : soci&#233;t&#233;</label>
+      <type type="str">page</type>
+      <condition>
+        <type>django</type>
+        <value>form_var_usager_sortant_societe_oui_non == True</value>
+      </condition><id type="str">84</id>
+    </field><field>
+      <label type="str">Usager entrant</label>
+      <type type="str">title</type>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><id type="str">88</id>
+    </field><field>
+      <label type="str">Soci&#233;t&#233;</label>
+      <type type="str">subtitle</type>
+      <condition>
+        <type>django</type>
+        <value>form_var_usager_entrant_societe_oui_non == True</value>
+      </condition><display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><id type="str">41</id>
+    </field><field>
+      <label type="str">Nom d'entreprise</label>
+      <type type="str">string</type>
+      <condition>
+        <type>django</type>
+        <value>form_var_usager_entrant_societe_oui_non == True</value>
+      </condition><required type="bool">True</required>
+      <varname type="str">usager_enrant_societe_nom</varname>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><extra_css_class type="str">grid-2-3 newline</extra_css_class>
+      <prefill>
+        <locked>False</locked>
+        <type>none</type>
+      </prefill><anonymise type="bool">True</anonymise>
+      <id type="str">42</id>
+    </field><field>
+      <label type="str">Forme juridique</label>
+      <type type="str">string</type>
+      <condition>
+        <type>django</type>
+        <value>form_var_usager_entrant_societe_oui_non == True</value>
+      </condition><required type="bool">True</required>
+      <varname type="str">usager_entrant_societe_forme_juridique</varname>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><extra_css_class type="str">grid-1-3 newline</extra_css_class>
+      <prefill>
+        <locked>False</locked>
+        <type>none</type>
+      </prefill><anonymise type="bool">True</anonymise>
+      <id type="str">43</id>
+    </field><field>
+      <label type="str">N&#176; de TVA</label>
+      <type type="str">string</type>
+      <condition>
+        <type>django</type>
+        <value>form_var_usager_entrant_societe_oui_non == True</value>
+      </condition><required type="bool">True</required>
+      <varname type="str">usager_entrant_societe_numero_tva</varname>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><extra_css_class type="str">grid-1-3 newline</extra_css_class>
+      <prefill>
+        <locked>False</locked>
+        <type>none</type>
+      </prefill><anonymise type="bool">True</anonymise>
+      <id type="str">44</id>
+    </field><field>
+      <label type="str">Propri&#233;taire (si diff&#233;rent des usagers)</label>
+      <type type="str">page</type>
+      <id type="str">58</id>
+    </field><field>
+      <label type="str">Propri&#233;taire</label>
+      <type type="str">title</type>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><id type="str">89</id>
+    </field><field>
+      <label type="str">Le propri&#233;taire est l'un des usagers d&#233;j&#224; encod&#233;s</label>
+      <type type="str">item</type>
+      <required type="bool">True</required>
+      <hint type="str">Veuillez effectuer un choix</hint>
+      <varname type="str">proprietaire_deja_encode</varname>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><prefill>
+        <locked>False</locked>
+        <type>none</type>
+      </prefill><items>
+        <item>Oui</item>
+        <item>Non</item>
+      </items><display_mode type="str">radio</display_mode>
+      <in_filters type="bool">False</in_filters>
+      <anonymise type="bool">False</anonymise>
+      <display_disabled_items type="bool">False</display_disabled_items>
+      <id type="str">94</id>
+    </field><field>
+      <label type="str">Le propri&#233;taire est l'usager d&#233;j&#224; encod&#233; suivant :</label>
+      <type type="str">item</type>
+      <condition>
+        <type>django</type>
+        <value>form_var_proprietaire_deja_encode == "Oui"</value>
+      </condition><required type="bool">True</required>
+      <hint type="str">Veuillez effectuer un choix.</hint>
+      <varname type="str">usager_proprietaire</varname>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><prefill>
+        <locked>False</locked>
+        <type>none</type>
+      </prefill><items>
+        <item>Usager entrant</item>
+        <item>Usager sortant</item>
+      </items><display_mode type="str">radio</display_mode>
+      <in_filters type="bool">False</in_filters>
+      <anonymise type="bool">False</anonymise>
+      <display_disabled_items type="bool">False</display_disabled_items>
+      <id type="str">93</id>
+    </field><field>
+      <label type="str">Propri&#233;taire : informations</label>
+      <type type="str">page</type>
+      <condition>
+        <type>django</type>
+        <value>form_var_proprietaire_deja_encode == "Non"</value>
+      </condition><id type="str">95</id>
+    </field><field>
+      <label type="str">&lt;p&gt;&lt;strong&gt;&amp;Agrave; compl&amp;eacute;ter uniquement si le propri&amp;eacute;taire est diff&amp;eacute;rent des usagers pr&amp;eacute;c&amp;eacute;demment encod&amp;eacute;s&lt;/strong&gt;.&lt;/p&gt;
+</label>
+      <type type="str">comment</type>
+      <display_locations />
+      <id type="str">91</id>
+    </field><field>
+      <label type="str">Civilit&#233;</label>
+      <type type="str">item</type>
+      <required type="bool">False</required>
+      <hint type="str">Veuillez effectuer un choix.</hint>
+      <varname type="str">proprietaire_civilite</varname>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><prefill>
+        <locked>False</locked>
+        <type>none</type>
+      </prefill><items>
+        <item>Mme</item>
+        <item>M</item>
+      </items><display_mode type="str">radio</display_mode>
+      <in_filters type="bool">False</in_filters>
+      <anonymise type="bool">False</anonymise>
+      <display_disabled_items type="bool">False</display_disabled_items>
+      <id type="str">59</id>
+    </field><field>
+      <label type="str">Nom</label>
+      <type type="str">string</type>
+      <required type="bool">False</required>
+      <varname type="str">proprietaire_registre_national</varname>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><extra_css_class type="str">grid-1-3 newline</extra_css_class>
+      <prefill>
+        <locked>False</locked>
+        <type>none</type>
+      </prefill><validation>
+        <type>nrn-be</type>
+      </validation><anonymise type="bool">True</anonymise>
+      <id type="str">60</id>
+    </field><field>
+      <label type="str">Prenom</label>
+      <type type="str">string</type>
+      <required type="bool">False</required>
+      <varname type="str">proprietaire_prenom</varname>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><extra_css_class type="str">grid-1-3 newline</extra_css_class>
+      <prefill>
+        <locked>False</locked>
+        <type>none</type>
+      </prefill><anonymise type="bool">True</anonymise>
+      <id type="str">61</id>
+    </field><field>
+      <label type="str">N&#176; de registre national</label>
+      <type type="str">string</type>
+      <required type="bool">False</required>
+      <varname type="str">proprietaire_registre_national</varname>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><extra_css_class type="str">grid-1-4 newline</extra_css_class>
+      <prefill>
+        <locked>False</locked>
+        <type>none</type>
+      </prefill><validation>
+        <type>nrn-be</type>
+      </validation><anonymise type="bool">True</anonymise>
+      <id type="str">62</id>
+    </field><field>
+      <label type="str">Email</label>
+      <type type="str">string</type>
+      <required type="bool">False</required>
+      <varname type="str">proprietaire_different_email</varname>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><extra_css_class type="str">grid-2-6 newline</extra_css_class>
+      <prefill>
+        <locked>False</locked>
+        <type>none</type>
+      </prefill><anonymise type="bool">True</anonymise>
+      <id type="str">63</id>
+    </field><field>
+      <label type="str">T&#233;l&#233;phone</label>
+      <type type="str">string</type>
+      <required type="bool">False</required>
+      <varname type="str">proprietaire_telephone</varname>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><extra_css_class type="str">grid-1-4 newline</extra_css_class>
+      <prefill>
+        <locked>False</locked>
+        <type>none</type>
+      </prefill><anonymise type="bool">True</anonymise>
+      <id type="str">64</id>
+    </field><field>
+      <label type="str">GSM</label>
+      <type type="str">string</type>
+      <required type="bool">False</required>
+      <varname type="str">proprietaire_gsm</varname>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><extra_css_class type="str">grid-1-3 newline</extra_css_class>
+      <prefill>
+        <locked>False</locked>
+        <type>none</type>
+      </prefill><anonymise type="bool">True</anonymise>
+      <id type="str">65</id>
+    </field><field>
+      <label type="str">Rue</label>
+      <type type="str">string</type>
+      <required type="bool">False</required>
+      <varname type="str">proprietaire_different_rue</varname>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><extra_css_class type="str">grid-2-3 newline</extra_css_class>
+      <prefill>
+        <locked>False</locked>
+        <type>none</type>
+      </prefill><anonymise type="bool">True</anonymise>
+      <id type="str">66</id>
+    </field><field>
+      <label type="str">Num&#233;ro</label>
+      <type type="str">string</type>
+      <required type="bool">False</required>
+      <varname type="str">proprietaire_numero</varname>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><extra_css_class type="str">grid-1-6 newline</extra_css_class>
+      <prefill>
+        <locked>False</locked>
+        <type>none</type>
+      </prefill><anonymise type="bool">True</anonymise>
+      <id type="str">67</id>
+    </field><field>
+      <label type="str">Boite</label>
+      <type type="str">string</type>
+      <required type="bool">False</required>
+      <varname type="str">proprietaire_boite</varname>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><extra_css_class type="str">grid-1-6 newline</extra_css_class>
+      <prefill>
+        <locked>False</locked>
+        <type>none</type>
+      </prefill><anonymise type="bool">True</anonymise>
+      <id type="str">68</id>
+    </field><field>
+      <label type="str">Code postal</label>
+      <type type="str">string</type>
+      <required type="bool">False</required>
+      <varname type="str">proprietaire_code_postal</varname>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><extra_css_class type="str">grid-1-6 newline</extra_css_class>
+      <prefill>
+        <locked>False</locked>
+        <type>none</type>
+      </prefill><anonymise type="bool">True</anonymise>
+      <id type="str">69</id>
+    </field><field>
+      <label type="str">Localit&#233;</label>
+      <type type="str">string</type>
+      <required type="bool">False</required>
+      <varname type="str">proprietaire_localite</varname>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><extra_css_class type="str">grid-1-3 newline</extra_css_class>
+      <prefill>
+        <locked>False</locked>
+        <type>none</type>
+      </prefill><anonymise type="bool">True</anonymise>
+      <id type="str">70</id>
+    </field>
+  </fields><options />
+  <custom_views />
+  <geolocations />
+  <digest_templates>
+    <template key="default">Changement d'abonn&#233; &#183; Compteur d'eau</template>
+  </digest_templates>
+</formdef>
