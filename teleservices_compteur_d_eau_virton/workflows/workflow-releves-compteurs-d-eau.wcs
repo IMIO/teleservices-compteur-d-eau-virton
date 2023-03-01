@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+<workflow id="53" url="https://virton-formulaires.guichet-citoyen.be/backoffice/workflows/53/">
+  <name>Relev&#233;s compteurs d'eau</name>
+  <slug>releves-compteurs-d-eau</slug>
+  <roles>
+    <role id="_editor">&#201;diteur</role>
+    <role id="_viewer">Visualisateur</role>
+  </roles><possible_status>
+    <status>
+      <id>recorded</id>
+      <name>Enregistr&#233;e</name>
+      <colour>FFFFFF</colour>
+      <visibility />
+      <items>
+        <item type="editable" id="1">
+          <by>
+            <item role_id="_editor">_editor</item>
+          </by><status>recorded</status>
+          <label>Modifier la fiche</label>
+          <operation_mode>full</operation_mode>
+        </item><item type="choice" id="2">
+          <label>Supprimer la fiche</label>
+          <by>
+            <item role_id="_editor">_editor</item>
+          </by><status>deleted</status>
+          <require_confirmation>True</require_confirmation>
+          <ignore_form_errors>False</ignore_form_errors>
+          <set_marker_on_status>False</set_marker_on_status>
+        </item>
+      </items>
+    </status><status>
+      <id>deleted</id>
+      <name>Supprim&#233;e</name>
+      <colour>FFFFFF</colour>
+      <visibility />
+      <items>
+        <item type="remove" id="1" />
+      </items>
+    </status>
+  </possible_status><global_actions>
+    <action>
+      <id>1</id>
+      <name>Supprimer</name>
+      <items>
+        <item type="remove" id="1" />
+      </items><triggers>
+        <trigger type="manual" id="de3b1b77-e8de-46f4-88fe-b643acb0fb76">
+          <roles>
+            <item slug="debug" role_id="821ff0c7d8ca440888b221681fe71fdc">Debug</item>
+          </roles>
+        </trigger>
+      </triggers>
+    </action>
+  </global_actions><backoffice-fields>
+    <formdef>
+      <name>-</name>
+      <fields />
+    </formdef>
+  </backoffice-fields>
+</workflow>

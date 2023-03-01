@@ -1,0 +1,178 @@
+<?xml version="1.0"?>
+<formdef id="103" url="https://virton-formulaires.guichet-citoyen.be/backoffice/forms/103/">
+  <name>Compteur d'eau - Relev&#233; de compteur</name>
+  <url_name>releve-de-compteurs</url_name>
+  <internal_identifier>compteur-d-eau-releve-de-compteur</internal_identifier>
+  <discussion>false</discussion>
+  <detailed_emails>true</detailed_emails>
+  <disabled>true</disabled>
+  <only_allow_one>false</only_allow_one>
+  <enable_tracking_codes>false</enable_tracking_codes>
+  <confirmation>true</confirmation>
+  <always_advertise>false</always_advertise>
+  <include_download_all_button>false</include_download_all_button>
+  <has_captcha>false</has_captcha>
+  <skip_from_360_view>false</skip_from_360_view>
+  <category slug="compteurs-d-eau" category_id="119">Compteurs d'eau</category>
+  <workflow slug="releves-de-compteurs-d-eau" workflow_id="51">Relev&#233;s de compteurs d'eau</workflow>
+  <max_field_id>12</max_field_id>
+  <fields>
+    <field>
+      <label type="str">Identification du compteur</label>
+      <type type="str">page</type>
+      <post_conditions>
+        <post_condition>
+          <condition>
+            <type>django</type>
+            <value>cards|objects:"releve-compteur-d-eau"|filter_by:"matricule"|filter_value:form_var_numero_matricule|filter_by:"no_compteur"|filter_value:form_var_numero_compteur|getlist:"matricule"|count == 1</value>
+          </condition><error_message>V&#233;rifiez que vous avez bien entr&#233; le bon num&#233;ro de matricule et le bon num&#233;ro de compteur.</error_message>
+        </post_condition>
+      </post_conditions><id type="str">3</id>
+    </field><field>
+      <label type="str">Identification du compteur</label>
+      <type type="str">title</type>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><id type="str">5</id>
+    </field><field>
+      <label type="str">N&#176; de matricule</label>
+      <type type="str">string</type>
+      <required type="bool">True</required>
+      <hint type="str">Chiffres sans espaces ni tirets.
+</hint>
+      <varname type="str">numero_matricule</varname>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+        <display_location>listings</display_location>
+      </display_locations><extra_css_class type="str">grid-1-2</extra_css_class>
+      <prefill>
+        <locked>False</locked>
+        <type>none</type>
+      </prefill><validation>
+        <type>digits</type>
+      </validation><anonymise type="bool">True</anonymise>
+      <id type="str">1</id>
+    </field><field>
+      <label type="str">N&#176; de compteur</label>
+      <type type="str">string</type>
+      <required type="bool">True</required>
+      <varname type="str">numero_compteur</varname>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+        <display_location>listings</display_location>
+      </display_locations><extra_css_class type="str">newline grid-1-2</extra_css_class>
+      <prefill>
+        <locked>False</locked>
+        <type>none</type>
+      </prefill><anonymise type="bool">True</anonymise>
+      <id type="str">2</id>
+    </field><field>
+      <label type="str">Relev&#233;</label>
+      <type type="str">page</type>
+      <post_conditions>
+        <post_condition>
+          <condition>
+            <type>django</type>
+            <value>cards|objects:"releve-compteur-d-eau"|filter_by:"matricule"|filter_value:form_var_numero_matricule|filter_by:"no_compteur"|filter_value:form_var_numero_compteur|first|get:"nouvel_index"|multiply:"-1"|add:form_var_releve_index &gt;= 0</value>
+          </condition><error_message>L'index encod&#233; semble moins &#233;lev&#233; que le pr&#233;c&#233;dent index relev&#233;.</error_message>
+        </post_condition>
+      </post_conditions><id type="str">4</id>
+    </field><field>
+      <label type="str">Relev&#233;</label>
+      <type type="str">title</type>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><id type="str">6</id>
+    </field><field>
+      <label type="str">&lt;p&gt;&lt;strong style="color: #E32020; font-size: 1.1em;"&gt;Attention, consommation sup&amp;eacute;rieure &amp;agrave; 150 m&amp;sup3;, veuillez vous assurer&amp;nbsp;que le nombre encod&amp;eacute; est bien correct.&lt;/strong&gt;&lt;/p&gt;
+</label>
+      <type type="str">comment</type>
+      <condition>
+        <type>django</type>
+        <value>cards|objects:"releve-compteur-d-eau"|filter_by:"matricule"|filter_value:form_var_numero_matricule|filter_by:"no_compteur"|filter_value:form_var_numero_compteur|first|get:"nouvel_index"|multiply:"-1"|add:form_var_releve_index &gt;= 150</value>
+      </condition><display_locations />
+      <id type="str">9</id>
+    </field><field>
+      <label type="str">Index pr&#233;c&#233;dent</label>
+      <type type="str">string</type>
+      <required type="bool">True</required>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><extra_css_class type="str">grid-1-2</extra_css_class>
+      <prefill>
+        <locked>True</locked>
+        <type>string</type>
+        <value>{{ cards|objects:"releve-compteur-d-eau"|filter_by:"matricule"|filter_value:form_var_numero_matricule|filter_by:"no_compteur"|filter_value:form_var_numero_compteur|first|get:"nouvel_index"|add:"0" }}</value>
+      </prefill><anonymise type="bool">True</anonymise>
+      <id type="str">10</id>
+    </field><field>
+      <label type="str">Index du compteur</label>
+      <type type="str">string</type>
+      <required type="bool">True</required>
+      <hint type="str">Uniquement les m&#179; indiqu&#233;s par des chiffres noirs sur votre compteur.</hint>
+      <varname type="str">releve_index</varname>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+        <display_location>listings</display_location>
+      </display_locations><extra_css_class type="str">newline grid-1-2</extra_css_class>
+      <prefill>
+        <locked>False</locked>
+        <type>none</type>
+      </prefill><validation>
+        <type>digits</type>
+      </validation><anonymise type="bool">True</anonymise>
+      <id type="str">7</id>
+    </field><field>
+      <label type="str">Consommation</label>
+      <type type="str">string</type>
+      <condition>
+        <type>django</type>
+        <value>form_var_releve_index</value>
+      </condition><required type="bool">True</required>
+      <hint type="str">M&#232;tres cubes.</hint>
+      <varname type="str">consommation</varname>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+        <display_location>listings</display_location>
+      </display_locations><prefill>
+        <locked>True</locked>
+        <type>string</type>
+        <value>{{ cards|objects:"releve-compteur-d-eau"|filter_by:"matricule"|filter_value:form_var_numero_matricule|filter_by:"no_compteur"|filter_value:form_var_numero_compteur|first|get:"nouvel_index"|multiply:"-1"|add:form_var_releve_index}}</value>
+      </prefill><anonymise type="bool">True</anonymise>
+      <id type="str">11</id>
+    </field><field>
+      <label type="str">Date</label>
+      <type type="str">date</type>
+      <required type="bool">True</required>
+      <varname type="str">releve_date</varname>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+        <display_location>listings</display_location>
+      </display_locations><extra_css_class type="str">grid-1-2</extra_css_class>
+      <prefill>
+        <locked>False</locked>
+        <type>string</type>
+        <value>{{ today }}</value>
+      </prefill><minimum_is_future type="bool">False</minimum_is_future>
+      <date_in_the_past type="bool">True</date_in_the_past>
+      <date_can_be_today type="bool">True</date_can_be_today>
+      <id type="str">8</id>
+    </field>
+  </fields><user-roles>
+    <role slug="citoyen-test-compteurs-deau" role_id="62839bbb2c78496f815f637bedb2e3f7">Citoyen (test) Compteurs d'eau</role>
+  </user-roles><backoffice-submission-roles>
+    <role slug="agent-traitant-compteurs-d-eau" role_id="b8770ada8ffd4969aafe85348daa8ee5">Agent traitant - Compteurs d'eau</role>
+  </backoffice-submission-roles><roles>
+    <role slug="agent-traitant-compteurs-d-eau" role_id="b8770ada8ffd4969aafe85348daa8ee5" role_key="_receiver">Agent traitant - Compteurs d'eau</role>
+  </roles><options />
+  <custom_views />
+  <geolocations />
+</formdef>

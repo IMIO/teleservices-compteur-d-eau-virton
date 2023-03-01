@@ -1,0 +1,9 @@
+recursive-include teleservices_compteur_d_eau_virton *
+recursive-include teleservices_compteur_d_eau_virton/categories *
+recursive-include teleservices_compteur_d_eau_virton/combo *
+recursive-include teleservices_compteur_d_eau_virton/datasources *
+recursive-include teleservices_compteur_d_eau_virton/forms *
+recursive-include teleservices_compteur_d_eau_virton/workflows *
+include MANIFEST.in
+include VERSION
+include README

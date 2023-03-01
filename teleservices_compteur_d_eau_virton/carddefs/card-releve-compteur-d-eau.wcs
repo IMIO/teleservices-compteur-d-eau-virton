@@ -1,0 +1,165 @@
+<?xml version="1.0"?>
+<carddef id="13" url="https://virton-formulaires.guichet-citoyen.be/backoffice/cards/13/">
+  <name>Relev&#233;s compteurs d'eau</name>
+  <url_name>releve-compteur-d-eau</url_name>
+  <internal_identifier>releves-compteurs-d-eau</internal_identifier>
+  <discussion>false</discussion>
+  <detailed_emails>true</detailed_emails>
+  <disabled>false</disabled>
+  <only_allow_one>false</only_allow_one>
+  <enable_tracking_codes>false</enable_tracking_codes>
+  <confirmation>false</confirmation>
+  <always_advertise>false</always_advertise>
+  <include_download_all_button>false</include_download_all_button>
+  <has_captcha>false</has_captcha>
+  <skip_from_360_view>false</skip_from_360_view>
+  <category slug="compteur-d-eau" category_id="1">Compteur d'eau</category>
+  <workflow slug="releves-compteurs-d-eau" workflow_id="53">Relev&#233;s compteurs d'eau</workflow>
+  <max_field_id>9</max_field_id>
+  <fields>
+    <field>
+      <label type="str">MATRICULE</label>
+      <type type="str">string</type>
+      <required type="bool">True</required>
+      <varname type="str">matricule</varname>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+        <display_location>listings</display_location>
+      </display_locations><prefill>
+        <locked>False</locked>
+        <type>none</type>
+      </prefill><anonymise type="bool">True</anonymise>
+      <id type="str">4</id>
+    </field><field>
+      <label type="str">NO_COMPTEUR</label>
+      <type type="str">string</type>
+      <required type="bool">True</required>
+      <varname type="str">no_compteur</varname>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+        <display_location>listings</display_location>
+      </display_locations><prefill>
+        <locked>False</locked>
+        <type>none</type>
+      </prefill><anonymise type="bool">True</anonymise>
+      <id type="str">1</id>
+    </field><field>
+      <label type="str">NOUVEL_INDEX</label>
+      <type type="str">string</type>
+      <required type="bool">True</required>
+      <varname type="str">nouvel_index</varname>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+        <display_location>listings</display_location>
+      </display_locations><prefill>
+        <locked>False</locked>
+        <type>none</type>
+      </prefill><validation>
+        <type>digits</type>
+      </validation><anonymise type="bool">True</anonymise>
+      <id type="str">2</id>
+    </field><field>
+      <label type="str">DATE_RELEVE</label>
+      <type type="str">date</type>
+      <required type="bool">True</required>
+      <varname type="str">date_releve</varname>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><prefill>
+        <locked>False</locked>
+        <type>string</type>
+        <value>{{ today }}</value>
+      </prefill><minimum_is_future type="bool">False</minimum_is_future>
+      <date_in_the_past type="bool">True</date_in_the_past>
+      <date_can_be_today type="bool">True</date_can_be_today>
+      <id type="str">9</id>
+    </field><field>
+      <label type="str">Photo du compteur</label>
+      <type type="str">file</type>
+      <required type="bool">False</required>
+      <varname type="str">photo_compteur</varname>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><prefill>
+        <locked>False</locked>
+        <type>none</type>
+      </prefill><document_type>
+        <id>_image</id>
+        <label>Fichiers image</label>
+        <mimetypes>image/*</mimetypes>
+      </document_type><allow_portfolio_picking type="bool">False</allow_portfolio_picking>
+      <automatic_image_resize type="bool">True</automatic_image_resize>
+      <storage type="str">default</storage>
+      <id type="str">3</id>
+    </field><field>
+      <label type="str">Consommation non-ordinnaire</label>
+      <type type="str">item</type>
+      <condition>
+        <type>django</type>
+        <value>is_in_backoffice == False</value>
+      </condition><required type="bool">True</required>
+      <varname type="str">consom_non_ordinaire</varname>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+        <display_location>listings</display_location>
+        <display_location>statistics</display_location>
+      </display_locations><prefill>
+        <locked>False</locked>
+        <type>none</type>
+      </prefill><display_mode type="str">list</display_mode>
+      <items>
+        <item>Consommation ordinaire</item>
+        <item>Sur-consommation</item>
+        <item>Consommation z&#233;ro</item>
+      </items><in_filters type="bool">False</in_filters>
+      <anonymise type="bool">False</anonymise>
+      <display_disabled_items type="bool">False</display_disabled_items>
+      <id type="str">7</id>
+    </field>
+  </fields><user-roles>
+    <role slug="debug" role_id="821ff0c7d8ca440888b221681fe71fdc">Debug</role>
+  </user-roles><backoffice-submission-roles>
+    <role slug="debug" role_id="821ff0c7d8ca440888b221681fe71fdc">Debug</role>
+  </backoffice-submission-roles><roles>
+    <role slug="agent-traitant-compteurs-d-eau" role_id="b8770ada8ffd4969aafe85348daa8ee5" role_key="_viewer">Agent traitant - Compteurs d'eau</role>
+    <role slug="agent-traitant-compteurs-d-eau" role_id="b8770ada8ffd4969aafe85348daa8ee5" role_key="_editor">Agent traitant - Compteurs d'eau</role>
+  </roles><options />
+  <custom_views>
+    <custom_view>
+      <title>Vue par d&#233;faut</title>
+      <slug>vue-par-defaut-2</slug>
+      <visibility>any</visibility>
+      <filters>
+        <filter-7>on</filter-7>
+        <filter-7-operator>eq</filter-7-operator>
+      </filters><columns>
+        <id>id</id>
+        <id>time</id>
+        <id>last_update_time</id>
+        <id>1</id>
+        <id>4</id>
+        <id>2</id>
+        <id>7</id>
+      </columns><order_by>-receipt_time</order_by>
+    </custom_view><custom_view>
+      <title>Vue pour export tableur</title>
+      <slug>vue-pour-export-tableur</slug>
+      <visibility>any</visibility>
+      <filters>
+        <filter-7>on</filter-7>
+        <filter-7-operator>eq</filter-7-operator>
+      </filters><columns>
+        <id>1</id>
+        <id>9</id>
+        <id>2</id>
+        <id>4</id>
+      </columns><order_by>f7</order_by>
+    </custom_view>
+  </custom_views><geolocations />
+</carddef>

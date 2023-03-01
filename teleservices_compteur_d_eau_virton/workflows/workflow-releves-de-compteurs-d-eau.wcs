@@ -1,0 +1,157 @@
+<?xml version="1.0"?>
+<workflow id="51" url="https://virton-formulaires.guichet-citoyen.be/backoffice/workflows/51/">
+  <name>Relev&#233;s de compteurs d'eau</name>
+  <slug>releves-de-compteurs-d-eau</slug>
+  <category slug="compteurs-d-eau" category_id="1">Compteurs d'eau</category>
+  <roles>
+    <role id="_receiver">Destinataire</role>
+  </roles><possible_status>
+    <status>
+      <id>1</id>
+      <name>Juste envoy&#233;</name>
+      <colour>999999</colour>
+      <visibility>
+        <role>_receiver</role>
+      </visibility><items>
+        <item type="set-backoffice-fields" id="1">
+          <label>attribution conso non-ordinnaire</label>
+          <fields>
+            <field>
+              <field_id>bocbe79ca4-cafa-45ee-afa6-dd16fd911783</field_id>
+              <value>{% if form_var_consommation|add:"0" == 0 %}Consommation z&#233;ro{% elif form_var_consommation|add:"0" &gt;= 150 %}Sur-consommation{% else %}Consommation ordinaire{% endif %}</value>
+            </field>
+          </fields>
+        </item><item type="sendmail" id="3">
+          <to>
+            <item role_id="_receiver">_receiver</item>
+          </to><mail_template>indus-par-defaut-agent-traitant-nouvelle-demande</mail_template>
+        </item><item type="jump" id="2">
+          <status>2</status>
+          <set_marker_on_status>False</set_marker_on_status>
+        </item>
+      </items>
+    </status><status>
+      <id>2</id>
+      <name>Mise &#224; jour de l'index</name>
+      <colour>999999</colour>
+      <visibility>
+        <role>_receiver</role>
+      </visibility><items>
+        <item type="edit_carddata" id="1">
+          <formdef_slug>releve-compteur-d-eau</formdef_slug>
+          <target_mode>manual</target_mode>
+          <target_id>{{ cards|objects:"releve-compteur-d-eau"|filter_by:"matricule"|filter_value:form_var_numero_matricule|filter_by:"no_compteur"|filter_value:form_var_numero_compteur|first|get:"form_internal_id" }}</target_id>
+          <mappings>
+            <mapping field_id="2">{{ form_var_releve_index }}</mapping>
+            <mapping field_id="9">{{ form_var_releve_date }}</mapping>
+            <mapping field_id="7">{{ form_var_dt_consom_non_ordinaire }}</mapping>
+          </mappings><condition>
+            <type>django</type>
+            <value>form_var_releve_index</value>
+          </condition>
+        </item><item type="jump" id="2">
+          <status>3</status>
+          <set_marker_on_status>False</set_marker_on_status>
+        </item>
+      </items>
+    </status><status>
+      <id>3</id>
+      <name>Relev&#233; transmis</name>
+      <colour>99FF99</colour>
+      <forced_endpoint>true</forced_endpoint>
+      <visibility />
+      <items>
+        <item type="register-comment" id="1">
+          <comment>Relev&#233; transmis avec succ&#232;s.</comment>
+        </item><item type="sendmail" id="4">
+          <to>
+            <item role_id="_submitter">_submitter</item>
+          </to><subject>{{ form_name }} - R&#233;sum&#233; de votre relev&#233; transmis</subject>
+          <body>{{ form_user_email }}Bonjour,
+
+Voici pour r&#233;f&#233;rence le d&#233;tail du relev&#233; d'index transmis.
+
+{{ form_details }}</body>
+          <condition>
+            <type>django</type>
+            <value>form_user_email</value>
+          </condition>
+        </item><item type="displaymsg" id="2">
+          <message>Relev&#233; transmis avec succ&#232;s.</message>
+          <level>success</level>
+          <position>top</position>
+          <to>
+            <item role_id="_submitter">_submitter</item>
+          </to>
+        </item><item type="displaymsg" id="3">
+          <message>{% if form_var_dt_consom_non_ordinaire == "Consommation z&#233;ro" %}Attention, ce relev&#233; semble pr&#233;senter une consommation &#233;gale &#224; z&#233;ro.{% elif form_var_dt_consom_non_ordinaire == "Sur-consommation" %}Attention, ce relev&#233; semble pr&#233;senter une consommation anormalement &#233;lev&#233;e (sup&#233;rieure &#224; 150 m&#179;).
+{% endif %}</message>
+          <level>warning</level>
+          <position>top</position>
+          <to>
+            <item role_id="_receiver">_receiver</item>
+          </to>
+        </item>
+      </items>
+    </status>
+  </possible_status><global_actions>
+    <action>
+      <id>1</id>
+      <name>&#10060; Supprimer</name>
+      <items>
+        <item type="remove" id="1" />
+      </items><triggers>
+        <trigger type="manual" id="7cf1617b-4d73-4539-8054-f74147f7d874">
+          <roles>
+            <item slug="debug" role_id="821ff0c7d8ca440888b221681fe71fdc">Debug</item>
+          </roles>
+        </trigger>
+      </triggers>
+    </action><action>
+      <id>2</id>
+      <name>&#128258; Ressoumettre</name>
+      <items>
+        <item type="create_formdata" id="1">
+          <draft>False</draft>
+          <formdef_slug>releve-de-compteurs</formdef_slug>
+          <map_fields_by_varname>True</map_fields_by_varname>
+          <mappings />
+          <backoffice_submission>False</backoffice_submission>
+          <keep_submission_context>False</keep_submission_context>
+          <attach_to_history>False</attach_to_history>
+        </item>
+      </items><triggers>
+        <trigger type="manual" id="a387d946-dd22-463d-b69c-d0cb20857a29">
+          <roles>
+            <item slug="debug" role_id="821ff0c7d8ca440888b221681fe71fdc">Debug</item>
+          </roles>
+        </trigger>
+      </triggers>
+    </action>
+  </global_actions><backoffice-fields>
+    <formdef>
+      <name>-</name>
+      <fields>
+        <field>
+          <label type="str">Consommation non-ordinnaire</label>
+          <type type="str">item</type>
+          <required type="bool">True</required>
+          <varname type="str">dt_consom_non_ordinaire</varname>
+          <display_locations>
+            <display_location>summary</display_location>
+            <display_location>listings</display_location>
+            <display_location>statistics</display_location>
+          </display_locations><display_mode type="str">list</display_mode>
+          <items>
+            <item>Consommation z&#233;ro</item>
+            <item>Sur-consommation</item>
+            <item>Consommation ordinaire</item>
+          </items><in_filters type="bool">False</in_filters>
+          <anonymise type="bool">False</anonymise>
+          <display_disabled_items type="bool">False</display_disabled_items>
+          <id type="str">bocbe79ca4-cafa-45ee-afa6-dd16fd911783</id>
+        </field>
+      </fields>
+    </formdef>
+  </backoffice-fields>
+</workflow>

@@ -1,0 +1,136 @@
+<?xml version="1.0"?>
+<carddef id="10" url="https://virton-formulaires.guichet-citoyen.be/backoffice/cards/10/">
+  <name>Cat&#233;gories Interventions</name>
+  <url_name>categories-interventions</url_name>
+  <internal_identifier>categories-interventions</internal_identifier>
+  <discussion>false</discussion>
+  <detailed_emails>true</detailed_emails>
+  <disabled>false</disabled>
+  <only_allow_one>false</only_allow_one>
+  <enable_tracking_codes>false</enable_tracking_codes>
+  <confirmation>false</confirmation>
+  <always_advertise>false</always_advertise>
+  <include_download_all_button>false</include_download_all_button>
+  <has_captcha>false</has_captcha>
+  <skip_from_360_view>false</skip_from_360_view>
+  <category slug="compteur-d-eau" category_id="1">Compteur d'eau</category>
+  <workflow workflow_id="_carddef_default">Par d&#233;faut (fiches)</workflow>
+  <max_field_id>10</max_field_id>
+  <fields>
+    <field>
+      <label type="str">Nom de l'intervention</label>
+      <type type="str">string</type>
+      <required type="bool">True</required>
+      <varname type="str">libelle</varname>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+        <display_location>listings</display_location>
+      </display_locations><prefill>
+        <type>none</type>
+      </prefill><anonymise type="bool">True</anonymise>
+      <id type="str">1</id>
+    </field><field>
+      <label type="str">Vue en plan et en coupe du local accueillant le compteur</label>
+      <type type="str">bool</type>
+      <required type="bool">False</required>
+      <varname type="str">plan_local_compteur</varname>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><prefill>
+        <type>none</type>
+      </prefill><id type="str">2</id>
+    </field><field>
+      <label type="str">Le plan d'am&#233;nagement ext&#233;rieur reprenant les citerne, station d'&#233;puration et/ou chambre de visite</label>
+      <type type="str">bool</type>
+      <required type="bool">False</required>
+      <varname type="str">plan_amenagement_exterieur</varname>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><prefill>
+        <type>none</type>
+      </prefill><id type="str">3</id>
+    </field><field>
+      <label type="str">La photo de la fa&#231;ade, du terrain et de la voirie depuis le trottoir oppos&#233; &#224; l'habitation</label>
+      <type type="str">bool</type>
+      <required type="bool">False</required>
+      <varname type="str">photo_facade_voirie</varname>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><prefill>
+        <type>none</type>
+      </prefill><id type="str">4</id>
+    </field><field>
+      <label type="str">La photo de l'emplacement souhait&#233; du compteur reprenant les &#233;ventuelles sorties de gaine</label>
+      <type type="str">bool</type>
+      <required type="bool">False</required>
+      <varname type="str">futur_emplacement_compteur</varname>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><prefill>
+        <type>none</type>
+      </prefill><id type="str">5</id>
+    </field><field>
+      <label type="str">Rapport pompiers</label>
+      <type type="str">bool</type>
+      <required type="bool">False</required>
+      <varname type="str">rapport_pompier</varname>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><prefill>
+        <type>none</type>
+      </prefill><id type="str">6</id>
+    </field><field>
+      <label type="str">Photo du compteur</label>
+      <type type="str">bool</type>
+      <required type="bool">False</required>
+      <varname type="str">photo_compteur</varname>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><prefill>
+        <type>none</type>
+      </prefill><id type="str">7</id>
+    </field><field>
+      <label type="str">Photo de l'installation</label>
+      <type type="str">bool</type>
+      <required type="bool">False</required>
+      <varname type="str">photo_installation</varname>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><prefill>
+        <type>none</type>
+      </prefill><id type="str">9</id>
+    </field><field>
+      <label type="str">Sch&#233;ma des travaux</label>
+      <type type="str">bool</type>
+      <required type="bool">False</required>
+      <varname type="str">schema_travaux</varname>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><prefill>
+        <type>none</type>
+      </prefill><id type="str">8</id>
+    </field>
+  </fields><user-roles>
+    <role slug="debug" role_id="821ff0c7d8ca440888b221681fe71fdc">Debug</role>
+  </user-roles><backoffice-submission-roles>
+    <role slug="debug" role_id="821ff0c7d8ca440888b221681fe71fdc">Debug</role>
+  </backoffice-submission-roles><roles>
+    <role slug="agent-traitant-compteurs-d-eau" role_id="b8770ada8ffd4969aafe85348daa8ee5" role_key="_viewer">Agent traitant - Compteurs d'eau</role>
+    <role slug="agent-traitant-compteurs-d-eau" role_id="b8770ada8ffd4969aafe85348daa8ee5" role_key="_editor">Agent traitant - Compteurs d'eau</role>
+  </roles><options />
+  <custom_views />
+  <geolocations />
+  <digest_templates>
+    <template key="default">{{ form_var_libelle }}</template>
+    <template key="custom-view:ordre-alphabetique">{{ form_var_libelle }}</template>
+  </digest_templates>
+</carddef>

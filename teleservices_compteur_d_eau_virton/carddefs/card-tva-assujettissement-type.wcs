@@ -1,0 +1,59 @@
+<?xml version="1.0"?>
+<carddef id="11" url="https://virton-formulaires.guichet-citoyen.be/backoffice/cards/11/">
+  <name>TVA - Assujettissement - Type</name>
+  <url_name>tva-assujettissement-type</url_name>
+  <internal_identifier>tva-assujettissement-type</internal_identifier>
+  <discussion>false</discussion>
+  <detailed_emails>true</detailed_emails>
+  <disabled>false</disabled>
+  <only_allow_one>false</only_allow_one>
+  <enable_tracking_codes>false</enable_tracking_codes>
+  <confirmation>false</confirmation>
+  <always_advertise>false</always_advertise>
+  <include_download_all_button>false</include_download_all_button>
+  <has_captcha>false</has_captcha>
+  <skip_from_360_view>false</skip_from_360_view>
+  <category slug="compteur-d-eau" category_id="1">Compteur d'eau</category>
+  <workflow workflow_id="_carddef_default">Par d&#233;faut (fiches)</workflow>
+  <max_field_id>2</max_field_id>
+  <fields>
+    <field>
+      <label type="str">Type d'assujettissement</label>
+      <type type="str">string</type>
+      <required type="bool">True</required>
+      <varname type="str">type_assujettissement</varname>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+        <display_location>listings</display_location>
+      </display_locations><prefill>
+        <type>none</type>
+      </prefill><anonymise type="bool">True</anonymise>
+      <id type="str">1</id>
+    </field>
+  </fields><user-roles>
+    <role slug="debug" role_id="821ff0c7d8ca440888b221681fe71fdc">Debug</role>
+  </user-roles><backoffice-submission-roles>
+    <role slug="debug" role_id="821ff0c7d8ca440888b221681fe71fdc">Debug</role>
+  </backoffice-submission-roles><roles>
+    <role slug="debug" role_id="821ff0c7d8ca440888b221681fe71fdc" role_key="_viewer">Debug</role>
+    <role slug="debug" role_id="821ff0c7d8ca440888b221681fe71fdc" role_key="_editor">Debug</role>
+  </roles><options />
+  <custom_views>
+    <custom_view>
+      <title>ordre swde</title>
+      <slug>ordre-swde</slug>
+      <visibility>datasource</visibility>
+      <filters />
+      <columns>
+        <id>id</id>
+        <id>time</id>
+        <id>1</id>
+      </columns><order_by>id</order_by>
+    </custom_view>
+  </custom_views><geolocations />
+  <digest_templates>
+    <template key="default">{{ form_var_type_assujettissement }}</template>
+    <template key="custom-view:ordre-swde">{{ form_var_type_assujettissement }}</template>
+  </digest_templates>
+</carddef>

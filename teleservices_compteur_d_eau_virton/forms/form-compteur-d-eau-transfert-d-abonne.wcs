@@ -1,11 +1,11 @@
 <?xml version="1.0"?>
-<formdef id="1" url="http://local-formulaires.example.net/backoffice/forms/1/">
-  <name>Changement d'abonn&#233;</name>
-  <url_name>changement-d-abonne</url_name>
-  <internal_identifier>changement-d-abonne</internal_identifier>
-  <lateral_template>&lt;p&gt;Changement d&amp;#39;abonn&amp;eacute; &amp;middot; Compteur d&amp;#39;eau&lt;/p&gt;
+<formdef id="101" url="https://virton-formulaires.guichet-citoyen.be/backoffice/forms/101/">
+  <name>Compteur d'eau - Transfert d'abonn&#233;</name>
+  <url_name>compteur-d-eau-transfert-d-abonne</url_name>
+  <internal_identifier>compteur-d-eau-transfert-d-abonne</internal_identifier>
+  <lateral_template>&lt;p&gt;Compteur d&amp;#39;eau &amp;middot; Transfert d&amp;#39;abonn&amp;eacute;&lt;/p&gt;
 </lateral_template>
-  <submission_lateral_template>&lt;p&gt;Changement d&amp;#39;abonn&amp;eacute; &amp;middot; Compteur d&amp;#39;eau&lt;/p&gt;
+  <submission_lateral_template>&lt;p&gt;Compteur d&amp;#39;eau &amp;middot; Transfert d&amp;#39;abonn&amp;eacute;&lt;/p&gt;
 </submission_lateral_template>
   <discussion>false</discussion>
   <detailed_emails>true</detailed_emails>
@@ -17,8 +17,9 @@
   <include_download_all_button>false</include_download_all_button>
   <has_captcha>false</has_captcha>
   <skip_from_360_view>false</skip_from_360_view>
-  <workflow workflow_id="_default">Par d&#233;faut</workflow>
-  <max_field_id>95</max_field_id>
+  <category slug="compteurs-d-eau" category_id="119">Compteurs d'eau</category>
+  <workflow slug="compteurs-d-eau-transfert-d-abonne" workflow_id="50">Compteurs d'eau &#183; Transfert d'abonn&#233;</workflow>
+  <max_field_id>102</max_field_id>
   <fields>
     <field>
       <label type="str">Dans quel cas compl&#233;ter ce formulaire ?</label>
@@ -60,7 +61,14 @@ relev&amp;eacute; d&amp;rsquo;index ayant donn&amp;eacute; lieu &amp;agrave; fac
     </field><field>
       <label type="str">Lieu de consommation</label>
       <type type="str">page</type>
-      <id type="str">4</id>
+      <post_conditions>
+        <post_condition>
+          <condition>
+            <type>django</type>
+            <value>form_var_lieu_consom_code_postal in commune_cp</value>
+          </condition><error_message>Le code postal ne peut &#234;tre que  le code postal figurant parmi les suivants : 6760, 6761, 6762.</error_message>
+        </post_condition>
+      </post_conditions><id type="str">4</id>
     </field><field>
       <label type="str">Lieu de consommation</label>
       <type type="str">title</type>
@@ -68,6 +76,90 @@ relev&amp;eacute; d&amp;rsquo;index ayant donn&amp;eacute; lieu &amp;agrave; fac
         <display_location>validation</display_location>
         <display_location>summary</display_location>
       </display_locations><id type="str">75</id>
+    </field><field>
+      <label type="str">Type de bien</label>
+      <type type="str">item</type>
+      <required type="bool">True</required>
+      <varname type="str">usager_entrant_type_bien</varname>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+        <display_location>statistics</display_location>
+      </display_locations><extra_css_class type="str">newline</extra_css_class>
+      <prefill>
+        <locked>False</locked>
+        <type>none</type>
+      </prefill><display_mode type="str">radio</display_mode>
+      <items>
+        <item>Maison</item>
+        <item>Appartement</item>
+        <item>Autre</item>
+      </items><data_source>
+        <type>types_de_biens_immobiliers</type>
+      </data_source><in_filters type="bool">False</in_filters>
+      <anonymise type="bool">False</anonymise>
+      <display_disabled_items type="bool">False</display_disabled_items>
+      <id type="str">55</id>
+    </field><field>
+      <label type="str">Pr&#233;cisez le type de bien</label>
+      <type type="str">string</type>
+      <condition>
+        <type>django</type>
+        <value>form_var_usager_entrant_type_bien == "Autre"</value>
+      </condition><required type="bool">False</required>
+      <hint type="str">Exemple : Ch&#226;let, immeuble,...</hint>
+      <varname type="str">usager_entrant_type_bien_autre</varname>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><extra_css_class type="str">newline grid-1-2</extra_css_class>
+      <prefill>
+        <locked>False</locked>
+        <type>none</type>
+      </prefill><anonymise type="bool">True</anonymise>
+      <id type="str">56</id>
+    </field><field>
+      <label type="str">L'immeuble est inoccup&#233;</label>
+      <type type="str">item</type>
+      <required type="bool">True</required>
+      <varname type="str">usager_entrant_immeuble_inoccupe_oui_non</varname>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+        <display_location>statistics</display_location>
+      </display_locations><extra_css_class type="str">newline</extra_css_class>
+      <prefill>
+        <locked>False</locked>
+        <type>none</type>
+      </prefill><display_mode type="str">radio</display_mode>
+      <items>
+        <item>Oui</item>
+        <item>Non</item>
+      </items><in_filters type="bool">False</in_filters>
+      <anonymise type="bool">False</anonymise>
+      <display_disabled_items type="bool">False</display_disabled_items>
+      <id type="str">54</id>
+    </field><field>
+      <label type="str">Type de consommation</label>
+      <type type="str">item</type>
+      <required type="bool">True</required>
+      <varname type="str">usager_entrant_type_consommation</varname>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><extra_css_class type="str">newline</extra_css_class>
+      <prefill>
+        <locked>False</locked>
+        <type>none</type>
+      </prefill><display_mode type="str">radio</display_mode>
+      <items>
+        <item>Priv&#233;e</item>
+        <item>Professionnelle</item>
+        <item>Mixte</item>
+      </items><in_filters type="bool">False</in_filters>
+      <anonymise type="bool">False</anonymise>
+      <display_disabled_items type="bool">False</display_disabled_items>
+      <id type="str">57</id>
     </field><field>
       <label type="str">Adresse</label>
       <type type="str">subtitle</type>
@@ -83,7 +175,7 @@ relev&amp;eacute; d&amp;rsquo;index ayant donn&amp;eacute; lieu &amp;agrave; fac
       <display_locations>
         <display_location>validation</display_location>
         <display_location>summary</display_location>
-      </display_locations><extra_css_class type="str">grid-1-3</extra_css_class>
+      </display_locations><extra_css_class type="str">grid-1-2</extra_css_class>
       <prefill>
         <locked>False</locked>
         <type>none</type>
@@ -97,11 +189,14 @@ relev&amp;eacute; d&amp;rsquo;index ayant donn&amp;eacute; lieu &amp;agrave; fac
       <display_locations>
         <display_location>validation</display_location>
         <display_location>summary</display_location>
-      </display_locations><extra_css_class type="str">grid-1-6 newline</extra_css_class>
+      </display_locations><extra_css_class type="str">grid-2-12</extra_css_class>
       <prefill>
         <locked>False</locked>
         <type>none</type>
-      </prefill><anonymise type="bool">True</anonymise>
+      </prefill><validation>
+        <type>regex</type>
+        <value>^[0-9]*</value>
+      </validation><anonymise type="bool">True</anonymise>
       <id type="str">6</id>
     </field><field>
       <label type="str">Boite</label>
@@ -111,7 +206,7 @@ relev&amp;eacute; d&amp;rsquo;index ayant donn&amp;eacute; lieu &amp;agrave; fac
       <display_locations>
         <display_location>validation</display_location>
         <display_location>summary</display_location>
-      </display_locations><extra_css_class type="str">grid-1-6 newline</extra_css_class>
+      </display_locations><extra_css_class type="str">grid-1-12</extra_css_class>
       <prefill>
         <locked>False</locked>
         <type>none</type>
@@ -121,11 +216,12 @@ relev&amp;eacute; d&amp;rsquo;index ayant donn&amp;eacute; lieu &amp;agrave; fac
       <label type="str">Code postal</label>
       <type type="str">string</type>
       <required type="bool">True</required>
+      <hint type="str">Uniquement parmi les suivants : 6760, 6761, 6762.</hint>
       <varname type="str">lieu_consom_code_postal</varname>
       <display_locations>
         <display_location>validation</display_location>
         <display_location>summary</display_location>
-      </display_locations><extra_css_class type="str">grid-1-4 newline</extra_css_class>
+      </display_locations><extra_css_class type="str">newline grid-2-12</extra_css_class>
       <prefill>
         <locked>False</locked>
         <type>none</type>
@@ -139,63 +235,27 @@ relev&amp;eacute; d&amp;rsquo;index ayant donn&amp;eacute; lieu &amp;agrave; fac
       <display_locations>
         <display_location>validation</display_location>
         <display_location>summary</display_location>
-      </display_locations><extra_css_class type="str">grid-1-3 newline</extra_css_class>
+      </display_locations><extra_css_class type="str">grid-1-2</extra_css_class>
       <prefill>
         <locked>False</locked>
         <type>none</type>
       </prefill><anonymise type="bool">True</anonymise>
       <id type="str">9</id>
     </field><field>
-      <label type="str">Relev&#233;</label>
-      <type type="str">subtitle</type>
-      <display_locations>
-        <display_location>validation</display_location>
-        <display_location>summary</display_location>
-      </display_locations><id type="str">76</id>
-    </field><field>
-      <label type="str">Relev&#233; d'index en date du</label>
-      <type type="str">date</type>
+      <label type="str">Relev&#233;(s)</label>
+      <type type="str">block:releve_index</type>
       <required type="bool">True</required>
-      <hint type="str">S&#233;lectionnez une date.</hint>
-      <varname type="str">lieu_consom_date_releve_index</varname>
+      <hint type="str">Vous avez la possibilit&#233; d'encoder un ou plusieurs compteurs/relev&#233;s.</hint>
+      <varname type="str">releve</varname>
       <display_locations>
         <display_location>validation</display_location>
         <display_location>summary</display_location>
-      </display_locations><prefill>
-        <locked>False</locked>
-        <type>none</type>
-      </prefill><minimum_is_future type="bool">False</minimum_is_future>
-      <date_in_the_past type="bool">False</date_in_the_past>
-      <date_can_be_today type="bool">False</date_can_be_today>
-      <id type="str">10</id>
-    </field><field>
-      <label type="str">Index</label>
-      <type type="str">string</type>
-      <required type="bool">True</required>
-      <hint type="str">Votre index de consommation relev&#233;.</hint>
-      <varname type="str">lieu_consom_releve_index</varname>
-      <display_locations>
-        <display_location>validation</display_location>
-        <display_location>summary</display_location>
-      </display_locations><prefill>
-        <locked>False</locked>
-        <type>none</type>
-      </prefill><anonymise type="bool">True</anonymise>
-      <id type="str">11</id>
-    </field><field>
-      <label type="str">Compteur</label>
-      <type type="str">string</type>
-      <required type="bool">True</required>
-      <hint type="str">Num&#233;ro de compteur.</hint>
-      <varname type="str">lieu_consom_numero_compteur</varname>
-      <display_locations>
-        <display_location>validation</display_location>
-        <display_location>summary</display_location>
-      </display_locations><prefill>
-        <locked>False</locked>
-        <type>none</type>
-      </prefill><anonymise type="bool">True</anonymise>
-      <id type="str">12</id>
+      </display_locations><default_items_count type="int">1</default_items_count>
+      <max_items type="int">5</max_items>
+      <add_element_label type="str">Encoder un compteur suppl&#233;mentaire</add_element_label>
+      <label_display type="str">subtitle</label_display>
+      <remove_button type="bool">True</remove_button>
+      <id type="str">102</id>
     </field><field>
       <label type="str">Usager sortant</label>
       <type type="str">page</type>
@@ -211,7 +271,6 @@ relev&amp;eacute; d&amp;rsquo;index ayant donn&amp;eacute; lieu &amp;agrave; fac
       <label type="str">Lieu occup&#233; &#224; titre de</label>
       <type type="str">item</type>
       <required type="bool">True</required>
-      <hint type="str">Veuillez effectuer un choix.</hint>
       <varname type="str">occupe_par_proprietaire</varname>
       <display_locations>
         <display_location>validation</display_location>
@@ -219,11 +278,11 @@ relev&amp;eacute; d&amp;rsquo;index ayant donn&amp;eacute; lieu &amp;agrave; fac
       </display_locations><prefill>
         <locked>False</locked>
         <type>none</type>
-      </prefill><items>
+      </prefill><display_mode type="str">radio</display_mode>
+      <items>
         <item>Propri&#233;taire</item>
         <item>Locataire</item>
-      </items><display_mode type="str">radio</display_mode>
-      <in_filters type="bool">False</in_filters>
+      </items><in_filters type="bool">False</in_filters>
       <anonymise type="bool">False</anonymise>
       <display_disabled_items type="bool">False</display_disabled_items>
       <id type="str">27</id>
@@ -238,7 +297,6 @@ relev&amp;eacute; d&amp;rsquo;index ayant donn&amp;eacute; lieu &amp;agrave; fac
         <display_location>summary</display_location>
         <display_location>statistics</display_location>
       </display_locations><prefill>
-        <locked>False</locked>
         <type>none</type>
       </prefill><id type="str">18</id>
     </field><field>
@@ -252,11 +310,13 @@ relev&amp;eacute; d&amp;rsquo;index ayant donn&amp;eacute; lieu &amp;agrave; fac
       </display_locations><prefill>
         <locked>False</locked>
         <type>none</type>
-      </prefill><items>
+      </prefill><display_mode type="str">radio</display_mode>
+      <items>
         <item>Mme</item>
         <item>M</item>
-      </items><display_mode type="str">radio</display_mode>
-      <in_filters type="bool">False</in_filters>
+      </items><data_source>
+        <type>civilites</type>
+      </data_source><in_filters type="bool">False</in_filters>
       <anonymise type="bool">False</anonymise>
       <display_disabled_items type="bool">False</display_disabled_items>
       <id type="str">14</id>
@@ -268,7 +328,7 @@ relev&amp;eacute; d&amp;rsquo;index ayant donn&amp;eacute; lieu &amp;agrave; fac
       <display_locations>
         <display_location>validation</display_location>
         <display_location>summary</display_location>
-      </display_locations><extra_css_class type="str">grid-1-3 newline</extra_css_class>
+      </display_locations><extra_css_class type="str">grid-1-2</extra_css_class>
       <prefill>
         <locked>False</locked>
         <type>none</type>
@@ -282,7 +342,7 @@ relev&amp;eacute; d&amp;rsquo;index ayant donn&amp;eacute; lieu &amp;agrave; fac
       <display_locations>
         <display_location>validation</display_location>
         <display_location>summary</display_location>
-      </display_locations><extra_css_class type="str">grid-1-3 newline</extra_css_class>
+      </display_locations><extra_css_class type="str">grid-1-2</extra_css_class>
       <prefill>
         <locked>False</locked>
         <type>none</type>
@@ -296,7 +356,7 @@ relev&amp;eacute; d&amp;rsquo;index ayant donn&amp;eacute; lieu &amp;agrave; fac
       <display_locations>
         <display_location>validation</display_location>
         <display_location>summary</display_location>
-      </display_locations><extra_css_class type="str">grid-1-4 newline</extra_css_class>
+      </display_locations><extra_css_class type="str">grid-1-2 newline</extra_css_class>
       <prefill>
         <locked>False</locked>
         <type>none</type>
@@ -306,44 +366,33 @@ relev&amp;eacute; d&amp;rsquo;index ayant donn&amp;eacute; lieu &amp;agrave; fac
       <id type="str">17</id>
     </field><field>
       <label type="str">Email</label>
-      <type type="str">string</type>
+      <type type="str">email</type>
       <required type="bool">True</required>
       <varname type="str">usager_sortant_mail</varname>
       <display_locations>
         <display_location>validation</display_location>
         <display_location>summary</display_location>
-      </display_locations><extra_css_class type="str">grid-2-3 newline</extra_css_class>
+      </display_locations><extra_css_class type="str">newline grid-1-2</extra_css_class>
       <prefill>
         <locked>False</locked>
-        <type>none</type>
-      </prefill><anonymise type="bool">True</anonymise>
-      <id type="str">38</id>
+        <type>user</type>
+        <value>_email</value>
+      </prefill><id type="str">96</id>
     </field><field>
       <label type="str">T&#233;l&#233;phone</label>
       <type type="str">string</type>
-      <required type="bool">False</required>
+      <required type="bool">True</required>
+      <hint type="str">Exemple : 070112233</hint>
       <varname type="str">usager_sortant_telephone</varname>
       <display_locations>
         <display_location>validation</display_location>
         <display_location>summary</display_location>
-      </display_locations><prefill>
+      </display_locations><extra_css_class type="str">newline grid-1-2</extra_css_class>
+      <prefill>
         <locked>False</locked>
         <type>none</type>
       </prefill><anonymise type="bool">True</anonymise>
       <id type="str">39</id>
-    </field><field>
-      <label type="str">GSM</label>
-      <type type="str">string</type>
-      <required type="bool">False</required>
-      <varname type="str">usager_sortant_gsm</varname>
-      <display_locations>
-        <display_location>validation</display_location>
-        <display_location>summary</display_location>
-      </display_locations><prefill>
-        <locked>False</locked>
-        <type>none</type>
-      </prefill><anonymise type="bool">True</anonymise>
-      <id type="str">40</id>
     </field><field>
       <label type="str">Usager sortant : adresse de facturation</label>
       <type type="str">page</type>
@@ -376,7 +425,7 @@ relev&amp;eacute; d&amp;rsquo;index ayant donn&amp;eacute; lieu &amp;agrave; fac
       <display_locations>
         <display_location>validation</display_location>
         <display_location>summary</display_location>
-      </display_locations><extra_css_class type="str">grid-1-3</extra_css_class>
+      </display_locations><extra_css_class type="str">grid-1-2</extra_css_class>
       <prefill>
         <locked>False</locked>
         <type>none</type>
@@ -390,41 +439,29 @@ relev&amp;eacute; d&amp;rsquo;index ayant donn&amp;eacute; lieu &amp;agrave; fac
       <display_locations>
         <display_location>validation</display_location>
         <display_location>summary</display_location>
-      </display_locations><extra_css_class type="str">grid-1-6 newline</extra_css_class>
+      </display_locations><extra_css_class type="str">grid-2-12</extra_css_class>
       <prefill>
         <locked>False</locked>
         <type>none</type>
-      </prefill><anonymise type="bool">True</anonymise>
+      </prefill><validation>
+        <type>regex</type>
+        <value>^[0-9]*</value>
+      </validation><anonymise type="bool">True</anonymise>
       <id type="str">21</id>
     </field><field>
       <label type="str">Boite</label>
       <type type="str">string</type>
-      <required type="bool">True</required>
+      <required type="bool">False</required>
       <varname type="str">facturation_cloture_boite</varname>
       <display_locations>
         <display_location>validation</display_location>
         <display_location>summary</display_location>
-      </display_locations><extra_css_class type="str">grid-1-6 newline</extra_css_class>
+      </display_locations><extra_css_class type="str">grid-2-12</extra_css_class>
       <prefill>
         <locked>False</locked>
         <type>none</type>
       </prefill><anonymise type="bool">True</anonymise>
       <id type="str">22</id>
-    </field><field>
-      <label type="str">&#201;tage</label>
-      <type type="str">string</type>
-      <required type="bool">False</required>
-      <hint type="str">Chiffre uniquement. Exemple:  2.</hint>
-      <varname type="str">facturation_cloture_etage</varname>
-      <display_locations>
-        <display_location>validation</display_location>
-        <display_location>summary</display_location>
-      </display_locations><extra_css_class type="str">grid-1-6 newline</extra_css_class>
-      <prefill>
-        <locked>False</locked>
-        <type>none</type>
-      </prefill><anonymise type="bool">True</anonymise>
-      <id type="str">23</id>
     </field><field>
       <label type="str">Code postal</label>
       <type type="str">string</type>
@@ -433,11 +470,14 @@ relev&amp;eacute; d&amp;rsquo;index ayant donn&amp;eacute; lieu &amp;agrave; fac
       <display_locations>
         <display_location>validation</display_location>
         <display_location>summary</display_location>
-      </display_locations><extra_css_class type="str">grid-1-6 newline</extra_css_class>
+      </display_locations><extra_css_class type="str">newline grid-2-12</extra_css_class>
       <prefill>
         <locked>False</locked>
         <type>none</type>
-      </prefill><anonymise type="bool">True</anonymise>
+      </prefill><validation>
+        <type>regex</type>
+        <value>^[0-9]*</value>
+      </validation><anonymise type="bool">True</anonymise>
       <id type="str">24</id>
     </field><field>
       <label type="str">Localit&#233;</label>
@@ -447,7 +487,7 @@ relev&amp;eacute; d&amp;rsquo;index ayant donn&amp;eacute; lieu &amp;agrave; fac
       <display_locations>
         <display_location>validation</display_location>
         <display_location>summary</display_location>
-      </display_locations><extra_css_class type="str">grid-1-3 newline</extra_css_class>
+      </display_locations><extra_css_class type="str">grid-1-2</extra_css_class>
       <prefill>
         <locked>False</locked>
         <type>none</type>
@@ -464,9 +504,9 @@ relev&amp;eacute; d&amp;rsquo;index ayant donn&amp;eacute; lieu &amp;agrave; fac
         <display_location>summary</display_location>
       </display_locations><extra_css_class type="str">grid-1-4 newline</extra_css_class>
       <prefill>
-        <locked>False</locked>
         <type>none</type>
       </prefill><display_mode type="str">autocomplete</display_mode>
+      <items />
       <data_source>
         <type>pays</type>
       </data_source><in_filters type="bool">False</in_filters>
@@ -511,7 +551,7 @@ relev&amp;eacute; d&amp;rsquo;index ayant donn&amp;eacute; lieu &amp;agrave; fac
       <display_locations>
         <display_location>validation</display_location>
         <display_location>summary</display_location>
-      </display_locations><extra_css_class type="str">grid-2-3 newline</extra_css_class>
+      </display_locations><extra_css_class type="str">grid-1-2 newline</extra_css_class>
       <prefill>
         <locked>False</locked>
         <type>none</type>
@@ -519,21 +559,26 @@ relev&amp;eacute; d&amp;rsquo;index ayant donn&amp;eacute; lieu &amp;agrave; fac
       <id type="str">35</id>
     </field><field>
       <label type="str">Forme juridique</label>
-      <type type="str">string</type>
-      <condition>
-        <type>django</type>
-        <value>form_var_usager_sortant_societe_oui_non == True</value>
-      </condition><required type="bool">True</required>
+      <type type="str">item</type>
+      <required type="bool">True</required>
+      <hint type="str">Veuillez s&#233;lectionner</hint>
       <varname type="str">usager_sortant_societe_forme_juridique</varname>
       <display_locations>
         <display_location>validation</display_location>
         <display_location>summary</display_location>
-      </display_locations><extra_css_class type="str">grid-1-3 newline</extra_css_class>
+        <display_location>listings</display_location>
+        <display_location>statistics</display_location>
+      </display_locations><extra_css_class type="str">newline grid-1-2</extra_css_class>
       <prefill>
         <locked>False</locked>
         <type>none</type>
-      </prefill><anonymise type="bool">True</anonymise>
-      <id type="str">36</id>
+      </prefill><display_mode type="str">list</display_mode>
+      <data_source>
+        <type>formes_juridiques</type>
+      </data_source><in_filters type="bool">False</in_filters>
+      <anonymise type="bool">False</anonymise>
+      <display_disabled_items type="bool">False</display_disabled_items>
+      <id type="str">99</id>
     </field><field>
       <label type="str">N&#176; de TVA</label>
       <type type="str">string</type>
@@ -545,7 +590,7 @@ relev&amp;eacute; d&amp;rsquo;index ayant donn&amp;eacute; lieu &amp;agrave; fac
       <display_locations>
         <display_location>validation</display_location>
         <display_location>summary</display_location>
-      </display_locations><extra_css_class type="str">grid-1-6 newline</extra_css_class>
+      </display_locations><extra_css_class type="str">grid-1-2 newline</extra_css_class>
       <prefill>
         <locked>False</locked>
         <type>none</type>
@@ -573,14 +618,12 @@ relev&amp;eacute; d&amp;rsquo;index ayant donn&amp;eacute; lieu &amp;agrave; fac
         <display_location>summary</display_location>
         <display_location>statistics</display_location>
       </display_locations><prefill>
-        <locked>False</locked>
         <type>none</type>
       </prefill><id type="str">33</id>
     </field><field>
       <label type="str">Lieu occup&#233; &#224; titre de</label>
       <type type="str">item</type>
       <required type="bool">True</required>
-      <hint type="str">Veuillez effectuer un choix.</hint>
       <varname type="str">usager_entrant_occupe_par_proprietaire</varname>
       <display_locations>
         <display_location>validation</display_location>
@@ -588,86 +631,18 @@ relev&amp;eacute; d&amp;rsquo;index ayant donn&amp;eacute; lieu &amp;agrave; fac
       </display_locations><prefill>
         <locked>False</locked>
         <type>none</type>
-      </prefill><items>
+      </prefill><display_mode type="str">radio</display_mode>
+      <items>
         <item>Propri&#233;taire</item>
         <item>Locataire</item>
-      </items><display_mode type="str">radio</display_mode>
-      <in_filters type="bool">False</in_filters>
+      </items><in_filters type="bool">False</in_filters>
       <anonymise type="bool">False</anonymise>
       <display_disabled_items type="bool">False</display_disabled_items>
       <id type="str">53</id>
     </field><field>
-      <label type="str">Type de bien</label>
-      <type type="str">item</type>
-      <required type="bool">True</required>
-      <hint type="str">Veuillez effectuer un choix.</hint>
-      <varname type="str">usager_entrant_type_bien</varname>
-      <display_locations>
-        <display_location>validation</display_location>
-        <display_location>summary</display_location>
-        <display_location>statistics</display_location>
-      </display_locations><extra_css_class type="str">newline</extra_css_class>
-      <prefill>
-        <locked>False</locked>
-        <type>none</type>
-      </prefill><items>
-        <item>Maison</item>
-        <item>Appartement</item>
-        <item>Autre</item>
-      </items><display_mode type="str">radio</display_mode>
-      <in_filters type="bool">False</in_filters>
-      <anonymise type="bool">False</anonymise>
-      <display_disabled_items type="bool">False</display_disabled_items>
-      <id type="str">55</id>
-    </field><field>
-      <label type="str">L'immeuble est inoccup&#233;</label>
-      <type type="str">item</type>
-      <required type="bool">True</required>
-      <hint type="str">Veuillez effectuer un choix.</hint>
-      <varname type="str">usager_entrant_immeuble_inoccupe_oui_non</varname>
-      <display_locations>
-        <display_location>validation</display_location>
-        <display_location>summary</display_location>
-        <display_location>statistics</display_location>
-      </display_locations><extra_css_class type="str">newline</extra_css_class>
-      <prefill>
-        <locked>False</locked>
-        <type>none</type>
-      </prefill><items>
-        <item>Oui</item>
-        <item>Non</item>
-      </items><display_mode type="str">radio</display_mode>
-      <in_filters type="bool">False</in_filters>
-      <anonymise type="bool">False</anonymise>
-      <display_disabled_items type="bool">False</display_disabled_items>
-      <id type="str">54</id>
-    </field><field>
-      <label type="str">Type de consommation</label>
-      <type type="str">item</type>
-      <required type="bool">True</required>
-      <hint type="str">Veuillez effectuer un choix.</hint>
-      <varname type="str">usager_entrant_type_consommation</varname>
-      <display_locations>
-        <display_location>validation</display_location>
-        <display_location>summary</display_location>
-      </display_locations><extra_css_class type="str">newline</extra_css_class>
-      <prefill>
-        <locked>False</locked>
-        <type>none</type>
-      </prefill><items>
-        <item>Priv&#233;</item>
-        <item>Professionnelle</item>
-        <item>Mixte</item>
-      </items><display_mode type="str">radio</display_mode>
-      <in_filters type="bool">False</in_filters>
-      <anonymise type="bool">False</anonymise>
-      <display_disabled_items type="bool">False</display_disabled_items>
-      <id type="str">57</id>
-    </field><field>
       <label type="str">Civilit&#233;</label>
       <type type="str">item</type>
       <required type="bool">True</required>
-      <hint type="str">Veuillez effectuer un choix.</hint>
       <varname type="str">usager_entrant_civilite</varname>
       <display_locations>
         <display_location>validation</display_location>
@@ -675,11 +650,13 @@ relev&amp;eacute; d&amp;rsquo;index ayant donn&amp;eacute; lieu &amp;agrave; fac
       </display_locations><prefill>
         <locked>False</locked>
         <type>none</type>
-      </prefill><items>
+      </prefill><display_mode type="str">radio</display_mode>
+      <items>
         <item>Mme</item>
         <item>M</item>
-      </items><display_mode type="str">radio</display_mode>
-      <in_filters type="bool">False</in_filters>
+      </items><data_source>
+        <type>civilites</type>
+      </data_source><in_filters type="bool">False</in_filters>
       <anonymise type="bool">False</anonymise>
       <display_disabled_items type="bool">False</display_disabled_items>
       <id type="str">29</id>
@@ -691,7 +668,7 @@ relev&amp;eacute; d&amp;rsquo;index ayant donn&amp;eacute; lieu &amp;agrave; fac
       <display_locations>
         <display_location>validation</display_location>
         <display_location>summary</display_location>
-      </display_locations><extra_css_class type="str">grid-1-3 newline</extra_css_class>
+      </display_locations><extra_css_class type="str">grid-1-2 newline</extra_css_class>
       <prefill>
         <locked>False</locked>
         <type>none</type>
@@ -705,7 +682,7 @@ relev&amp;eacute; d&amp;rsquo;index ayant donn&amp;eacute; lieu &amp;agrave; fac
       <display_locations>
         <display_location>validation</display_location>
         <display_location>summary</display_location>
-      </display_locations><extra_css_class type="str">grid-1-3 newline</extra_css_class>
+      </display_locations><extra_css_class type="str">grid-1-2</extra_css_class>
       <prefill>
         <locked>False</locked>
         <type>none</type>
@@ -719,7 +696,7 @@ relev&amp;eacute; d&amp;rsquo;index ayant donn&amp;eacute; lieu &amp;agrave; fac
       <display_locations>
         <display_location>validation</display_location>
         <display_location>summary</display_location>
-      </display_locations><extra_css_class type="str">grid-1-4 newline</extra_css_class>
+      </display_locations><extra_css_class type="str">grid-1-2 newline</extra_css_class>
       <prefill>
         <locked>False</locked>
         <type>none</type>
@@ -739,7 +716,7 @@ relev&amp;eacute; d&amp;rsquo;index ayant donn&amp;eacute; lieu &amp;agrave; fac
       <display_locations>
         <display_location>validation</display_location>
         <display_location>summary</display_location>
-      </display_locations><extra_css_class type="str">grid-1-3 newline</extra_css_class>
+      </display_locations><extra_css_class type="str">grid-1-2</extra_css_class>
       <prefill>
         <locked>False</locked>
         <type>none</type>
@@ -753,11 +730,14 @@ relev&amp;eacute; d&amp;rsquo;index ayant donn&amp;eacute; lieu &amp;agrave; fac
       <display_locations>
         <display_location>validation</display_location>
         <display_location>summary</display_location>
-      </display_locations><extra_css_class type="str">grid-1-6 newline</extra_css_class>
+      </display_locations><extra_css_class type="str">grid-2-12</extra_css_class>
       <prefill>
         <locked>False</locked>
         <type>none</type>
-      </prefill><anonymise type="bool">True</anonymise>
+      </prefill><validation>
+        <type>regex</type>
+        <value>^[0-9]*</value>
+      </validation><anonymise type="bool">True</anonymise>
       <id type="str">47</id>
     </field><field>
       <label type="str">Boite</label>
@@ -767,27 +747,12 @@ relev&amp;eacute; d&amp;rsquo;index ayant donn&amp;eacute; lieu &amp;agrave; fac
       <display_locations>
         <display_location>validation</display_location>
         <display_location>summary</display_location>
-      </display_locations><extra_css_class type="str">grid-1-6 newline</extra_css_class>
+      </display_locations><extra_css_class type="str">grid-2-12</extra_css_class>
       <prefill>
         <locked>False</locked>
         <type>none</type>
       </prefill><anonymise type="bool">True</anonymise>
       <id type="str">48</id>
-    </field><field>
-      <label type="str">&#201;tage</label>
-      <type type="str">string</type>
-      <required type="bool">False</required>
-      <hint type="str">Chiffre uniquement. Exemple: 2.</hint>
-      <varname type="str">usager_entrant_adresse_differente_etage</varname>
-      <display_locations>
-        <display_location>validation</display_location>
-        <display_location>summary</display_location>
-      </display_locations><extra_css_class type="str">grid-1-6 newline</extra_css_class>
-      <prefill>
-        <locked>False</locked>
-        <type>none</type>
-      </prefill><anonymise type="bool">True</anonymise>
-      <id type="str">49</id>
     </field><field>
       <label type="str">Code postal</label>
       <type type="str">string</type>
@@ -796,11 +761,14 @@ relev&amp;eacute; d&amp;rsquo;index ayant donn&amp;eacute; lieu &amp;agrave; fac
       <display_locations>
         <display_location>validation</display_location>
         <display_location>summary</display_location>
-      </display_locations><extra_css_class type="str">grid-1-6 newline</extra_css_class>
+      </display_locations><extra_css_class type="str">newline grid-2-12</extra_css_class>
       <prefill>
         <locked>False</locked>
         <type>none</type>
-      </prefill><anonymise type="bool">True</anonymise>
+      </prefill><validation>
+        <type>regex</type>
+        <value>^[0-9]*</value>
+      </validation><anonymise type="bool">True</anonymise>
       <id type="str">50</id>
     </field><field>
       <label type="str">Localit&#233;</label>
@@ -810,7 +778,7 @@ relev&amp;eacute; d&amp;rsquo;index ayant donn&amp;eacute; lieu &amp;agrave; fac
       <display_locations>
         <display_location>validation</display_location>
         <display_location>summary</display_location>
-      </display_locations><extra_css_class type="str">grid-1-3 newline</extra_css_class>
+      </display_locations><extra_css_class type="str">grid-1-2</extra_css_class>
       <prefill>
         <locked>False</locked>
         <type>none</type>
@@ -827,9 +795,9 @@ relev&amp;eacute; d&amp;rsquo;index ayant donn&amp;eacute; lieu &amp;agrave; fac
         <display_location>summary</display_location>
       </display_locations><extra_css_class type="str">grid-1-3 newline</extra_css_class>
       <prefill>
-        <locked>False</locked>
         <type>none</type>
       </prefill><display_mode type="str">autocomplete</display_mode>
+      <items />
       <data_source>
         <type>pays</type>
       </data_source><in_filters type="bool">False</in_filters>
@@ -837,26 +805,11 @@ relev&amp;eacute; d&amp;rsquo;index ayant donn&amp;eacute; lieu &amp;agrave; fac
       <display_disabled_items type="bool">False</display_disabled_items>
       <id type="str">83</id>
     </field><field>
-      <label type="str">Si autre</label>
-      <type type="str">string</type>
-      <required type="bool">False</required>
-      <hint type="str">S'il ne figure pas dans les choix propos&#233;, veuillez sp&#233;cifier le type de bien.</hint>
-      <varname type="str">usager_entrant_type_bien_autre</varname>
-      <display_locations>
-        <display_location>validation</display_location>
-        <display_location>summary</display_location>
-      </display_locations><extra_css_class type="str">newline</extra_css_class>
-      <prefill>
-        <locked>False</locked>
-        <type>none</type>
-      </prefill><anonymise type="bool">True</anonymise>
-      <id type="str">56</id>
-    </field><field>
       <label type="str">Usager entrant : soci&#233;t&#233;</label>
       <type type="str">page</type>
       <condition>
         <type>django</type>
-        <value>form_var_usager_sortant_societe_oui_non == True</value>
+        <value>form_var_usager_entrant_societe_oui_non == True</value>
       </condition><id type="str">84</id>
     </field><field>
       <label type="str">Usager entrant</label>
@@ -886,7 +839,7 @@ relev&amp;eacute; d&amp;rsquo;index ayant donn&amp;eacute; lieu &amp;agrave; fac
       <display_locations>
         <display_location>validation</display_location>
         <display_location>summary</display_location>
-      </display_locations><extra_css_class type="str">grid-2-3 newline</extra_css_class>
+      </display_locations><extra_css_class type="str">grid-1-2 newline</extra_css_class>
       <prefill>
         <locked>False</locked>
         <type>none</type>
@@ -894,21 +847,25 @@ relev&amp;eacute; d&amp;rsquo;index ayant donn&amp;eacute; lieu &amp;agrave; fac
       <id type="str">42</id>
     </field><field>
       <label type="str">Forme juridique</label>
-      <type type="str">string</type>
-      <condition>
-        <type>django</type>
-        <value>form_var_usager_entrant_societe_oui_non == True</value>
-      </condition><required type="bool">True</required>
+      <type type="str">item</type>
+      <required type="bool">True</required>
       <varname type="str">usager_entrant_societe_forme_juridique</varname>
       <display_locations>
         <display_location>validation</display_location>
         <display_location>summary</display_location>
-      </display_locations><extra_css_class type="str">grid-1-3 newline</extra_css_class>
+        <display_location>listings</display_location>
+        <display_location>statistics</display_location>
+      </display_locations><extra_css_class type="str">newline grid-1-2</extra_css_class>
       <prefill>
         <locked>False</locked>
         <type>none</type>
-      </prefill><anonymise type="bool">True</anonymise>
-      <id type="str">43</id>
+      </prefill><display_mode type="str">list</display_mode>
+      <data_source>
+        <type>formes_juridiques</type>
+      </data_source><in_filters type="bool">False</in_filters>
+      <anonymise type="bool">False</anonymise>
+      <display_disabled_items type="bool">False</display_disabled_items>
+      <id type="str">100</id>
     </field><field>
       <label type="str">N&#176; de TVA</label>
       <type type="str">string</type>
@@ -920,7 +877,7 @@ relev&amp;eacute; d&amp;rsquo;index ayant donn&amp;eacute; lieu &amp;agrave; fac
       <display_locations>
         <display_location>validation</display_location>
         <display_location>summary</display_location>
-      </display_locations><extra_css_class type="str">grid-1-3 newline</extra_css_class>
+      </display_locations><extra_css_class type="str">grid-1-2 newline</extra_css_class>
       <prefill>
         <locked>False</locked>
         <type>none</type>
@@ -941,7 +898,6 @@ relev&amp;eacute; d&amp;rsquo;index ayant donn&amp;eacute; lieu &amp;agrave; fac
       <label type="str">Le propri&#233;taire est l'un des usagers d&#233;j&#224; encod&#233;s</label>
       <type type="str">item</type>
       <required type="bool">True</required>
-      <hint type="str">Veuillez effectuer un choix</hint>
       <varname type="str">proprietaire_deja_encode</varname>
       <display_locations>
         <display_location>validation</display_location>
@@ -949,11 +905,11 @@ relev&amp;eacute; d&amp;rsquo;index ayant donn&amp;eacute; lieu &amp;agrave; fac
       </display_locations><prefill>
         <locked>False</locked>
         <type>none</type>
-      </prefill><items>
+      </prefill><display_mode type="str">radio</display_mode>
+      <items>
         <item>Oui</item>
         <item>Non</item>
-      </items><display_mode type="str">radio</display_mode>
-      <in_filters type="bool">False</in_filters>
+      </items><in_filters type="bool">False</in_filters>
       <anonymise type="bool">False</anonymise>
       <display_disabled_items type="bool">False</display_disabled_items>
       <id type="str">94</id>
@@ -964,7 +920,6 @@ relev&amp;eacute; d&amp;rsquo;index ayant donn&amp;eacute; lieu &amp;agrave; fac
         <type>django</type>
         <value>form_var_proprietaire_deja_encode == "Oui"</value>
       </condition><required type="bool">True</required>
-      <hint type="str">Veuillez effectuer un choix.</hint>
       <varname type="str">usager_proprietaire</varname>
       <display_locations>
         <display_location>validation</display_location>
@@ -972,11 +927,11 @@ relev&amp;eacute; d&amp;rsquo;index ayant donn&amp;eacute; lieu &amp;agrave; fac
       </display_locations><prefill>
         <locked>False</locked>
         <type>none</type>
-      </prefill><items>
+      </prefill><display_mode type="str">radio</display_mode>
+      <items>
         <item>Usager entrant</item>
         <item>Usager sortant</item>
-      </items><display_mode type="str">radio</display_mode>
-      <in_filters type="bool">False</in_filters>
+      </items><in_filters type="bool">False</in_filters>
       <anonymise type="bool">False</anonymise>
       <display_disabled_items type="bool">False</display_disabled_items>
       <id type="str">93</id>
@@ -997,7 +952,6 @@ relev&amp;eacute; d&amp;rsquo;index ayant donn&amp;eacute; lieu &amp;agrave; fac
       <label type="str">Civilit&#233;</label>
       <type type="str">item</type>
       <required type="bool">False</required>
-      <hint type="str">Veuillez effectuer un choix.</hint>
       <varname type="str">proprietaire_civilite</varname>
       <display_locations>
         <display_location>validation</display_location>
@@ -1005,11 +959,13 @@ relev&amp;eacute; d&amp;rsquo;index ayant donn&amp;eacute; lieu &amp;agrave; fac
       </display_locations><prefill>
         <locked>False</locked>
         <type>none</type>
-      </prefill><items>
+      </prefill><display_mode type="str">radio</display_mode>
+      <items>
         <item>Mme</item>
         <item>M</item>
-      </items><display_mode type="str">radio</display_mode>
-      <in_filters type="bool">False</in_filters>
+      </items><data_source>
+        <type>civilites</type>
+      </data_source><in_filters type="bool">False</in_filters>
       <anonymise type="bool">False</anonymise>
       <display_disabled_items type="bool">False</display_disabled_items>
       <id type="str">59</id>
@@ -1017,17 +973,15 @@ relev&amp;eacute; d&amp;rsquo;index ayant donn&amp;eacute; lieu &amp;agrave; fac
       <label type="str">Nom</label>
       <type type="str">string</type>
       <required type="bool">False</required>
-      <varname type="str">proprietaire_registre_national</varname>
+      <varname type="str">proprietaire_nom</varname>
       <display_locations>
         <display_location>validation</display_location>
         <display_location>summary</display_location>
-      </display_locations><extra_css_class type="str">grid-1-3 newline</extra_css_class>
+      </display_locations><extra_css_class type="str">grid-1-2</extra_css_class>
       <prefill>
         <locked>False</locked>
         <type>none</type>
-      </prefill><validation>
-        <type>nrn-be</type>
-      </validation><anonymise type="bool">True</anonymise>
+      </prefill><anonymise type="bool">True</anonymise>
       <id type="str">60</id>
     </field><field>
       <label type="str">Prenom</label>
@@ -1037,7 +991,7 @@ relev&amp;eacute; d&amp;rsquo;index ayant donn&amp;eacute; lieu &amp;agrave; fac
       <display_locations>
         <display_location>validation</display_location>
         <display_location>summary</display_location>
-      </display_locations><extra_css_class type="str">grid-1-3 newline</extra_css_class>
+      </display_locations><extra_css_class type="str">grid-1-2</extra_css_class>
       <prefill>
         <locked>False</locked>
         <type>none</type>
@@ -1051,7 +1005,7 @@ relev&amp;eacute; d&amp;rsquo;index ayant donn&amp;eacute; lieu &amp;agrave; fac
       <display_locations>
         <display_location>validation</display_location>
         <display_location>summary</display_location>
-      </display_locations><extra_css_class type="str">grid-1-4 newline</extra_css_class>
+      </display_locations><extra_css_class type="str">grid-1-2 newline</extra_css_class>
       <prefill>
         <locked>False</locked>
         <type>none</type>
@@ -1061,46 +1015,32 @@ relev&amp;eacute; d&amp;rsquo;index ayant donn&amp;eacute; lieu &amp;agrave; fac
       <id type="str">62</id>
     </field><field>
       <label type="str">Email</label>
-      <type type="str">string</type>
-      <required type="bool">False</required>
-      <varname type="str">proprietaire_different_email</varname>
+      <type type="str">email</type>
+      <required type="bool">True</required>
+      <varname type="str">proprietaire_email</varname>
       <display_locations>
         <display_location>validation</display_location>
         <display_location>summary</display_location>
-      </display_locations><extra_css_class type="str">grid-2-6 newline</extra_css_class>
+      </display_locations><extra_css_class type="str">newline grid-1-2</extra_css_class>
       <prefill>
         <locked>False</locked>
         <type>none</type>
-      </prefill><anonymise type="bool">True</anonymise>
-      <id type="str">63</id>
+      </prefill><id type="str">98</id>
     </field><field>
       <label type="str">T&#233;l&#233;phone</label>
       <type type="str">string</type>
-      <required type="bool">False</required>
+      <required type="bool">True</required>
+      <hint type="str">Exemple : 070112233</hint>
       <varname type="str">proprietaire_telephone</varname>
       <display_locations>
         <display_location>validation</display_location>
         <display_location>summary</display_location>
-      </display_locations><extra_css_class type="str">grid-1-4 newline</extra_css_class>
+      </display_locations><extra_css_class type="str">grid-1-2</extra_css_class>
       <prefill>
         <locked>False</locked>
         <type>none</type>
       </prefill><anonymise type="bool">True</anonymise>
       <id type="str">64</id>
-    </field><field>
-      <label type="str">GSM</label>
-      <type type="str">string</type>
-      <required type="bool">False</required>
-      <varname type="str">proprietaire_gsm</varname>
-      <display_locations>
-        <display_location>validation</display_location>
-        <display_location>summary</display_location>
-      </display_locations><extra_css_class type="str">grid-1-3 newline</extra_css_class>
-      <prefill>
-        <locked>False</locked>
-        <type>none</type>
-      </prefill><anonymise type="bool">True</anonymise>
-      <id type="str">65</id>
     </field><field>
       <label type="str">Rue</label>
       <type type="str">string</type>
@@ -1109,7 +1049,7 @@ relev&amp;eacute; d&amp;rsquo;index ayant donn&amp;eacute; lieu &amp;agrave; fac
       <display_locations>
         <display_location>validation</display_location>
         <display_location>summary</display_location>
-      </display_locations><extra_css_class type="str">grid-2-3 newline</extra_css_class>
+      </display_locations><extra_css_class type="str">newline grid-1-2</extra_css_class>
       <prefill>
         <locked>False</locked>
         <type>none</type>
@@ -1123,11 +1063,14 @@ relev&amp;eacute; d&amp;rsquo;index ayant donn&amp;eacute; lieu &amp;agrave; fac
       <display_locations>
         <display_location>validation</display_location>
         <display_location>summary</display_location>
-      </display_locations><extra_css_class type="str">grid-1-6 newline</extra_css_class>
+      </display_locations><extra_css_class type="str">grid-2-12</extra_css_class>
       <prefill>
         <locked>False</locked>
         <type>none</type>
-      </prefill><anonymise type="bool">True</anonymise>
+      </prefill><validation>
+        <type>regex</type>
+        <value>^[0-9]*</value>
+      </validation><anonymise type="bool">True</anonymise>
       <id type="str">67</id>
     </field><field>
       <label type="str">Boite</label>
@@ -1137,7 +1080,7 @@ relev&amp;eacute; d&amp;rsquo;index ayant donn&amp;eacute; lieu &amp;agrave; fac
       <display_locations>
         <display_location>validation</display_location>
         <display_location>summary</display_location>
-      </display_locations><extra_css_class type="str">grid-1-6 newline</extra_css_class>
+      </display_locations><extra_css_class type="str">grid-1-12</extra_css_class>
       <prefill>
         <locked>False</locked>
         <type>none</type>
@@ -1151,7 +1094,7 @@ relev&amp;eacute; d&amp;rsquo;index ayant donn&amp;eacute; lieu &amp;agrave; fac
       <display_locations>
         <display_location>validation</display_location>
         <display_location>summary</display_location>
-      </display_locations><extra_css_class type="str">grid-1-6 newline</extra_css_class>
+      </display_locations><extra_css_class type="str">newline grid-2-12</extra_css_class>
       <prefill>
         <locked>False</locked>
         <type>none</type>
@@ -1165,17 +1108,48 @@ relev&amp;eacute; d&amp;rsquo;index ayant donn&amp;eacute; lieu &amp;agrave; fac
       <display_locations>
         <display_location>validation</display_location>
         <display_location>summary</display_location>
-      </display_locations><extra_css_class type="str">grid-1-3 newline</extra_css_class>
+      </display_locations><extra_css_class type="str">grid-1-2</extra_css_class>
       <prefill>
         <locked>False</locked>
         <type>none</type>
       </prefill><anonymise type="bool">True</anonymise>
       <id type="str">70</id>
     </field>
-  </fields><options />
-  <custom_views />
-  <geolocations />
+  </fields><user-roles>
+    <role slug="citoyen-test-compteurs-deau" role_id="62839bbb2c78496f815f637bedb2e3f7">Citoyen (test) Compteurs d'eau</role>
+  </user-roles><backoffice-submission-roles>
+    <role slug="agent-traitant-compteurs-d-eau" role_id="b8770ada8ffd4969aafe85348daa8ee5">Agent traitant - Compteurs d'eau</role>
+  </backoffice-submission-roles><roles>
+    <role slug="agent-traitant-compteurs-d-eau" role_id="b8770ada8ffd4969aafe85348daa8ee5" role_key="_receiver">Agent traitant - Compteurs d'eau</role>
+  </roles><options />
+  <custom_views>
+    <custom_view>
+      <title>Compteurs d'eau - Transfert d'abonn&#233;</title>
+      <slug>compteurs-d-eau-transfert-d-abonne-2</slug>
+      <visibility>any</visibility>
+      <filters>
+        <filter>all</filter>
+        <filter-bo15bf408b-7a25-4dc2-a1a1-c8f085f6ec3b>on</filter-bo15bf408b-7a25-4dc2-a1a1-c8f085f6ec3b>
+        <filter-bo172c6495-8078-43ba-a3af-7117e975838c>on</filter-bo172c6495-8078-43ba-a3af-7117e975838c>
+        <filter-boa7277815-cdc8-4309-a379-0e623b1ac165>on</filter-boa7277815-cdc8-4309-a379-0e623b1ac165>
+        <filter-boce1d237d-abea-4b39-bf21-d46f43480d77>on</filter-boce1d237d-abea-4b39-bf21-d46f43480d77>
+        <filter-bodfde4e2e-6464-4044-a76b-295b676e3e03>on</filter-bodfde4e2e-6464-4044-a76b-295b676e3e03>
+        <filter-status>on</filter-status>
+      </filters><columns>
+        <id>id</id>
+        <id>time</id>
+        <id>last_update_time</id>
+        <id>user-label</id>
+        <id>boce1d237d-abea-4b39-bf21-d46f43480d77</id>
+        <id>bo623fddaf-6e22-4457-8286-79816f697fcf</id>
+        <id>10</id>
+        <id>bo172c6495-8078-43ba-a3af-7117e975838c</id>
+        <id>bo22033a0f-b087-4cfe-9e4f-612be9017381</id>
+        <id>status</id>
+      </columns><order_by>-receipt_time</order_by>
+    </custom_view>
+  </custom_views><geolocations />
   <digest_templates>
-    <template key="default">Changement d'abonn&#233; &#183; Compteur d'eau</template>
+    <template key="default">Compteur d'eau &#183; Transfert d'abonn&#233;</template>
   </digest_templates>
 </formdef>

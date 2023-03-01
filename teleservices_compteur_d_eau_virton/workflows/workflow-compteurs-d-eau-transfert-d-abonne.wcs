@@ -1,0 +1,851 @@
+<?xml version="1.0"?>
+<workflow id="50" url="https://virton-formulaires.guichet-citoyen.be/backoffice/workflows/50/">
+  <name>Compteurs d'eau &#183; Transfert d'abonn&#233;</name>
+  <slug>compteurs-d-eau-transfert-d-abonne</slug>
+  <category slug="compteurs-d-eau" category_id="1">Compteurs d'eau</category>
+  <roles>
+    <role id="_receiver">Destinataire</role>
+  </roles><possible_status>
+    <status>
+      <id>1</id>
+      <name>Juste envoy&#233;</name>
+      <colour>FFFFFF</colour>
+      <visibility>
+        <role>_receiver</role>
+      </visibility><items>
+        <item type="set-backoffice-fields" id="1">
+          <label>Informations sur le relev&#233;</label>
+          <fields>
+            <field>
+              <field_id>bo172c6495-8078-43ba-a3af-7117e975838c</field_id>
+              <value>{{ form_var_lieu_consom_numero_compteur }}</value>
+            </field><field>
+              <field_id>bo22033a0f-b087-4cfe-9e4f-612be9017381</field_id>
+              <value>{{ form_var_lieu_consom_releve_index }}</value>
+            </field><field>
+              <field_id>boce1d237d-abea-4b39-bf21-d46f43480d77</field_id>
+              <value>{{ form_var_lieu_consom_numero }}{% if form_var_lieu_consom_boite %} boite {{ form_var_lieu_consom_boite }}{% endif %} , {{ form_var_lieu_consom_rue }} &#8212; {{ form_var_lieu_consom_code_postal }}, {{ form_var_lieu_consom_localite }}</value>
+            </field><field>
+              <field_id>bo623fddaf-6e22-4457-8286-79816f697fcf</field_id>
+              <value>{% firstof form_var_usager_entrant_type_bien form_var_usager_entrant_type_bien_autre %}</value>
+            </field>
+          </fields>
+        </item><item type="set-backoffice-fields" id="4">
+          <label>D&#233;finition du propri&#233;taire du bien</label>
+          <fields>
+            <field>
+              <field_id>bo15bf408b-7a25-4dc2-a1a1-c8f085f6ec3b</field_id>
+              <value>{% if form_var_proprietaire_deja_encode == True %}{% if form_var_usager_proprietaire == "Usager sortant" %}{{ form_var_usager_sortant_civilite }} {{ form_var_usager_sortant_nom }} {{ form_var_usager_sortant_prenom }}{% elif form_var_usager_proprietaire == "Usager entrant" %}{{ form_var_usager_entrant_civilite }} {{ form_var_usager_entrant_nom }} {{ form_var_usager_entrant_prenom }}{% endif %}{% else %}{{ form_var_proprietaire_civilite|default:"" }} {{ form_var_proprietaire_nom|default:"" }} {{ form_var_proprietaire_prenom|default:"" }}{% endif %}</value>
+            </field>
+          </fields>
+        </item><item type="set-backoffice-fields" id="5">
+          <label>D&#233;finition de l'usager entrant</label>
+          <fields>
+            <field>
+              <field_id>bodfde4e2e-6464-4044-a76b-295b676e3e03</field_id>
+              <value>{{ form_var_usager_entrant_civilite }} {{ form_var_usager_entrant_nom }} {{ form_var_usager_entrant_prenom }}</value>
+            </field>
+          </fields>
+        </item><item type="set-backoffice-fields" id="6">
+          <label>D&#233;finition de l'usager sortant</label>
+          <fields>
+            <field>
+              <field_id>boa7277815-cdc8-4309-a379-0e623b1ac165</field_id>
+              <value>{{ form_var_usager_sortant_civilite }} {{ form_var_usager_sortant_nom }} {{ form_var_usager_sortant_prenom }}</value>
+            </field>
+          </fields>
+        </item><item type="sendmail" id="2">
+          <to>
+            <item role_id="_receiver">_receiver</item>
+          </to><mail_template>indus-par-defaut-agent-traitant-nouvelle-demande</mail_template>
+          <subject>Nouveau {{ form_name }} ({{ form_number }}) en attente de traitement</subject>
+          <body>Bonjour,
+
+Nous vous informons qu'un nouveau formulaire &#171; {{ form_name}} &#187; (`{{form_number}}&lt;{{ form_url_backoffice }}&gt;`_) vient d'&#234;tre transmis.
+
+Vous pouvez `consulter ce formulaire dans le backoffice en suivant ce lien&lt;{{form_url_backoffice}}&gt;`_.</body>
+        </item><item type="jump" id="3">
+          <status>2</status>
+          <set_marker_on_status>False</set_marker_on_status>
+        </item>
+      </items>
+    </status><status>
+      <id>2</id>
+      <name>Relev&#233; transmis</name>
+      <colour>FFFFFF</colour>
+      <visibility />
+      <items>
+        <item type="register-comment" id="1">
+          <comment>Nous avons bien re&#231;u le d&#233;tail pour le transfert d'abonn&#233; du bien situ&#233; {{ form_var_lieu_consom_numero }}{% if form_var_lieu_consom_boite %} boite {{ form_var_lieu_consom_boite }}{% endif %} , {{ form_var_lieu_consom_rue }} &#8212; {{ form_var_lieu_consom_code_postal }}, {{ form_var_lieu_consom_localite }}.</comment>
+          <to>
+            <item role_id="_submitter">_submitter</item>
+          </to>
+        </item><item type="jump" id="2">
+          <status>4</status>
+          <set_marker_on_status>False</set_marker_on_status>
+        </item>
+      </items>
+    </status><status>
+      <id>3</id>
+      <name>En attente du document signature</name>
+      <colour>996699</colour>
+      <visibility />
+      <items>
+        <item type="displaymsg" id="1">
+          <message>Nous avons bien re&#231;u le d&#233;tail pour le transfert d'abonn&#233; du bien situ&#233; {{ form_var_lieu_consom_numero }}{% if form_var_lieu_consom_boite %} boite {{ form_var_lieu_consom_boite }}{% endif %} , {{ form_var_lieu_consom_rue }} &#8212; {{ form_var_lieu_consom_code_postal }}, {{ form_var_lieu_consom_localite }}.</message>
+          <level>success</level>
+          <position>top</position>
+          <to>
+            <item role_id="_submitter">_submitter</item>
+          </to>
+        </item><item type="displaymsg" id="2">
+          <message>Attention, afin de finaliser cette d&#233;marche, veuillez joindre le document sign&#233; par les deux parties.&lt;br&gt;
+Une copie de ce document vient de vous &#234;tre transmise par mail.&lt;br&gt;
+Vous avez &#233;galement la possibilit&#233; de t&#233;l&#233;charger directement ce document.&lt;br&gt;
+
+&lt;p style="padding-top: 15px;"&gt;&lt;a class="pk-button" href="{{form_attachments_doc_genere_transfert_abonne.url}}"&gt;T&#233;l&#233;charger le document &#224; faire signer par les deux parties&lt;/a&gt;&lt;p&gt;</message>
+          <level>info</level>
+          <position>top</position>
+          <to>
+            <item role_id="_submitter">_submitter</item>
+          </to>
+        </item><item type="displaymsg" id="3">
+          <message>En attente du document signature qui doit encore &#234;tre joint &#224; cette demande par l'usager.</message>
+          <level>info</level>
+          <position>top</position>
+          <to>
+            <item role_id="_receiver">_receiver</item>
+          </to>
+        </item><item type="register-comment" id="4">
+          <comment>Veuillez t&#233;l&#233;charger et faire signer le document ci-joint par les deux parties avant de le joindre par le biais de cette demande.</comment>
+          <to>
+            <item role_id="_submitter">_submitter</item>
+          </to>
+        </item><item type="form" id="5">
+          <by>
+            <item role_id="_submitter">_submitter</item>
+          </by><varname>joindre_document_signature</varname>
+          <hide_submit_button>False</hide_submit_button>
+          <formdef>
+            <name>-</name>
+            <fields>
+              <field>
+                <label type="str">Joindre le document sign&#233;</label>
+                <type type="str">title</type>
+                <display_locations />
+                <id type="str">1</id>
+              </field><field>
+                <label type="str">&lt;p&gt;Veuillez charger le fichier du document sign&amp;eacute; par les deux parties dans l&amp;#39;espace d&amp;eacute;di&amp;eacute; ci-dessous pour finaliser votre demande.&lt;/p&gt;
+</label>
+                <type type="str">comment</type>
+                <display_locations />
+                <id type="str">2</id>
+              </field><field>
+                <label type="str">Document de transfert sign&#233;</label>
+                <type type="str">file</type>
+                <required type="bool">True</required>
+                <hint type="str">Veuillez alimenter ce champ avec le fichier document sign&#233; par les deux parties.</hint>
+                <varname type="str">document_signe_transmis</varname>
+                <display_locations />
+                <prefill>
+                  <type>none</type>
+                </prefill><allow_portfolio_picking type="bool">True</allow_portfolio_picking>
+                <automatic_image_resize type="bool">True</automatic_image_resize>
+                <storage type="str">default</storage>
+                <id type="str">3</id>
+              </field>
+            </fields>
+          </formdef>
+        </item><item type="jumponsubmit" id="6">
+          <status>5</status>
+          <set_marker_on_status>False</set_marker_on_status>
+        </item>
+      </items>
+    </status><status>
+      <id>4</id>
+      <name>Cr&#233;ation du document</name>
+      <colour>FFFFFF</colour>
+      <visibility>
+        <role>_receiver</role>
+      </visibility><items>
+        <item type="export_to_model" id="1">
+          <model_file>
+            <base_filename>Transfert_compteur_eau_virton_final.odt</base_filename>
+            <content_type>application/vnd.oasis.opendocument.text</content_type>
+            <b64_content>UEsDBBQAAAgAAORT21RexjIMJwAAACcAAAAIAAAAbWltZXR5cGVhcHBsaWNhdGlvbi92bmQub2Fz
+aXMub3BlbmRvY3VtZW50LnRleHRQSwMEFAAACAAA5FPbVAAAAAAAAAAAAAAAABgAAABDb25maWd1
+cmF0aW9uczIvdG9vbGJhci9QSwMEFAAACAAA5FPbVAAAAAAAAAAAAAAAABgAAABDb25maWd1cmF0
+aW9uczIvZmxvYXRlci9QSwMEFAAACAAA5FPbVAAAAAAAAAAAAAAAABgAAABDb25maWd1cmF0aW9u
+czIvbWVudWJhci9QSwMEFAAACAAA5FPbVAAAAAAAAAAAAAAAABoAAABDb25maWd1cmF0aW9uczIv
+cG9wdXBtZW51L1BLAwQUAAAIAADkU9tUAAAAAAAAAAAAAAAAHAAAAENvbmZpZ3VyYXRpb25zMi9h
+Y2NlbGVyYXRvci9QSwMEFAAACAAA5FPbVAAAAAAAAAAAAAAAABoAAABDb25maWd1cmF0aW9uczIv
+dG9vbHBhbmVsL1BLAwQUAAAIAADkU9tUAAAAAAAAAAAAAAAAHAAAAENvbmZpZ3VyYXRpb25zMi9w
+cm9ncmVzc2Jhci9QSwMEFAAACAAA5FPbVAAAAAAAAAAAAAAAABoAAABDb25maWd1cmF0aW9uczIv
+c3RhdHVzYmFyL1BLAwQUAAAIAADkU9tUAAAAAAAAAAAAAAAAHwAAAENvbmZpZ3VyYXRpb25zMi9p
+bWFnZXMvQml0bWFwcy9QSwMEFAAICAgA5FPbVAAAAAAAAAAAAAAAAAwAAABtYW5pZmVzdC5yZGbN
+k81ugzAQhO88hWXO2EAvBQVyKMq5ap/ANYZYBS/ymhLevo6TVlGkquqf1OOuRjPfjrSb7WEcyIuy
+qMFUNGMpJcpIaLXpKzq7Lrml2zra2LYrH5od8WqDpZ8qunduKjlfloUtNwxsz7OiKHia8zxPvCLB
+1ThxSAzGtI4ICR6NQmn15HwaOc7iCWZXUXTroJB59yA9i906qaCyCmG2Ur2HtiCRgUCNCUzKhHSD
+HLpOS8UzlvNROcGh7eLHYL3Tg6I8YPArjs/Y3ogMpuVe4L2w7lyD33yVaHruY3p108Xx3yOUYJwy
+7k/quzt5/+f+Ls//GeKvtHZEbEDOo2f6kOe08h9VR69QSwcItPdo0gUBAACDAwAAUEsDBBQACAgI
+AORT21QAAAAAAAAAAAAAAAAIAAAAbWV0YS54bWyNk0tvnDAUhff9FcjNFowN4WEBkbqoukjVSp1I
+3Y089g3jlrGRMWH678vwyiSdRXf4+Dv3+F6b4uF8arwXsJ0yukQkCJEHWhipdF2ip91nP0MP1YfC
+PD8rAUwa0Z9AO/8EjnujVXestlI2JTo61zKMh2EIhigwtsY0DCNcY8kd918UDB/R4riYS9RbzQzv
+VMc0P0HHnGCmBb1GsFeWTcea1+dG6d+30kie53jaXVEpNq7tbTNRUmBo4FK/wyQgeGWNMRt8OcXc
+79pGjOf1Rk+r/21hmd3UxPJ9NXCKqnW6l16rYupYWOBuJPxxelDRkFI/jHxKd+SeUcpiGuR5SOIo
+pXGBbzgKKdiVNfFpuiOURYSFWZBl91GS0ygr8IrNqSCVGy/el72dalXfd+RLlH4l8Y8l5R/irVH8
+EQ10VfqOXuSZrUHDaDa2elQHC9+m3nESxEEa0LtHpfvz/meW7JPYuwL2rTW/QDgch3efetVIny4h
+r/Xm+tsb7dx4xM4p4U2644cGfGF67UqUoFlUJ15vIl1Ec7gkrWq4qO0VSTbN8try9rhuRCs9GCs3
+OswWVRxHg3Bg1618M+jx6oajctC1XIxB78ksThCuCvzmreBb/2X1F1BLBwjtbkFk0wEAANUDAABQ
+SwMEFAAICAgA5FPbVAAAAAAAAAAAAAAAAAwAAABzZXR0aW5ncy54bWy9Wltz2joQfj+/IsN7Ssit
+CZOkY0hpaCEwQJo5fRP2gnUiSx5JDvDvuytDmhKcUozOE2DkXe3t24t09WmeiINn0IYreV2pfTiq
+HIAMVcTl9LryMGodXlQ+3fxzpSYTHkI9UmGWgLSHBqzFJeYAX5emHio54fhCpmVdMcNNXbIETN2G
+dZWCXL1Wf7267pjlT+aCy6frSmxtWq9WZ7PZh9nJB6Wn1drl5WXV/btaqpR6WUi08525xcdHR6fV
+/PfLavdr240tpXQbW35/pZrjys1KDyvxb66WsuQfh9xCQro5WD4mZtcV3HL9mcPsRWuVTe/9/s53
+XB9oYCOVVlb/2EWK/wglp5Wbo6vqWxLbk+3AxPqg+8gjG28kfHpxclorR/wO+DTevO3j2lnteDfq
+w1jNBhChj0EzZnIKZo3DWCkBTFZurM5gNx5t2dBqZqCrIiiiPmHCbE3+MGHpIZcRzCF6q6zNDube
+QWfXi+1U3o7Wtmqs5qRs8uUdlU10C33v+OPZaQn/KwqV2seLo/NdyRo+FrD/aHFk9x7bjuqgMEgw
+BE8uS9FuKGtVUhiBO8b3D6WSEZJad7dYaVsKkTpsoTLbVCJL5HpUL6mXgKScekOpp72F9Vu9tFho
+lS7Y+9GOummbIQgILUQtjQ88bD2QIe4RohHMbQ9z6EQojPspCxc7MNvw8DWWFf29hMfNCzAVb5+8
+8weZZhZLgb/J4n0ETNvXyqSobQ9qdvQHQEUKrKP13ugPUVgBX9W4MDGW5UD42mdeMq+jP2KIXb6I
+NxW6oRK+yJNeGix8mmqVyUIbl2Ryq9nMubQf8g2BArRQT948KJBSWReeG7C4XCLJPQhxrI9SQKxE
+BOt4vA8xPiepXdyOWxxEdMcjMH2m2f7tccsNBUNvMiHH6ivDSWlU1u1fpGE2thrzV0sszCohBO6X
+FzdQaQdr+GHKQhRnGKPZnkyLa2Pp8f41GaSpWJCRppqlcZdp9HCdMDtS91kyBu1HpyPsg5aInNc1
+DXzwFBgHE/TVi2uOIRouDP7hK4gdi6ZKUgHzYah5at/ltLvVHKPAcCb9s+kgIP0PbHpSLB4w//uy
+DSU4LjOVmc8yQpgtzqRlHcCbBIKnKUR9HtpMe9l+SyhmLSHrvUqYnvI3/cY+uDzIMYW4Y7PCGB98
+7oBhklsiaQOodmfGvpeQyrQKAum7JIslZpPJEMT+AwXjoycixwV0F6zmoQ/FYaFJ3U7XeYAf+mYA
+AnHlGUaqjQ2OLGwryirLZxZrS9QSts76l5v5qgz7LAXd0ioZgs3W5y17Cco0YhaIwwgwf+H3/Vuk
+mWmNpr5lCDHMYOZPEiajDTMTFHjnQhfLpKdcmOIaesdxSRBFhB5LU4+Ua8iaIHx0TZt1tXmUWd3S
+iUBTrNGBAVLO5z4Fs9GYT+NDzDFYm1FhXaK0xCjUJISnnqzF5vdvZz/b62VNzfQ5VJkOS1DELB2Y
+ZsyoZwC96hgeNS7V2DW4WZUP1G6bb6ClKwr7mcQawTWSPhoihrAdI65Kxv0kOWpBQFO3+ohdSeoH
+VzGaP8/RJpKJDlYK7zAp0V3liOGA4g8ZYncmQ7sQYO7VLUxYJnwM6MibbZBZlQOrp1jGJLopuWFY
+np82uGR6sU38bVB5YIcWBdj/tgeGr0OyS121i9rRyeWOWcb1EBFEK0wqhW9uEOPTcr3M0pljB55B
+/EvMjM+KKxB8KtG0Q6vS1dTHQ+5dgTe18pgF6eh87yc7S5cvZV1C4i9CjZm4XV4BoOrH23gStP8y
+dAX+r4ZgfrCfQOIVE7/V3ItYvfF/EFq/A0tnqy80znunPSyRbrBkoiH+Kj0PEyYKy4ByAxuE119l
+QE+i8lBzHlh1zSM2cRTtI401DY0LBPMTSOhlgTspytte9IqX4atpyw43/g7Y6ETd0/lUeyqxyH0Z
+U+eytaXPVLC87NLXymJEYTB9gzensn9ZOtyqe2W/ZsbyyYLEMI/cxl0mMyZ8DaV/O1odjDq+WLhz
+GU/Gd2obgAE3Wwus1QbdGm1Pg1A/4O2aqN5kgjy9tFLOnWlMFcgohwKUiFyiyUSYCV+dVUexaIC9
+iJJilxsGWxmqyVIaH9NZKeKp6UnyCj9W+g7a8pAJz9Z6kHO0Tgg/QCvs6P7QzJXqsDtsDC+1lp/s
+IGCgZt8AfFRX1K8MlFrfuetZLi/OTs5OS0DMHceuRVK29nMuSjBPRZTX/N/lksI8v6PZWLS8xOGv
+ixAEmDRq/9PNhZLTmu/59d+ebAplfAR7l9m4gdmWMrLr0d6LjxKlJ5WaCGCmDxjv0iJynZ97KT2F
+QC7gsia1BH5uMSzPWehW2d8TL7wOVn1zu7tadO/95idQSwcInWWRbN4GAAA5LwAAUEsDBBQAAAgA
+AORT21SkNwW3wRgAAMEYAAAYAAAAVGh1bWJuYWlscy90aHVtYm5haWwucG5niVBORw0KGgoAAAAN
+SUhEUgAAALUAAAEACAMAAADC/cfpAAAC/VBMVEUITGEOUGQWVmkjX3EqY3U4bHxOQTtKSElJTFJP
+U1ZTTkpYV1dUXGVeYGBjW1RrZF5oZ2dnbHNscnlwbGp1cm17c2t0dHNzdHl3en19dnF+eXJ6e3s9
+cYFTfotseIZ4fIVZgY1ZhZNtk599gol4hZR6nKiJemuDe3SCfXuOf3GIf3vbOzXaQTvcS0bdWlXa
+YV3gb2uCf4KKgnuUh3mJiImAh5CDiZKFjpmLjZOLkZmTi4OTjYqajYOYjo+TipGUkI2YkIWak42T
+kpOSlZqXmJSUmJyalZKYlpmdmZWcm5yLmKWQlKCVm6KbnaGZnqifo56Fo62HprCXoqeVoaqcoaSb
+o6qdqK2Wo7KUpLicprGdqbOdqriZtLyjl4qhl5Wim5WhnZuonZehnqGmoJekoJyqoJWro5yuqJ22
+qJuko6OjpaqmqKWkqauqpaOopqmsqaSrq6yiprCjq7OjrrmrrrKtsKqlsLKlsruguL+ssbSssrmx
+pqOzq6Ozraq6raGwrrKysKS0say7sKW6s6y6u66zs7Oytbm1uLK1uby5tbO5tri8ubW+vr6nuMSy
+tsG0usK0vsq6vsK/wL6twce1wcu2yM28wMS8w8u5yc60xNO2ydu8xtC9ydO7ydm80OXEtqnCtbLC
+u7PCvbvKu7LKvbjUpaXQvbXhkI3nlJHjmpfjnZrqrKnqtbTDwLzLwLXKw7zSwK3WyLve0b/ExMXD
+xcrDyMXGyczJxsTNycTLy8vAx9HEytHCzdrKztLIzdjE0tvM0dTM09rM2NvSy8TSzsrZzMPV0sbT
+0c3c0sXa083b2c/T09PT1dnV2dXV2dza1dLb1tjc2dTa29vH1uPY3OLY4N7O4fTU4ebS4u3W6O/c
+4eTd4+nU5fLa5/He6fPvzMvh0sTi1crk2c3q3crj3Nbww8LwyMfwzczz2Nfs4M/o4tvw5tXw5tvx
+6Nv47N7p6eno7fHu8O/s8vXx7Of38Ob08e368eP59O3++e/z8/Py9vn1+fv59vL7+fX+/v7Lt3Yk
+AAAVf0lEQVR42u2dD3AT153HCaHHpAlpGq7JtfRKeklJesy1BzEOgjQ+y4PPSvG0N7Waa5qOfanx
+ZVUp2qpOqVyb1tGtkKIlQuDKSZMcsej1btpTXLJG9p7QIY/FCc8KCW2UllldGGDU6UWk2UXqoq6k
+/c29lQ02BKg2AWqmu0/S/vtq/fHze+/7fm//eBHciNMijVqj1qg1ao1ao9aoNWqNWqPWqG8g6oEK
+MGhWygKwtRf6SF9OrChBTqAPGgLZGfX7o375hQ8CXfqYt319k96Qcm92EW3RFXra4lvxg2B34Cs+
+GPT2tw90dTg36g1974T1faNGSwA7fqr7sX4TWKZxsmUFbfC2mtVR/+Znv4Hqz/5t8WIJrQgvn3lf
+1Ht0HzlowK2vk9iPrZijz4KfMH8RG+g4vfFfzdAFHdsefftFzP6tvY+e8PZZW9eYN1qPPcuZVpjK
+J+7MYTuth1/pNqE/lhrq/1v9efj56p9/5svCjoM/+syiJyqF3U8IMPSjoR1S/dQpiJGhRJpnj2aT
+KXcmEC6R0UCEx/NCAqb90760mE2xbI71cBl2wns0TxRKZCLmB/CXktnppCfDsipLyN+u/vXn/0a8
+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
+cAyTAAAAkwAAADUAAABQaWN0dXJlcy8xMDAwMDIwMDAwMDAwMEMwMDAwMDAwQzA4QTZDQzQ5QjNE
+MjhGRjhCLnBuZ4lQTkcNChoKAAAADUlIRFIAAADAAAAAwAEDAAAAaBL+RAAAAAFzUkdCAdnJLH8A
+AAAJcEhZcwAACxMAAAsTAQCanBgAAAADUExURQAAAKd6PdoAAAABdFJOUwBA5thmAAAAHElEQVR4
+nO3BMQEAAADCoPVPbQ0PoAAAAADg1wASwAAB0sGsvgAAAABJRU5ErkJgglBLAwQUAAAIAADkU9tU
+G3TurPkIAAD5CAAANQAAAFBpY3R1cmVzLzEwMDAwMjAxMDAwMDAwQUEwMDAwMDAyQkNCQjM3NUY4
+NTRFRDdCOTYucG5niVBORw0KGgoAAAANSUhEUgAAAKoAAAArCAYAAADomhP/AAAABmJLR0QA/wD/
+AP+gvaeTAAAIrklEQVR42u2da2wUVRSAF4XugwIqRnkkIviIUqK2M1vY3RbXiNR2d5ZXlvBsZ6ZQ
+tKJEoiCJjyoaY3xEk4r+gICP2CiJjxAxoIAPFIwYEUFLt6XyEPlBEZCgUKCeuztbt/uae2ZmZ3Y2
+c5MbkrL3zO3Zb84995xzb202s7dw2GmzmtXyrTm52uvsAeFFR0DY5wgKF6D3QO+GvtceFF92cAtG
+W1qymqEN4JwHQJ6R4MzUz0IXLG1ZzZBmD4ghAPCiDKTxfol83tKa1fRtTU2XgTXtpIQ03tssxVlN
+1+aqEVkkpNFuD/I3Wdqzmn4bqKA4TQmoTk6ssLRXIK3Ny34R8bI9iH680+93qHlmu5d5FfG8syU1
+s2coAbWI42+xvuECae0eZioSVOjueUqfd5RhXDD+BPWzPOxq21T+CgDvHBLUP4hvq6syw43FzgC/
+nLYPrOGHWQRStp5w+HKA4QAKVB+7Xbk1dTdgntVeUcbEln++GemfLtHdl65qGI6ZoytQx1gEIlrE
+wzyGtqoetlTRs7zsj7TPALfkm96Bk+cPdATE7XQQiC26W1ML1Ny3/X7magDjHxyszOvY53RUMBUo
+a+plZ/URUP2gHSBsgi+5K8OXf8QeFBbDJ/sZEp2wQNXBV/Uya5FW9XRk/PjByI1bCwLSo/tKSorS
+CgJgnaE6H8lA2TnhIYix1rk43m3zN/U3NIxmgarH8s+WYpf/Ng+7iFZ+p9s9DMacQ8h/ymw6tEDV
+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
+AAAAAAAAAAAAGAAAAAAAAAAAAAAAAABNAAAAQ29uZmlndXJhdGlvbnMyL3Rvb2xiYXIvUEsBAhQA
+FAAACAAA5FPbVAAAAAAAAAAAAAAAABgAAAAAAAAAAAAAAAAAgwAAAENvbmZpZ3VyYXRpb25zMi9m
+bG9hdGVyL1BLAQIUABQAAAgAAORT21QAAAAAAAAAAAAAAAAYAAAAAAAAAAAAAAAAALkAAABDb25m
+aWd1cmF0aW9uczIvbWVudWJhci9QSwECFAAUAAAIAADkU9tUAAAAAAAAAAAAAAAAGgAAAAAAAAAA
+AAAAAADvAAAAQ29uZmlndXJhdGlvbnMyL3BvcHVwbWVudS9QSwECFAAUAAAIAADkU9tUAAAAAAAA
+AAAAAAAAHAAAAAAAAAAAAAAAAAAnAQAAQ29uZmlndXJhdGlvbnMyL2FjY2VsZXJhdG9yL1BLAQIU
+ABQAAAgAAORT21QAAAAAAAAAAAAAAAAaAAAAAAAAAAAAAAAAAGEBAABDb25maWd1cmF0aW9uczIv
+dG9vbHBhbmVsL1BLAQIUABQAAAgAAORT21QAAAAAAAAAAAAAAAAcAAAAAAAAAAAAAAAAAJkBAABD
+b25maWd1cmF0aW9uczIvcHJvZ3Jlc3NiYXIvUEsBAhQAFAAACAAA5FPbVAAAAAAAAAAAAAAAABoA
+AAAAAAAAAAAAAAAA0wEAAENvbmZpZ3VyYXRpb25zMi9zdGF0dXNiYXIvUEsBAhQAFAAACAAA5FPb
+VAAAAAAAAAAAAAAAAB8AAAAAAAAAAAAAAAAACwIAAENvbmZpZ3VyYXRpb25zMi9pbWFnZXMvQml0
+bWFwcy9QSwECFAAUAAgICADkU9tUtPdo0gUBAACDAwAADAAAAAAAAAAAAAAAAABIAgAAbWFuaWZl
+c3QucmRmUEsBAhQAFAAICAgA5FPbVO1uQWTTAQAA1QMAAAgAAAAAAAAAAAAAAAAAhwMAAG1ldGEu
+eG1sUEsBAhQAFAAICAgA5FPbVJ1lkWzeBgAAOS8AAAwAAAAAAAAAAAAAAAAAkAUAAHNldHRpbmdz
+LnhtbFBLAQIUABQAAAgAAORT21SkNwW3wRgAAMEYAAAYAAAAAAAAAAAAAAAAAKgMAABUaHVtYm5h
+aWxzL3RodW1ibmFpbC5wbmdQSwECFAAUAAgICADkU9tUERttH/kLAAAqQQAACgAAAAAAAAAAAAAA
+AACfJQAAc3R5bGVzLnhtbFBLAQIUABQAAAgAAORT21RH5XAMkwAAAJMAAAA1AAAAAAAAAAAAAAAA
+ANAxAABQaWN0dXJlcy8xMDAwMDIwMDAwMDAwMEMwMDAwMDAwQzA4QTZDQzQ5QjNEMjhGRjhCLnBu
+Z1BLAQIUABQAAAgAAORT21QbdO6s+QgAAPkIAAA1AAAAAAAAAAAAAAAAALYyAABQaWN0dXJlcy8x
+MDAwMDIwMTAwMDAwMEFBMDAwMDAwMkJDQkIzNzVGODU0RUQ3Qjk2LnBuZ1BLAQIUABQACAgIAORT
+21T+ZnQHmwwAALBwAAALAAAAAAAAAAAAAAAAAAI8AABjb250ZW50LnhtbFBLAQIUABQACAgIAORT
+21QJZ7W8bgEAACsFAAAVAAAAAAAAAAAAAAAAANZIAABNRVRBLUlORi9tYW5pZmVzdC54bWxQSwUG
+AAAAABMAEwArBQAAh0oAAAAA
+</b64_content>
+          </model_file><convert_to_pdf>True</convert_to_pdf>
+          <attach_to_history>True</attach_to_history>
+          <varname>doc_genere_transfert_abonne</varname>
+          <push_to_portfolio>False</push_to_portfolio>
+          <method>non-interactive</method>
+          <by>
+            <item role_id="_receiver">_receiver</item>
+          </by><filename>Transfert_compteur_eau_{{ form_var_lieu_consom_numero }}_{{ form_var_lieu_consom_rue }}_{{ form_var_lieu_consom_localite }}</filename>
+        </item><item type="sendmail" id="2">
+          <to>
+            <item role_id="_submitter">_submitter</item>
+          </to><subject>{{ form_name}} &#183; Document &#224; signer</subject>
+          <body>Bonjour,
+
+Ce courriel fait suite &#224; votre demande de &#171; {{ form_name}} &#187;.
+
+Nous avons bien re&#231;u le d&#233;tail pour le transfert d'abonn&#233; du bien situ&#233; {{ form_var_lieu_consom_numero }}{% if form_var_lieu_consom_boite %} boite {{ form_var_lieu_consom_boite }}{% endif %} , {{ form_var_lieu_consom_rue }} &#8212; {{ form_var_lieu_consom_code_postal }}, {{ form_var_lieu_consom_localite }}.
+
+Veuillez trouver ci-joint le document &#224; faire signer par les deux parties.
+
+Une fois compl&#233;t&#233;, vous &#234;tes pri&#233; de `joindre le document &#224; votre demande en suivant ce lien &lt;{{form_url}}&gt;`_.
+
+Bien &#224; vous,
+L'administration communale de Virton</body>
+          <attachments>
+            <attachment>{{ form_attachments_doc_genere_transfert_abonne }}</attachment>
+          </attachments>
+        </item><item type="jump" id="4">
+          <status>3</status>
+          <set_marker_on_status>False</set_marker_on_status>
+        </item>
+      </items>
+    </status><status>
+      <id>5</id>
+      <name>En attente de traitement</name>
+      <colour>FFFF99</colour>
+      <visibility />
+      <items>
+        <item type="displaymsg" id="1">
+          <message>La demande semble d&#233;sormais compl&#232;te et est en attente de traitement par votre part.</message>
+          <level>info</level>
+          <position>top</position>
+          <to>
+            <item role_id="_receiver">_receiver</item>
+          </to>
+        </item><item type="choice" id="2">
+          <label>Marquer comme finalis&#233;</label>
+          <by>
+            <item role_id="_receiver">_receiver</item>
+          </by><status>6</status>
+          <require_confirmation>True</require_confirmation>
+          <backoffice_info_text>&lt;p&gt;Passe la demande sur le statut &amp;laquo; Demande finalis&amp;eacute;e &amp;raquo; et informe le citoyen par mail de la cl&amp;ocirc;ture de sa d&amp;eacute;marche.&lt;/p&gt;
+</backoffice_info_text>
+          <ignore_form_errors>False</ignore_form_errors>
+          <set_marker_on_status>False</set_marker_on_status>
+        </item><item type="sendmail" id="3">
+          <to>
+            <item role_id="_receiver">_receiver</item>
+          </to><subject>{{ form_name }} ({{ form_number }}) en attente de traitement</subject>
+          <body>Bonjour,
+
+La d&#233;marche &#171; {{ form_name}} &#187; (`{{form_number}}&lt;{{ form_url_backoffice }}&gt;`_) pour un bien situ&#233; {{ form_var_lieu_consom_numero }}{% if form_var_lieu_consom_boite %} boite {{ form_var_lieu_consom_boite }}{% endif %} , {{ form_var_lieu_consom_rue }} &#8212; {{ form_var_lieu_consom_code_postal }}, {{ form_var_lieu_consom_localite }}, vient d'&#234;tre compl&#233;t&#233;e par le citoyen et attend d'&#234;tre trait&#233;e.
+
+Vous pouvez `consulter ce formulaire dans le backoffice en suivant ce lien&lt;{{form_url_backoffice}}&gt;`_.</body>
+        </item>
+      </items>
+    </status><status>
+      <id>6</id>
+      <name>Demande finalis&#233;e</name>
+      <colour>999999</colour>
+      <forced_endpoint>true</forced_endpoint>
+      <visibility />
+      <items>
+        <item type="displaymsg" id="1">
+          <message>La demande est cl&#244;tur&#233;e.</message>
+          <level>success</level>
+          <position>top</position>
+          <to>
+            <item role_id="_receiver">_receiver</item>
+          </to>
+        </item><item type="displaymsg" id="2">
+          <message>Votre demande a &#233;t&#233; trait&#233;e.</message>
+          <level>success</level>
+          <position>top</position>
+          <to>
+            <item role_id="_submitter">_submitter</item>
+          </to>
+        </item><item type="sendmail" id="3">
+          <to>
+            <item role_id="_submitter">_submitter</item>
+          </to><subject>{{ form_name }} pour {{ form_var_lieu_consom_numero }}{% if form_var_lieu_consom_boite %} boite {{ form_var_lieu_consom_boite }}{% endif %} , {{ form_var_lieu_consom_rue }} &#8212; {{ form_var_lieu_consom_code_postal }}, {{ form_var_lieu_consom_localite }}</subject>
+          <body>Bonjour,
+
+Nous vous informons que votre d&#233;marche &#171; {{ form_name}} &#187; pour le bien situ&#233; {{ form_var_lieu_consom_numero }}{% if form_var_lieu_consom_boite %} boite {{ form_var_lieu_consom_boite }}{% endif %} , {{ form_var_lieu_consom_rue }} &#8212; {{ form_var_lieu_consom_code_postal }}, {{ form_var_lieu_consom_localite }} vient d'&#234;tre marqu&#233;e comme finalis&#233;e par l'administration communale de Virton.
+
+Vous pouvez toujours `consulter l'historique de cette demande en suivant ce lien&lt;{{form_url}}&gt;`_.
+
+Bien &#224; vous,
+L'administration communale de Virton</body>
+        </item>
+      </items>
+    </status><status>
+      <id>7</id>
+      <name>Motiver le refus</name>
+      <colour>666666</colour>
+      <visibility>
+        <role>_receiver</role>
+      </visibility><items>
+        <item type="form" id="2">
+          <by>
+            <item role_id="_receiver">_receiver</item>
+          </by><varname>motiver_refus</varname>
+          <hide_submit_button>False</hide_submit_button>
+          <formdef>
+            <name>-</name>
+            <fields>
+              <field>
+                <label type="str">Motiver le refus</label>
+                <type type="str">title</type>
+                <display_locations>
+                  <display_location>validation</display_location>
+                  <display_location>summary</display_location>
+                </display_locations><id type="str">1</id>
+              </field><field>
+                <label type="str">Motif du refus</label>
+                <type type="str">text</type>
+                <required type="bool">True</required>
+                <hint type="str">Veuillez alimenter ce champs texte avec un texte de refus. Celui-ci sera int&#233;gr&#233; dans le mail de refus qui sera envoy&#233; au demandeur. La demande sera marqu&#233;e comme "Demande refus&#233;e" dans le tableau de traitement.</hint>
+                <varname type="str">motif</varname>
+                <display_locations />
+                <prefill>
+                  <locked>False</locked>
+                  <type>none</type>
+                </prefill><display_mode type="str">plain</display_mode>
+                <id type="str">2</id>
+              </field>
+            </fields>
+          </formdef>
+        </item><item type="jumponsubmit" id="1">
+          <status>8</status>
+          <set_marker_on_status>False</set_marker_on_status>
+        </item>
+      </items>
+    </status><status>
+      <id>8</id>
+      <name>Demande refus&#233;e</name>
+      <colour>FF0000</colour>
+      <forced_endpoint>true</forced_endpoint>
+      <visibility />
+      <items>
+        <item type="sendmail" id="1">
+          <to>
+            <item role_id="_submitter">_submitter</item>
+          </to><subject>{{ form_name }} &#183; Demande refus&#233;e</subject>
+          <body>Bonjour,
+
+Ce courriel fait suite &#224; votre demande de &#171; {{ form_name}} &#187; pour le bien situ&#233; {{ form_var_lieu_consom_numero }}{% if form_var_lieu_consom_boite %} boite {{ form_var_lieu_consom_boite }}{% endif %} , {{ form_var_lieu_consom_rue }} &#8212; {{ form_var_lieu_consom_code_postal }}, {{ form_var_lieu_consom_localite }}.
+
+Malheureusement, cette demande vient d'&#234;tre marqu&#233;e comme "Refus&#233;e".
+
+{% if form_workflow_form_motiver_refus_var_motif %}
+Voici le motif de refus communiqu&#233; par l'agent&#183;e qui ayant trait&#233; cette demande :
+{{ form_workflow_form_motiver_refus_var_motif }}
+{% endif %}
+
+`Consulter l'historique de ma demande &lt;{{form_url}}&gt;`_.
+
+Bien &#224; vous,
+L'administration communale de Virton</body>
+        </item>
+      </items>
+    </status>
+  </possible_status><global_actions>
+    <action>
+      <id>1</id>
+      <name>&#10060; Supprimer</name>
+      <backoffice_info_text>&lt;p&gt;&lt;strong&gt;Attention : Entra&amp;icirc;ne la perte irr&amp;eacute;m&amp;eacute;diable et&amp;nbsp;d&amp;eacute;finitive des donn&amp;eacute;es.&lt;/strong&gt;&lt;/p&gt;
+</backoffice_info_text>
+      <items>
+        <item type="remove" id="1" />
+      </items><triggers>
+        <trigger type="manual" id="3606b829-2c13-41ca-833a-d5cee629313f">
+          <roles>
+            <item slug="debug" role_id="821ff0c7d8ca440888b221681fe71fdc">Debug</item>
+          </roles>
+        </trigger>
+      </triggers>
+    </action><action>
+      <id>2</id>
+      <name>Resoumettre (debug iMio)</name>
+      <items>
+        <item type="create_formdata" id="1">
+          <draft>False</draft>
+          <formdef_slug>compteur-d-eau-transfert-d-abonne</formdef_slug>
+          <map_fields_by_varname>True</map_fields_by_varname>
+          <mappings />
+          <backoffice_submission>False</backoffice_submission>
+          <user_association_mode>keep-user</user_association_mode>
+          <keep_submission_context>True</keep_submission_context>
+          <attach_to_history>False</attach_to_history>
+        </item>
+      </items><triggers>
+        <trigger type="manual" id="635393bd-aa3b-4b4c-b0fa-f77f97350aa3">
+          <roles>
+            <item slug="debug" role_id="821ff0c7d8ca440888b221681fe71fdc">Debug</item>
+          </roles>
+        </trigger>
+      </triggers>
+    </action><action>
+      <id>3</id>
+      <name>Refuser</name>
+      <backoffice_info_text>&lt;p&gt;Vous permet de motiver le refus de cette demande et de la marquer comme refus&amp;eacute;e. Le motif sera transmis par mail au demandeur.&lt;/p&gt;
+</backoffice_info_text>
+      <items>
+        <item type="jump" id="1">
+          <status>7</status>
+          <set_marker_on_status>False</set_marker_on_status>
+        </item>
+      </items><triggers>
+        <trigger type="manual" id="23fe923f-cfbb-482e-93a5-8d11cc4b7daa">
+          <roles>
+            <item slug="agent-traitant-compteurs-d-eau" role_id="b8770ada8ffd4969aafe85348daa8ee5">Agent traitant - Compteurs d'eau</item>
+          </roles>
+        </trigger>
+      </triggers>
+    </action><action>
+      <id>4</id>
+      <name>Vers cr&#233;ation document</name>
+      <items>
+        <item type="jump" id="1">
+          <status>4</status>
+          <set_marker_on_status>False</set_marker_on_status>
+        </item>
+      </items><triggers>
+        <trigger type="manual" id="604bf904-047a-4c78-9514-985c8430913f">
+          <roles>
+            <item slug="debug" role_id="821ff0c7d8ca440888b221681fe71fdc">Debug</item>
+          </roles>
+        </trigger>
+      </triggers>
+    </action>
+  </global_actions><backoffice-fields>
+    <formdef>
+      <name>-</name>
+      <fields>
+        <field>
+          <label type="str">Num&#233;ro de compteur</label>
+          <type type="str">string</type>
+          <required type="bool">True</required>
+          <varname type="str">dt_numero_compteur</varname>
+          <display_locations>
+            <display_location>summary</display_location>
+            <display_location>listings</display_location>
+          </display_locations><anonymise type="bool">True</anonymise>
+          <id type="str">bo172c6495-8078-43ba-a3af-7117e975838c</id>
+        </field><field>
+          <label type="str">Relev&#233; d'index</label>
+          <type type="str">string</type>
+          <required type="bool">True</required>
+          <varname type="str">dt_releve_index</varname>
+          <display_locations>
+            <display_location>summary</display_location>
+            <display_location>listings</display_location>
+          </display_locations><anonymise type="bool">True</anonymise>
+          <id type="str">bo22033a0f-b087-4cfe-9e4f-612be9017381</id>
+        </field><field>
+          <label type="str">Nom du propri&#233;taire</label>
+          <type type="str">string</type>
+          <required type="bool">True</required>
+          <varname type="str">dt_proprietaire_nom_complet</varname>
+          <display_locations>
+            <display_location>summary</display_location>
+          </display_locations><anonymise type="bool">True</anonymise>
+          <id type="str">bo15bf408b-7a25-4dc2-a1a1-c8f085f6ec3b</id>
+        </field><field>
+          <label type="str">Nom de l'usager entrant</label>
+          <type type="str">string</type>
+          <required type="bool">True</required>
+          <varname type="str">dt_usager_entrant_nom_complet</varname>
+          <display_locations>
+            <display_location>summary</display_location>
+          </display_locations><anonymise type="bool">True</anonymise>
+          <id type="str">bodfde4e2e-6464-4044-a76b-295b676e3e03</id>
+        </field><field>
+          <label type="str">Nom de l'usager sortant</label>
+          <type type="str">string</type>
+          <required type="bool">True</required>
+          <varname type="str">dt_usager_sortant_nom_complet</varname>
+          <display_locations>
+            <display_location>summary</display_location>
+          </display_locations><anonymise type="bool">True</anonymise>
+          <id type="str">boa7277815-cdc8-4309-a379-0e623b1ac165</id>
+        </field><field>
+          <label type="str">Bien situ&#233; au</label>
+          <type type="str">string</type>
+          <required type="bool">True</required>
+          <varname type="str">dt_lieu_consom_adresse_complete</varname>
+          <display_locations>
+            <display_location>summary</display_location>
+            <display_location>listings</display_location>
+          </display_locations><anonymise type="bool">False</anonymise>
+          <id type="str">boce1d237d-abea-4b39-bf21-d46f43480d77</id>
+        </field><field>
+          <label type="str">Type</label>
+          <type type="str">string</type>
+          <required type="bool">True</required>
+          <varname type="str">dt_type_de_bien</varname>
+          <display_locations>
+            <display_location>summary</display_location>
+            <display_location>listings</display_location>
+          </display_locations><anonymise type="bool">True</anonymise>
+          <id type="str">bo623fddaf-6e22-4457-8286-79816f697fcf</id>
+        </field>
+      </fields>
+    </formdef>
+  </backoffice-fields>
+</workflow>

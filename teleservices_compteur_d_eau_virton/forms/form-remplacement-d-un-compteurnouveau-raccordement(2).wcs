@@ -1,0 +1,959 @@
+<?xml version="1.0"?>
+<formdef id="102" url="https://virton-formulaires.guichet-citoyen.be/backoffice/forms/102/">
+  <name>Compteur d'eau - Remplacement / nouveau raccordement</name>
+  <url_name>remplacement-d-un-compteurnouveau-raccordement</url_name>
+  <internal_identifier>compteur-d-eau-remplacement-nouveau-raccordement</internal_identifier>
+  <discussion>false</discussion>
+  <detailed_emails>true</detailed_emails>
+  <disabled>false</disabled>
+  <only_allow_one>false</only_allow_one>
+  <enable_tracking_codes>false</enable_tracking_codes>
+  <confirmation>true</confirmation>
+  <always_advertise>false</always_advertise>
+  <include_download_all_button>false</include_download_all_button>
+  <has_captcha>false</has_captcha>
+  <skip_from_360_view>false</skip_from_360_view>
+  <category slug="compteurs-d-eau" category_id="119">Compteurs d'eau</category>
+  <workflow slug="imio-remplacement-d-un-compteurnouveau-raccordement" workflow_id="52">iMio - Remplacement d'un compteur/nouveau raccordement</workflow>
+  <max_field_id>83</max_field_id>
+  <fields>
+    <field>
+      <label type="str">Adresse du raccordement</label>
+      <type type="str">page</type>
+      <id type="str">1</id>
+    </field><field>
+      <label type="str">Adresse du raccordement</label>
+      <type type="str">title</type>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><id type="str">14</id>
+    </field><field>
+      <label type="str">Rue</label>
+      <type type="str">string</type>
+      <required type="bool">True</required>
+      <varname type="str">rue_raccordement</varname>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+        <display_location>listings</display_location>
+      </display_locations><extra_css_class type="str">grid-1-2</extra_css_class>
+      <prefill>
+        <locked>False</locked>
+        <type>user</type>
+        <value>_street</value>
+      </prefill><anonymise type="bool">True</anonymise>
+      <id type="str">4</id>
+    </field><field>
+      <label type="str">Num&#233;ro</label>
+      <type type="str">string</type>
+      <required type="bool">True</required>
+      <varname type="str">numero_raccordement</varname>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+        <display_location>listings</display_location>
+      </display_locations><extra_css_class type="str">grid-2-12</extra_css_class>
+      <prefill>
+        <locked>False</locked>
+        <type>user</type>
+        <value>_num_house</value>
+      </prefill><validation>
+        <type>regex</type>
+        <value>^[0-9]*</value>
+      </validation><anonymise type="bool">True</anonymise>
+      <id type="str">5</id>
+    </field><field>
+      <label type="str">Code postal</label>
+      <type type="str">string</type>
+      <required type="bool">True</required>
+      <varname type="str">code_postal_raccordement</varname>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+        <display_location>listings</display_location>
+      </display_locations><extra_css_class type="str">newline grid-2-12</extra_css_class>
+      <prefill>
+        <locked>False</locked>
+        <type>user</type>
+        <value>_zipcode</value>
+      </prefill><validation>
+        <type>regex</type>
+        <value>^[0-9]*</value>
+      </validation><anonymise type="bool">True</anonymise>
+      <id type="str">7</id>
+    </field><field>
+      <label type="str">Localit&#233;</label>
+      <type type="str">string</type>
+      <required type="bool">True</required>
+      <varname type="str">localite_raccordement</varname>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+        <display_location>listings</display_location>
+      </display_locations><extra_css_class type="str">grid-1-2</extra_css_class>
+      <prefill>
+        <type>user</type>
+        <value>_city</value>
+      </prefill><anonymise type="bool">True</anonymise>
+      <id type="str">8</id>
+    </field><field>
+      <label type="str">Lieu de l'intervention</label>
+      <type type="str">item</type>
+      <required type="bool">True</required>
+      <hint type="str">S&#233;lectionnez un lieu</hint>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+        <display_location>listings</display_location>
+      </display_locations><prefill>
+        <locked>False</locked>
+        <type>none</type>
+      </prefill><display_mode type="str">list</display_mode>
+      <data_source>
+        <type>carddef:lieux-intervention:ordre-alphabetique</type>
+      </data_source><in_filters type="bool">False</in_filters>
+      <anonymise type="bool">False</anonymise>
+      <display_disabled_items type="bool">False</display_disabled_items>
+      <id type="str">68</id>
+    </field><field>
+      <label type="str">Nature de l'intervention</label>
+      <type type="str">item</type>
+      <required type="bool">True</required>
+      <hint type="str">Choisissez la nature de l'intervention</hint>
+      <varname type="str">nature_intervention</varname>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+        <display_location>listings</display_location>
+      </display_locations><extra_css_class type="str">newline grid-1-2</extra_css_class>
+      <prefill>
+        <locked>False</locked>
+        <type>none</type>
+      </prefill><display_mode type="str">list</display_mode>
+      <data_source>
+        <type>carddef:categories-interventions</type>
+      </data_source><in_filters type="bool">False</in_filters>
+      <anonymise type="bool">False</anonymise>
+      <display_disabled_items type="bool">False</display_disabled_items>
+      <id type="str">58</id>
+    </field><field>
+      <label type="str">D&#233;taillez</label>
+      <type type="str">text</type>
+      <condition>
+        <type>django</type>
+        <value>form_var_nature_intervention == "Autre"</value>
+      </condition><required type="bool">True</required>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><prefill>
+        <locked>False</locked>
+        <type>none</type>
+      </prefill><display_mode type="str">pre</display_mode>
+      <id type="str">83</id>
+    </field><field>
+      <label type="str">Vue en plan et en coupe du local accueillant le compteur</label>
+      <type type="str">file</type>
+      <condition>
+        <type>django</type>
+        <value>form_var_nature_intervention_live_var_plan_local_compteur and form_var_nature_intervention != "Nouveau raccordement"</value>
+      </condition><required type="bool">False</required>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><prefill>
+        <locked>False</locked>
+        <type>none</type>
+      </prefill><allow_portfolio_picking type="bool">False</allow_portfolio_picking>
+      <automatic_image_resize type="bool">False</automatic_image_resize>
+      <storage type="str">default</storage>
+      <id type="str">59</id>
+    </field><field>
+      <label type="str">Le plan d'am&#233;nagement ext&#233;rieur reprenant les citerne, station d'&#233;puration et/ou chambre de visite</label>
+      <type type="str">file</type>
+      <condition>
+        <type>django</type>
+        <value>form_var_nature_intervention_live_var_plan_amenagement_exterieur and form_var_nature_intervention != "Nouveau raccordement"</value>
+      </condition><required type="bool">False</required>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><prefill>
+        <locked>False</locked>
+        <type>none</type>
+      </prefill><allow_portfolio_picking type="bool">False</allow_portfolio_picking>
+      <automatic_image_resize type="bool">False</automatic_image_resize>
+      <storage type="str">default</storage>
+      <id type="str">60</id>
+    </field><field>
+      <label type="str">La photo de la fa&#231;ade, du terrain et de la voirie depuis le trottoir oppos&#233; &#224; l'habitation</label>
+      <type type="str">file</type>
+      <condition>
+        <type>django</type>
+        <value>form_var_nature_intervention_live_var_photo_facade_voirie and form_var_nature_intervention != "Nouveau raccordement"</value>
+      </condition><required type="bool">False</required>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><prefill>
+        <locked>False</locked>
+        <type>none</type>
+      </prefill><allow_portfolio_picking type="bool">False</allow_portfolio_picking>
+      <automatic_image_resize type="bool">False</automatic_image_resize>
+      <storage type="str">default</storage>
+      <id type="str">61</id>
+    </field><field>
+      <label type="str">La photo de l'emplacement souhait&#233; du compteur reprenant les &#233;ventuelles sorties de gaine</label>
+      <type type="str">file</type>
+      <condition>
+        <type>django</type>
+        <value>form_var_nature_intervention_live_var_futur_emplacement_compteur and form_var_nature_intervention != "Nouveau raccordement"</value>
+      </condition><required type="bool">False</required>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><prefill>
+        <locked>False</locked>
+        <type>none</type>
+      </prefill><allow_portfolio_picking type="bool">False</allow_portfolio_picking>
+      <automatic_image_resize type="bool">False</automatic_image_resize>
+      <storage type="str">default</storage>
+      <id type="str">62</id>
+    </field><field>
+      <label type="str">Rapport pompiers</label>
+      <type type="str">file</type>
+      <condition>
+        <type>django</type>
+        <value>form_var_nature_intervention_live_var_rapport_pompier and form_var_nature_intervention != "Nouveau raccordement"</value>
+      </condition><required type="bool">False</required>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><prefill>
+        <locked>False</locked>
+        <type>none</type>
+      </prefill><allow_portfolio_picking type="bool">False</allow_portfolio_picking>
+      <automatic_image_resize type="bool">False</automatic_image_resize>
+      <storage type="str">default</storage>
+      <id type="str">63</id>
+    </field><field>
+      <label type="str">Photo du compteur</label>
+      <type type="str">file</type>
+      <condition>
+        <type>django</type>
+        <value>form_var_nature_intervention_live_var_photo_compteur and form_var_nature_intervention != "Nouveau raccordement"</value>
+      </condition><required type="bool">False</required>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><prefill>
+        <locked>False</locked>
+        <type>none</type>
+      </prefill><allow_portfolio_picking type="bool">False</allow_portfolio_picking>
+      <automatic_image_resize type="bool">False</automatic_image_resize>
+      <storage type="str">default</storage>
+      <id type="str">64</id>
+    </field><field>
+      <label type="str">Photo de l'installation</label>
+      <type type="str">file</type>
+      <condition>
+        <type>django</type>
+        <value>form_var_nature_intervention_live_var_photo_installation and form_var_nature_intervention != "Nouveau raccordement"</value>
+      </condition><required type="bool">False</required>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><prefill>
+        <locked>False</locked>
+        <type>none</type>
+      </prefill><allow_portfolio_picking type="bool">False</allow_portfolio_picking>
+      <automatic_image_resize type="bool">False</automatic_image_resize>
+      <storage type="str">default</storage>
+      <id type="str">65</id>
+    </field><field>
+      <label type="str">Sch&#233;ma des travaux</label>
+      <type type="str">file</type>
+      <condition>
+        <type>django</type>
+        <value>form_var_nature_intervention_live_var_schema_travaux and form_var_nature_intervention != "Nouveau raccordement"</value>
+      </condition><required type="bool">False</required>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><prefill>
+        <locked>False</locked>
+        <type>none</type>
+      </prefill><allow_portfolio_picking type="bool">False</allow_portfolio_picking>
+      <automatic_image_resize type="bool">False</automatic_image_resize>
+      <storage type="str">default</storage>
+      <id type="str">66</id>
+    </field><field>
+      <label type="str">Vue en plan et en coupe du local accueillant le compteur</label>
+      <type type="str">file</type>
+      <condition>
+        <type>django</type>
+        <value>form_var_nature_intervention_live_var_plan_local_compteur and form_var_nature_intervention == "Nouveau raccordement"</value>
+      </condition><required type="bool">True</required>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><prefill>
+        <locked>False</locked>
+        <type>none</type>
+      </prefill><allow_portfolio_picking type="bool">False</allow_portfolio_picking>
+      <automatic_image_resize type="bool">False</automatic_image_resize>
+      <storage type="str">default</storage>
+      <id type="str">75</id>
+    </field><field>
+      <label type="str">Le plan d'am&#233;nagement ext&#233;rieur reprenant les citerne, station d'&#233;puration et/ou chambre de visite</label>
+      <type type="str">file</type>
+      <condition>
+        <type>django</type>
+        <value>form_var_nature_intervention_live_var_plan_amenagement_exterieur and form_var_nature_intervention == "Nouveau raccordement"</value>
+      </condition><required type="bool">True</required>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><prefill>
+        <locked>False</locked>
+        <type>none</type>
+      </prefill><allow_portfolio_picking type="bool">False</allow_portfolio_picking>
+      <automatic_image_resize type="bool">False</automatic_image_resize>
+      <storage type="str">default</storage>
+      <id type="str">76</id>
+    </field><field>
+      <label type="str">La photo de la fa&#231;ade, du terrain et de la voirie depuis le trottoir oppos&#233; &#224; l'habitation</label>
+      <type type="str">file</type>
+      <condition>
+        <type>django</type>
+        <value>form_var_nature_intervention_live_var_photo_facade_voirie and form_var_nature_intervention == "Nouveau raccordement"</value>
+      </condition><required type="bool">True</required>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><prefill>
+        <locked>False</locked>
+        <type>none</type>
+      </prefill><allow_portfolio_picking type="bool">False</allow_portfolio_picking>
+      <automatic_image_resize type="bool">False</automatic_image_resize>
+      <storage type="str">default</storage>
+      <id type="str">77</id>
+    </field><field>
+      <label type="str">La photo de l'emplacement souhait&#233; du compteur reprenant les &#233;ventuelles sorties de gaine</label>
+      <type type="str">file</type>
+      <condition>
+        <type>django</type>
+        <value>form_var_nature_intervention_live_var_futur_emplacement_compteur and form_var_nature_intervention == "Nouveau raccordement"</value>
+      </condition><required type="bool">True</required>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><prefill>
+        <locked>False</locked>
+        <type>none</type>
+      </prefill><allow_portfolio_picking type="bool">False</allow_portfolio_picking>
+      <automatic_image_resize type="bool">False</automatic_image_resize>
+      <storage type="str">default</storage>
+      <id type="str">78</id>
+    </field><field>
+      <label type="str">Rapport pompiers</label>
+      <type type="str">file</type>
+      <condition>
+        <type>django</type>
+        <value>form_var_nature_intervention_live_var_rapport_pompier and form_var_nature_intervention == "Nouveau raccordement"</value>
+      </condition><required type="bool">True</required>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><prefill>
+        <locked>False</locked>
+        <type>none</type>
+      </prefill><allow_portfolio_picking type="bool">False</allow_portfolio_picking>
+      <automatic_image_resize type="bool">False</automatic_image_resize>
+      <storage type="str">default</storage>
+      <id type="str">79</id>
+    </field><field>
+      <label type="str">Photo du compteur</label>
+      <type type="str">file</type>
+      <condition>
+        <type>django</type>
+        <value>form_var_nature_intervention_live_var_photo_compteur and form_var_nature_intervention == "Nouveau raccordement"</value>
+      </condition><required type="bool">True</required>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><prefill>
+        <locked>False</locked>
+        <type>none</type>
+      </prefill><allow_portfolio_picking type="bool">False</allow_portfolio_picking>
+      <automatic_image_resize type="bool">False</automatic_image_resize>
+      <storage type="str">default</storage>
+      <id type="str">80</id>
+    </field><field>
+      <label type="str">Photo de l'installation</label>
+      <type type="str">file</type>
+      <condition>
+        <type>django</type>
+        <value>form_var_nature_intervention_live_var_photo_installation and form_var_nature_intervention == "Nouveau raccordement"</value>
+      </condition><required type="bool">True</required>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><prefill>
+        <locked>False</locked>
+        <type>none</type>
+      </prefill><allow_portfolio_picking type="bool">False</allow_portfolio_picking>
+      <automatic_image_resize type="bool">False</automatic_image_resize>
+      <storage type="str">default</storage>
+      <id type="str">81</id>
+    </field><field>
+      <label type="str">Sch&#233;ma des travaux</label>
+      <type type="str">file</type>
+      <condition>
+        <type>django</type>
+        <value>form_var_nature_intervention_live_var_schema_travaux and form_var_nature_intervention == "Nouveau raccordement"</value>
+      </condition><required type="bool">True</required>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><prefill>
+        <locked>False</locked>
+        <type>none</type>
+      </prefill><allow_portfolio_picking type="bool">False</allow_portfolio_picking>
+      <automatic_image_resize type="bool">False</automatic_image_resize>
+      <storage type="str">default</storage>
+      <id type="str">82</id>
+    </field><field>
+      <label type="str">Identification du demandeur</label>
+      <type type="str">page</type>
+      <id type="str">13</id>
+    </field><field>
+      <label type="str">Identification du demandeur (propri&#233;taire ou autre titulaire de droit r&#233;el)</label>
+      <type type="str">title</type>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><id type="str">28</id>
+    </field><field>
+      <label type="str">Type de client</label>
+      <type type="str">item</type>
+      <required type="bool">True</required>
+      <varname type="str">type_client</varname>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><prefill>
+        <type>none</type>
+      </prefill><display_mode type="str">radio</display_mode>
+      <items>
+        <item>Particulier</item>
+        <item>Soci&#233;t&#233;</item>
+      </items><in_filters type="bool">False</in_filters>
+      <anonymise type="bool">False</anonymise>
+      <display_disabled_items type="bool">False</display_disabled_items>
+      <id type="str">15</id>
+    </field><field>
+      <label type="str">N&#176; client</label>
+      <type type="str">string</type>
+      <condition>
+        <type>django</type>
+        <value>form_var_type_client == "Particulier"</value>
+      </condition><required type="bool">False</required>
+      <hint type="str">Votre num&#233;ro de client se trouve en t&#234;te de votre facture. Veuillez ins&#233;rer les chiffres sans espaces ni tirets.</hint>
+      <varname type="str">numero_client_demandeur</varname>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><prefill>
+        <locked>False</locked>
+        <type>none</type>
+      </prefill><anonymise type="bool">True</anonymise>
+      <id type="str">16</id>
+    </field><field>
+      <label type="str">Nom</label>
+      <type type="str">string</type>
+      <condition>
+        <type>django</type>
+        <value>form_var_type_client == "Particulier"</value>
+      </condition><required type="bool">True</required>
+      <varname type="str">nom_demandeur</varname>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><extra_css_class type="str">grid-1-2</extra_css_class>
+      <prefill>
+        <locked>False</locked>
+        <type>user</type>
+        <value>_last_name</value>
+      </prefill><anonymise type="bool">True</anonymise>
+      <id type="str">2</id>
+    </field><field>
+      <label type="str">Pr&#233;nom</label>
+      <type type="str">string</type>
+      <condition>
+        <type>django</type>
+        <value>form_var_type_client == "Particulier"</value>
+      </condition><required type="bool">True</required>
+      <varname type="str">prenom_demandeur</varname>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><extra_css_class type="str">grid-1-2</extra_css_class>
+      <prefill>
+        <locked>False</locked>
+        <type>user</type>
+        <value>_first_name</value>
+      </prefill><anonymise type="bool">True</anonymise>
+      <id type="str">3</id>
+    </field><field>
+      <label type="str">Nom de la soci&#233;t&#233;</label>
+      <type type="str">string</type>
+      <condition>
+        <type>django</type>
+        <value>form_var_type_client == "Soci&#233;t&#233;"</value>
+      </condition><required type="bool">True</required>
+      <varname type="str">nom_societe_demandeur</varname>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><extra_css_class type="str">grid-1-2</extra_css_class>
+      <prefill>
+        <type>none</type>
+      </prefill><anonymise type="bool">True</anonymise>
+      <id type="str">17</id>
+    </field><field>
+      <label type="str">Rue</label>
+      <type type="str">string</type>
+      <required type="bool">True</required>
+      <varname type="str">rue_demandeur</varname>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><extra_css_class type="str">newline grid-1-2</extra_css_class>
+      <prefill>
+        <locked>False</locked>
+        <type>user</type>
+        <value>_street</value>
+      </prefill><anonymise type="bool">True</anonymise>
+      <id type="str">19</id>
+    </field><field>
+      <label type="str">Num&#233;ro</label>
+      <type type="str">string</type>
+      <required type="bool">True</required>
+      <varname type="str">numero_demandeur</varname>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><extra_css_class type="str">grid-2-12</extra_css_class>
+      <prefill>
+        <locked>False</locked>
+        <type>user</type>
+        <value>_num_house</value>
+      </prefill><validation>
+        <type>regex</type>
+        <value>^[0-9]*</value>
+      </validation><anonymise type="bool">True</anonymise>
+      <id type="str">20</id>
+    </field><field>
+      <label type="str">Bo&#238;te</label>
+      <type type="str">string</type>
+      <required type="bool">False</required>
+      <varname type="str">boite_demandeur</varname>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><extra_css_class type="str">grid-2-12</extra_css_class>
+      <prefill>
+        <locked>False</locked>
+        <type>user</type>
+        <value>_num_box</value>
+      </prefill><anonymise type="bool">True</anonymise>
+      <id type="str">21</id>
+    </field><field>
+      <label type="str">Code postal</label>
+      <type type="str">string</type>
+      <required type="bool">True</required>
+      <varname type="str">code_postal_demandeur</varname>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><extra_css_class type="str">newline grid-2-12</extra_css_class>
+      <prefill>
+        <locked>False</locked>
+        <type>user</type>
+        <value>_zipcode</value>
+      </prefill><validation>
+        <type>regex</type>
+        <value>^[0-9]*</value>
+      </validation><anonymise type="bool">True</anonymise>
+      <id type="str">22</id>
+    </field><field>
+      <label type="str">Localit&#233;</label>
+      <type type="str">string</type>
+      <required type="bool">True</required>
+      <varname type="str">localite_demandeur</varname>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><extra_css_class type="str">grid-1-2</extra_css_class>
+      <prefill>
+        <locked>False</locked>
+        <type>user</type>
+        <value>_city</value>
+      </prefill><anonymise type="bool">True</anonymise>
+      <id type="str">23</id>
+    </field><field>
+      <label type="str">Pays</label>
+      <type type="str">item</type>
+      <required type="bool">True</required>
+      <varname type="str">pays_demandeur</varname>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><prefill>
+        <type>none</type>
+      </prefill><display_mode type="str">list</display_mode>
+      <items />
+      <data_source>
+        <type>pays</type>
+      </data_source><in_filters type="bool">False</in_filters>
+      <anonymise type="bool">False</anonymise>
+      <display_disabled_items type="bool">False</display_disabled_items>
+      <id type="str">36</id>
+    </field><field>
+      <label type="str">Num&#233;ro de t&#233;l&#233;phone</label>
+      <type type="str">string</type>
+      <required type="bool">True</required>
+      <varname type="str">telephone_demandeur</varname>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><extra_css_class type="str">newline  grid-1-2</extra_css_class>
+      <prefill>
+        <locked>False</locked>
+        <type>user</type>
+        <value>_phone</value>
+      </prefill><anonymise type="bool">True</anonymise>
+      <id type="str">24</id>
+    </field><field>
+      <label type="str">Adresse e-mail</label>
+      <type type="str">email</type>
+      <required type="bool">True</required>
+      <varname type="str">email_demandeur</varname>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><extra_css_class type="str">grid-1-2</extra_css_class>
+      <prefill>
+        <locked>False</locked>
+        <type>user</type>
+        <value>_email</value>
+      </prefill><id type="str">26</id>
+    </field><field>
+      <label type="str">Num&#233;ro de registre national</label>
+      <type type="str">string</type>
+      <condition>
+        <type>django</type>
+        <value>form_var_type_client == "Particulier"</value>
+      </condition><required type="bool">True</required>
+      <varname type="str">registre_national_demandeur</varname>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><extra_css_class type="str">grid-1-2</extra_css_class>
+      <prefill>
+        <locked>False</locked>
+        <type>none</type>
+      </prefill><validation>
+        <type>nrn-be</type>
+      </validation><anonymise type="bool">True</anonymise>
+      <id type="str">71</id>
+    </field><field>
+      <label type="str">Etes-vous assujetti a&#768; la TVA ?</label>
+      <type type="str">item</type>
+      <required type="bool">True</required>
+      <varname type="str">tva_oui_non</varname>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><extra_css_class type="str">newline grid-1-3</extra_css_class>
+      <prefill>
+        <type>none</type>
+      </prefill><display_mode type="str">radio</display_mode>
+      <items>
+        <item>Oui</item>
+        <item>Non</item>
+      </items><in_filters type="bool">False</in_filters>
+      <anonymise type="bool">False</anonymise>
+      <display_disabled_items type="bool">False</display_disabled_items>
+      <id type="str">31</id>
+    </field><field>
+      <label type="str">N&#176; TVA</label>
+      <type type="str">string</type>
+      <condition>
+        <type>django</type>
+        <value>form_var_tva_oui_non == "Oui"</value>
+      </condition><required type="bool">True</required>
+      <hint type="str">Par exemple BE0123456789</hint>
+      <varname type="str">numero_tva_demandeur</varname>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><extra_css_class type="str">grid-1-2</extra_css_class>
+      <prefill>
+        <locked>False</locked>
+        <type>none</type>
+      </prefill><validation>
+        <type>regex</type>
+        <value>BE(\d+)</value>
+      </validation><anonymise type="bool">True</anonymise>
+      <id type="str">32</id>
+    </field><field>
+      <label type="str">Type d&#8217;assujettissement</label>
+      <type type="str">item</type>
+      <condition>
+        <type>django</type>
+        <value>form_var_tva_oui_non == "Oui"</value>
+      </condition><required type="bool">True</required>
+      <hint type="str">Choisissez un type d&#8217;assujettissement</hint>
+      <varname type="str">type_tva_demandeur</varname>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><extra_css_class type="str">newline grid-1-2</extra_css_class>
+      <prefill>
+        <locked>False</locked>
+        <type>none</type>
+      </prefill><display_mode type="str">list</display_mode>
+      <data_source>
+        <type>carddef:tva-assujettissement-type:ordre-swde</type>
+      </data_source><in_filters type="bool">False</in_filters>
+      <anonymise type="bool">False</anonymise>
+      <display_disabled_items type="bool">False</display_disabled_items>
+      <id type="str">35</id>
+    </field><field>
+      <label type="str">Coordonn&#233;es de la personne de contact</label>
+      <type type="str">page</type>
+      <id type="str">33</id>
+    </field><field>
+      <label type="str">Coordonn&#233;es de la personne de contact</label>
+      <type type="str">title</type>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><id type="str">34</id>
+    </field><field>
+      <label type="str">Le demandeur est-il la personne de contact ?</label>
+      <type type="str">item</type>
+      <required type="bool">True</required>
+      <varname type="str">demandeur_personne_contact_oui_non</varname>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><prefill>
+        <type>none</type>
+      </prefill><display_mode type="str">radio</display_mode>
+      <items>
+        <item>Oui</item>
+        <item>Non</item>
+      </items><in_filters type="bool">False</in_filters>
+      <anonymise type="bool">False</anonymise>
+      <display_disabled_items type="bool">False</display_disabled_items>
+      <id type="str">37</id>
+    </field><field>
+      <label type="str">Nom</label>
+      <type type="str">string</type>
+      <condition>
+        <type>django</type>
+        <value>form_var_demandeur_personne_contact_oui_non == "Non"</value>
+      </condition><required type="bool">True</required>
+      <varname type="str">nom_personne_contact</varname>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><extra_css_class type="str">grid-1-2</extra_css_class>
+      <prefill>
+        <locked>False</locked>
+        <type>user</type>
+        <value>_last_name</value>
+      </prefill><anonymise type="bool">True</anonymise>
+      <id type="str">42</id>
+    </field><field>
+      <label type="str">Pr&#233;nom</label>
+      <type type="str">string</type>
+      <condition>
+        <type>django</type>
+        <value>form_var_demandeur_personne_contact_oui_non == "Non"</value>
+      </condition><required type="bool">True</required>
+      <varname type="str">prenom_personne_contact</varname>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><extra_css_class type="str">grid-1-2</extra_css_class>
+      <prefill>
+        <locked>False</locked>
+        <type>user</type>
+        <value>_first_name</value>
+      </prefill><anonymise type="bool">True</anonymise>
+      <id type="str">43</id>
+    </field><field>
+      <label type="str">Rue</label>
+      <type type="str">string</type>
+      <condition>
+        <type>django</type>
+        <value>form_var_demandeur_personne_contact_oui_non == "Non"</value>
+      </condition><required type="bool">True</required>
+      <varname type="str">rue_personne_contact</varname>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><extra_css_class type="str">grid-1-2</extra_css_class>
+      <prefill>
+        <locked>False</locked>
+        <type>user</type>
+        <value>_street</value>
+      </prefill><anonymise type="bool">True</anonymise>
+      <id type="str">45</id>
+    </field><field>
+      <label type="str">Num&#233;ro</label>
+      <type type="str">string</type>
+      <condition>
+        <type>django</type>
+        <value>form_var_demandeur_personne_contact_oui_non == "Non"</value>
+      </condition><required type="bool">True</required>
+      <varname type="str">numero_personne_contact</varname>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><extra_css_class type="str">grid-2-12</extra_css_class>
+      <prefill>
+        <locked>False</locked>
+        <type>user</type>
+        <value>_num_house</value>
+      </prefill><validation>
+        <type>regex</type>
+        <value>^[0-9]*</value>
+      </validation><anonymise type="bool">True</anonymise>
+      <id type="str">46</id>
+    </field><field>
+      <label type="str">Bo&#238;te</label>
+      <type type="str">string</type>
+      <condition>
+        <type>django</type>
+        <value>form_var_demandeur_personne_contact_oui_non == "Non"</value>
+      </condition><required type="bool">False</required>
+      <varname type="str">boite_personne_contact</varname>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><extra_css_class type="str">grid-2-12</extra_css_class>
+      <prefill>
+        <locked>False</locked>
+        <type>user</type>
+        <value>_num_box</value>
+      </prefill><anonymise type="bool">True</anonymise>
+      <id type="str">47</id>
+    </field><field>
+      <label type="str">Code postal</label>
+      <type type="str">string</type>
+      <condition>
+        <type>django</type>
+        <value>form_var_demandeur_personne_contact_oui_non == "Non"</value>
+      </condition><required type="bool">True</required>
+      <varname type="str">code_postal_personne_contact</varname>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><extra_css_class type="str">newline grid-2-12</extra_css_class>
+      <prefill>
+        <locked>False</locked>
+        <type>user</type>
+        <value>_zipcode</value>
+      </prefill><validation>
+        <type>regex</type>
+        <value>^[0-9]*</value>
+      </validation><anonymise type="bool">True</anonymise>
+      <id type="str">48</id>
+    </field><field>
+      <label type="str">Localit&#233;</label>
+      <type type="str">string</type>
+      <condition>
+        <type>django</type>
+        <value>form_var_demandeur_personne_contact_oui_non == "Non"</value>
+      </condition><required type="bool">True</required>
+      <varname type="str">localite_personne_contact</varname>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><extra_css_class type="str">grid-1-2</extra_css_class>
+      <prefill>
+        <type>user</type>
+        <value>_city</value>
+      </prefill><anonymise type="bool">True</anonymise>
+      <id type="str">49</id>
+    </field><field>
+      <label type="str">Num&#233;ro de t&#233;l&#233;phone</label>
+      <type type="str">string</type>
+      <condition>
+        <type>django</type>
+        <value>form_var_demandeur_personne_contact_oui_non == "Non"</value>
+      </condition><required type="bool">True</required>
+      <varname type="str">telephone_personne_contact</varname>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><extra_css_class type="str">newline grid-1-2</extra_css_class>
+      <prefill>
+        <locked>False</locked>
+        <type>user</type>
+        <value>_phone</value>
+      </prefill><anonymise type="bool">True</anonymise>
+      <id type="str">51</id>
+    </field><field>
+      <label type="str">Adresse e-mail</label>
+      <type type="str">email</type>
+      <condition>
+        <type>django</type>
+        <value>form_var_demandeur_personne_contact_oui_non == "Non"</value>
+      </condition><required type="bool">True</required>
+      <varname type="str">email_personne_contact</varname>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><extra_css_class type="str">grid-1-2</extra_css_class>
+      <prefill>
+        <locked>False</locked>
+        <type>user</type>
+        <value>_email</value>
+      </prefill><id type="str">52</id>
+    </field><field>
+      <label type="str">Num&#233;ro de registre national</label>
+      <type type="str">string</type>
+      <condition>
+        <type>django</type>
+        <value>form_var_type_client == "Particulier"</value>
+      </condition><required type="bool">True</required>
+      <varname type="str">registre_national_personne_contact</varname>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+      </display_locations><extra_css_class type="str">grid-1-2</extra_css_class>
+      <prefill>
+        <locked>False</locked>
+        <type>none</type>
+      </prefill><validation>
+        <type>nrn-be</type>
+      </validation><anonymise type="bool">True</anonymise>
+      <id type="str">72</id>
+    </field>
+  </fields><user-roles>
+    <role slug="citoyen-test-compteurs-deau" role_id="62839bbb2c78496f815f637bedb2e3f7">Citoyen (test) Compteurs d'eau</role>
+  </user-roles><backoffice-submission-roles>
+    <role slug="agent-traitant-compteurs-d-eau" role_id="b8770ada8ffd4969aafe85348daa8ee5">Agent traitant - Compteurs d'eau</role>
+  </backoffice-submission-roles><roles>
+    <role slug="agent-traitant-compteurs-d-eau" role_id="b8770ada8ffd4969aafe85348daa8ee5" role_key="_receiver">Agent traitant - Compteurs d'eau</role>
+  </roles><options />
+  <custom_views />
+  <geolocations />
+</formdef>

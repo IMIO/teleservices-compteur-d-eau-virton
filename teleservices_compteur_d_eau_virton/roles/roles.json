@@ -1,0 +1,19 @@
+{
+  "roles": [
+    {
+      "name": "Agent traitant - Compteurs d'eau",
+      "slug": "agent-traitant-compteurs-d-eau",
+      "ou": {"slug": "default"}
+    },
+    {
+      "name": "Citoyen (test) Compteurs d'eau",
+      "slug": "citoyen-test-compteurs-deau",
+      "ou": {"slug": "default"}
+    },
+    {
+      "name": "Agent Fontainier",
+      "slug": "agent-fontainier",
+      "ou": {"slug": "default"}
+    }
+  ]
+}
