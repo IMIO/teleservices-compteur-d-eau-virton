@@ -2,6 +2,7 @@
 <workflow id="53" url="https://virton-formulaires.guichet-citoyen.be/backoffice/workflows/53/">
   <name>Relev&#233;s compteurs d'eau</name>
   <slug>releves-compteurs-d-eau</slug>
+  <category slug="compteurs-d-eau" category_id="1">Compteurs d'eau</category>
   <roles>
     <role id="_editor">&#201;diteur</role>
     <role id="_viewer">Visualisateur</role>

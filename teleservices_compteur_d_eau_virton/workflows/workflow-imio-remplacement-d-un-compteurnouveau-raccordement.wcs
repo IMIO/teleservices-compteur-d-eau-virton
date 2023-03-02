@@ -2,6 +2,7 @@
 <workflow id="52" url="https://virton-formulaires.guichet-citoyen.be/backoffice/workflows/52/">
   <name>iMio - Remplacement d'un compteur/nouveau raccordement</name>
   <slug>imio-remplacement-d-un-compteurnouveau-raccordement</slug>
+  <category slug="compteurs-d-eau" category_id="1">Compteurs d'eau</category>
   <roles>
     <role id="_receiver">Destinataire</role>
   </roles><possible_status>
