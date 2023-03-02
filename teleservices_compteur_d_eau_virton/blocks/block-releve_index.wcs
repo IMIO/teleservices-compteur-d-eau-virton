@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+<block id="17" url="https://virton-formulaires.guichet-citoyen.be/backoffice/forms/blocks/17/">
+  <name>Compteurs d'eau - Relev&#233; d'index</name>
+  <slug>releve_index</slug>
+  <fields>
+    <field>
+      <label type="str">Date</label>
+      <type type="str">date</type>
+      <required type="bool">True</required>
+      <hint type="str">Date du relev&#233;.</hint>
+      <varname type="str">date</varname>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+        <display_location>listings</display_location>
+      </display_locations><extra_css_class type="str">grid-3-12</extra_css_class>
+      <prefill>
+        <locked>False</locked>
+        <type>string</type>
+        <value>{{ today }}</value>
+      </prefill><minimum_is_future type="bool">False</minimum_is_future>
+      <date_in_the_past type="bool">True</date_in_the_past>
+      <date_can_be_today type="bool">True</date_can_be_today>
+      <id type="str">bfb7447c15-e0fb-4a0d-a09d-77c421314ce3</id>
+    </field><field>
+      <label type="str">Compteur</label>
+      <type type="str">string</type>
+      <required type="bool">True</required>
+      <hint type="str">Num&#233;ro de compteur.</hint>
+      <varname type="str">compteur</varname>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+        <display_location>listings</display_location>
+      </display_locations><extra_css_class type="str">grid-5-12</extra_css_class>
+      <anonymise type="bool">True</anonymise>
+      <id type="str">bf245a5651-b9c9-4bde-ba72-d9ed57d0d750</id>
+    </field><field>
+      <label type="str">Index</label>
+      <type type="str">string</type>
+      <required type="bool">True</required>
+      <hint type="str">Relev&#233; d'index.</hint>
+      <varname type="str">index</varname>
+      <display_locations>
+        <display_location>validation</display_location>
+        <display_location>summary</display_location>
+        <display_location>listings</display_location>
+      </display_locations><extra_css_class type="str">grid-3-12</extra_css_class>
+      <prefill>
+        <locked>False</locked>
+        <type>none</type>
+      </prefill><anonymise type="bool">True</anonymise>
+      <id type="str">bf9c8abc05-e24f-4fe9-b1c4-0aae6a5fb7eb</id>
+    </field>
+  </fields>
+</block>
