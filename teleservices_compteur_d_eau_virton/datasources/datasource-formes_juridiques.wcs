@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<datasource id="143" url="https://virton-formulaires.guichet-citoyen.be/backoffice/settings/data-sources/143/">
+  <name>Formes juridiques</name>
+  <slug>formes_juridiques</slug>
+  <description>List des formes juridiques belges</description>
+  <data_source>
+    <type>jsonvalue</type>
+    <value>[{"id": "aisbl", "text": "AISBL"}, {"id": "asbl", "text": "ASBL"}, {"id": "scis", "text": "SCIS"}, {"id": "scisr", "text": "SCISR"}, {"id": "scrl", "text": "SCRL"}, {"id": "scrlp", "text": "SCRLP"}, {"id": "sc", "text": "SC"}, {"id": "sce", "text": "SCE"}, {"id": "snc", "text": "SNC"}, {"id": "scom", "text": "SCOM"}, {"id": "sca", "text": "SCA"}, {"id": "sa", "text": "SA"}, {"id": "sprl", "text": "SPRL"}, {"id": "sagr", "text": "SAGR"}, {"id": "geie", "text": "GEIE"}, {"id": "se", "text": "SE"}, {"id": "autre", "text": "Autre"}]</value>
+  </data_source><notify_on_errors>true</notify_on_errors>
+  <record_on_errors>true</record_on_errors>
+</datasource>

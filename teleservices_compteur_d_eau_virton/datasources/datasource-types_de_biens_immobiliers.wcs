@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<datasource id="144" url="https://virton-formulaires.guichet-citoyen.be/backoffice/settings/data-sources/144/">
+  <name>Types de biens immobiliers</name>
+  <slug>types_de_biens_immobiliers</slug>
+  <description>Liste des types de bien immobiliers.</description>
+  <data_source>
+    <type>jsonvalue</type>
+    <value>[{"id": "maison", "text": "Maison"}, {"id": "appartement", "text": "Appartement"}, {"id": "autre", "text": "Autre"}]</value>
+  </data_source><notify_on_errors>true</notify_on_errors>
+  <record_on_errors>true</record_on_errors>
+</datasource>

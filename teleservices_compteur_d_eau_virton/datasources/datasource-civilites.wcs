@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<datasource id="142" url="https://virton-formulaires.guichet-citoyen.be/backoffice/settings/data-sources/142/">
+  <name>Civilit&#233;s</name>
+  <slug>civilites</slug>
+  <description>List des civilit&#233;s dans les formulaires (Madame, Monsieur,...)</description>
+  <data_source>
+    <type>jsonvalue</type>
+    <value>[{"id": "madame", "text": "Madame"}, {"id": "monsieur", "text": "Monsieur"}]</value>
+  </data_source><notify_on_errors>true</notify_on_errors>
+  <record_on_errors>true</record_on_errors>
+</datasource>
